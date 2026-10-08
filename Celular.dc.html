@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cadeira — Celular</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap">
+<style>body{margin:0;background:#15110E}</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; padding: 40px 48px 56px; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; display: flex; flex-direction: column; gap: 28px;">
+  <header style="display: flex; flex-direction: column; gap: 6px;">
+    <span style="font-size: 13px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.08em;">Celular</span>
+    <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">O painel do dono no telefone</h1>
+    <p style="margin: 0; color: #A89F93; max-width: 70ch;">As mesmas telas, sem versão separada: abaixo de 720px a navegação vira uma barra fixa embaixo, no alcance do polegar, e os blocos empilham. Cada telefone aqui é a tela real, interativa.</p>
+  </header>
+  <div style="display: flex; gap: 36px; align-items: flex-start; overflow-x: auto; padding-bottom: 12px;">
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+      <div style="width: 390px; height: 820px; border-radius: 44px; background: #0B0908; border: 1px solid rgba(243,237,228,0.18); box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 8px #050403; position: relative; overflow: hidden; box-sizing: border-box; padding: 8px;">
+        <div style="position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 110px; height: 28px; border-radius: 14px; background: #050403; z-index: 2;"></div>
+        <div style="width: 374px; height: 804px; overflow: auto; border-radius: 36px; background: #15110E;"><dc-import name="Main" hint-size="374px,804px"></dc-import></div>
+      </div>
+      <figcaption style="font-size: 14px; color: #A89F93;">Receita</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+      <div style="width: 390px; height: 820px; border-radius: 44px; background: #0B0908; border: 1px solid rgba(243,237,228,0.18); box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 8px #050403; position: relative; overflow: hidden; box-sizing: border-box; padding: 8px;">
+        <div style="position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 110px; height: 28px; border-radius: 14px; background: #050403; z-index: 2;"></div>
+        <div style="width: 374px; height: 804px; overflow: auto; border-radius: 36px; background: #15110E;"><dc-import name="Agenda" hint-size="374px,804px"></dc-import></div>
+      </div>
+      <figcaption style="font-size: 14px; color: #A89F93;">Agenda</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+      <div style="width: 390px; height: 820px; border-radius: 44px; background: #0B0908; border: 1px solid rgba(243,237,228,0.18); box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 8px #050403; position: relative; overflow: hidden; box-sizing: border-box; padding: 8px;">
+        <div style="position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 110px; height: 28px; border-radius: 14px; background: #050403; z-index: 2;"></div>
+        <div style="width: 374px; height: 804px; overflow: auto; border-radius: 36px; background: #15110E;"><dc-import name="Conversas" hint-size="374px,804px"></dc-import></div>
+      </div>
+      <figcaption style="font-size: 14px; color: #A89F93;">Conversas</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+      <div style="width: 390px; height: 820px; border-radius: 44px; background: #0B0908; border: 1px solid rgba(243,237,228,0.18); box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 8px #050403; position: relative; overflow: hidden; box-sizing: border-box; padding: 8px;">
+        <div style="position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 110px; height: 28px; border-radius: 14px; background: #050403; z-index: 2;"></div>
+        <div style="width: 374px; height: 804px; overflow: auto; border-radius: 36px; background: #15110E;"><dc-import name="Clientes" hint-size="374px,804px"></dc-import></div>
+      </div>
+      <figcaption style="font-size: 14px; color: #A89F93;">Clientes</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+      <div style="width: 390px; height: 820px; border-radius: 44px; background: #0B0908; border: 1px solid rgba(243,237,228,0.18); box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 8px #050403; position: relative; overflow: hidden; box-sizing: border-box; padding: 8px;">
+        <div style="position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 110px; height: 28px; border-radius: 14px; background: #050403; z-index: 2;"></div>
+        <div style="width: 374px; height: 804px; overflow: auto; border-radius: 36px; background: #15110E;"><dc-import name="Catalogo" hint-size="374px,804px"></dc-import></div>
+      </div>
+      <figcaption style="font-size: 14px; color: #A89F93;">Catálogo</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+      <div style="width: 390px; height: 820px; border-radius: 44px; background: #0B0908; border: 1px solid rgba(243,237,228,0.18); box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 8px #050403; position: relative; overflow: hidden; box-sizing: border-box; padding: 8px;">
+        <div style="position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 110px; height: 28px; border-radius: 14px; background: #050403; z-index: 2;"></div>
+        <div style="width: 374px; height: 804px; overflow: auto; border-radius: 36px; background: #15110E;"><dc-import name="Regras" hint-size="374px,804px"></dc-import></div>
+      </div>
+      <figcaption style="font-size: 14px; color: #A89F93;">Regras</figcaption>
+    </figure>
+    <figure style="margin: 0; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+      <div style="width: 390px; height: 820px; border-radius: 44px; background: #0B0908; border: 1px solid rgba(243,237,228,0.18); box-shadow: 0 30px 80px rgba(0,0,0,0.6), inset 0 0 0 8px #050403; position: relative; overflow: hidden; box-sizing: border-box; padding: 8px;">
+        <div style="position: absolute; top: 14px; left: 50%; transform: translateX(-50%); width: 110px; height: 28px; border-radius: 14px; background: #050403; z-index: 2;"></div>
+        <div style="width: 374px; height: 804px; overflow: auto; border-radius: 36px; background: #15110E;"><dc-import name="Conexao" hint-size="374px,804px"></dc-import></div>
+      </div>
+      <figcaption style="font-size: 14px; color: #A89F93;">Conectar</figcaption>
+    </figure>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

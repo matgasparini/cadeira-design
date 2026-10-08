@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Clientes</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap">
+<style>
+body{margin:0;background:#15110E}
+a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
+.row:hover{background:rgba(243,237,228,0.04)}
+.seg{min-height:40px;padding:0 14px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:transparent;color:#CFC6BA;font:inherit;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:8px}
+.seg[aria-selected="true"]{background:rgba(243,237,228,0.10);color:#F3EDE4;border-color:transparent}
+.btn{min-height:40px;padding:0 14px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:transparent;color:#F3EDE4;font:inherit;font-weight:500;cursor:pointer}
+.btn.primary{border:none;background:#E8A84A;color:#15110E;font-weight:600}
+th{font-weight:500;font-size:12px;color:#A89F93;text-align:left;padding:12px 16px;border-bottom:1px solid rgba(243,237,228,0.08);white-space:nowrap}
+td{padding:14px 16px;border-top:1px solid rgba(243,237,228,0.06);vertical-align:middle;font-variant-numeric:tabular-nums}
+/* mobile */
+@container (max-width: 720px) {
+  nav[aria-label="Principal"] { order: 2; position: sticky; bottom: 0; z-index: 5; width: 100% !important; flex: 1 1 100% !important; flex-direction: row !important; align-items: stretch !important; gap: 0 !important; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)) !important; border-right: none !important; border-top: 1px solid rgba(243,237,228,0.10); background: #120F0C !important; }
+  nav[aria-label="Principal"] > div:first-child { display: none !important; }
+  nav[aria-label="Principal"] > div:nth-child(2) { flex-direction: row !important; flex: 1 1 auto; width: 100%; gap: 0 !important; justify-content: space-around; }
+  nav[aria-label="Principal"] > div:nth-child(2) a { position: relative; flex: 1 1 0; min-width: 0; flex-direction: column !important; justify-content: center; gap: 4px !important; min-height: 52px !important; padding: 4px 2px !important; font-size: 11px; line-height: 1.1; text-align: center; white-space: nowrap; }
+  nav[aria-label="Principal"] > div:nth-child(2) a svg { width: 20px; height: 20px; flex: 0 0 auto; }
+  nav[aria-label="Principal"] > div:nth-child(2) a > span { position: absolute; top: 2px; left: 50%; margin: 0 0 0 4px !important; min-width: 18px !important; height: 18px !important; font-size: 11px !important; }
+  nav[aria-label="Principal"] small { display: none !important; }
+  nav[aria-label="Principal"] > a[aria-label="Conexão WhatsApp"] { display: none !important; }
+  main { order: 1; }
+  main { padding: 18px 14px 40px !important; gap: 18px !important; }
+  main h1 { font-size: 26px !important; }
+  main h2 { font-size: 20px !important; }
+  main > header { align-items: flex-start !important; }
+  main > header > div:last-child { width: 100%; flex-wrap: wrap; }
+  main [style*="repeat(5, minmax"] { gap: 6px !important; font-size: 10px !important; }
+  main aside[aria-label="Lista de conversas"] { max-width: none !important; }
+  main table { font-size: 12px !important; }
+  main td, main th { padding-left: 6px !important; padding-right: 6px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
+
+  <nav aria-label="Principal" style="width: 232px; flex: 0 0 232px; box-sizing: border-box; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; border-right: 1px solid rgba(243,237,228,0.08); background: #120F0C;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg>
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
+        Receita<small style="font-size: inherit; font-weight: inherit;"> recuperada</small>
+      </a>
+      <a href="Agenda.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path><path d="M8 3v4"></path><path d="M16 3v4"></path></svg>
+        Agenda
+      </a>
+      <a href="Conversas.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"></path></svg>
+        Conversas
+        <span style="margin-left: auto; min-width: 22px; height: 22px; padding: 0 7px; box-sizing: border-box; border-radius: 11px; background: #E06B5A; color: #15110E; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center;">3</span>
+      </a>
+      <a href="#" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; background: rgba(232,168,74,0.12); color: #F3EDE4; font-weight: 500;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7"></path><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"></path></svg>
+        Clientes
+      </a>
+      <a href="Catalogo.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"></path><path d="M4 18V5.5"></path><path d="M9 8h7"></path><path d="M9 12h5"></path></svg>
+        Catálogo
+      </a>
+      <a href="Regras.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path><circle cx="9" cy="6" r="2" fill="#120F0C"></circle><circle cx="15" cy="12" r="2" fill="#120F0C"></circle><circle cx="7" cy="18" r="2" fill="#120F0C"></circle></svg>
+        Regras
+      </a>
+    </div>
+    <a href="Conexao.dc.html" aria-label="Conexão WhatsApp" style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); color: inherit;">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #CFC6BA;">
+        <span style="width: 8px; height: 8px; border-radius: 4px; background: {{accent}};"></span>
+        WhatsApp conectado
+      </div>
+      <div style="font-size: 12px; color: #A89F93;">Barbearia do Léo · (11) 9 8765-4321</div>
+    </a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px 40px 48px; display: flex; flex-direction: column; gap: 24px;">
+
+    <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 13px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.08em;">Clientes</span>
+        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">R$ 6.240 parados em 38 clientes sumidos</h1>
+        <span style="font-size: 13px; color: #CFC6BA;">Estimativa pelo gasto médio de cada um. A IA já está falando com 24 deles.</span>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button type="button" class="btn">Importar contatos</button>
+        <button type="button" class="btn primary" style="display: flex; align-items: center; gap: 8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"></path></svg>
+          Reativar os 14 restantes
+        </button>
+      </div>
+    </header>
+
+    <section aria-label="Resumo da base" style="display: flex; flex-wrap: wrap; gap: 12px;">
+      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+        <span style="font-size: 12px; color: #A89F93;">Base total</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1;">312</span>
+        <span style="font-size: 12px; color: #CFC6BA;">+18 novos em outubro</span>
+      </div>
+      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+        <span style="font-size: 12px; color: #A89F93;">Em dia</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: {{accent}};">241</span>
+        <span style="font-size: 12px; color: #CFC6BA;">Cortaram nos últimos 35 dias</span>
+      </div>
+      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+        <span style="font-size: 12px; color: #A89F93;">Esfriando</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: #C9A961;">33</span>
+        <span style="font-size: 12px; color: #CFC6BA;">35–60 dias · IA manda lembrete leve</span>
+      </div>
+      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+        <span style="font-size: 12px; color: #A89F93;">Sumidos</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: #E06B5A;">38</span>
+        <span style="font-size: 12px; color: #CFC6BA;">+60 dias · R$ 6.240 em jogo</span>
+      </div>
+      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+        <span style="font-size: 12px; color: #A89F93;">Fila de espera</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1;">9</span>
+        <span style="font-size: 12px; color: #CFC6BA;">Querem horário antes · IA oferta buracos</span>
+      </div>
+    </section>
+
+    <section aria-label="Lista de clientes" style="display: flex; flex-direction: column; border-radius: 16px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid rgba(243,237,228,0.08);">
+        <div role="tablist" style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <button type="button" role="tab" class="seg" aria-selected="{{ segSumidos }}" onClick="{{ setSumidos }}"><span style="width: 8px; height: 8px; border-radius: 4px; background: #E06B5A;"></span>Sumidos · 38</button>
+          <button type="button" role="tab" class="seg" aria-selected="{{ segEsfriando }}" onClick="{{ setEsfriando }}"><span style="width: 8px; height: 8px; border-radius: 4px; background: #C9A961;"></span>Esfriando · 33</button>
+          <button type="button" role="tab" class="seg" aria-selected="{{ segFila }}" onClick="{{ setFila }}">Fila de espera · 9</button>
+          <button type="button" role="tab" class="seg" aria-selected="{{ segVip }}" onClick="{{ setVip }}">Top 20 por gasto</button>
+          <button type="button" role="tab" class="seg" aria-selected="{{ segTodos }}" onClick="{{ setTodos }}">Todos · 312</button>
+        </div>
+        <input type="search" placeholder="Buscar nome ou telefone…" aria-label="Buscar cliente" style="min-width: 240px; min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.12); background: #15110E; color: #F3EDE4; font: inherit; outline: none;">
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table style="width: 100%; min-width: 860px; border-collapse: collapse;">
+          <thead>
+            <tr>
+              <th>Cliente</th>
+              <th>Último corte</th>
+              <th>Frequência</th>
+              <th>Gasto 12 m</th>
+              <th>Faltas</th>
+              <th>Risco de sumir</th>
+              <th>Status da IA</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ rows }}" as="r" hint-placeholder-count="6">
+              <tr class="row">
+                <td>
+                  <div style="display: flex; align-items: center; gap: 12px;">
+                    <span style="width: 36px; height: 36px; border-radius: 18px; background: #26211C; color: #CFC6BA; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px;">{{ r.initials }}</span>
+                    <div style="display: flex; flex-direction: column;"><span style="font-weight: 500;">{{ r.name }}</span><span style="font-size: 12px; color: #A89F93;">{{ r.phone }} · {{ r.pref }}</span></div>
+                  </div>
+                </td>
+                <td><div style="display: flex; flex-direction: column;"><span>{{ r.last }}</span><span style="font-size: 12px; color: {{ r.daysColor }};">{{ r.days }}</span></div></td>
+                <td style="color: #CFC6BA;">{{ r.freq }}</td>
+                <td style="font-weight: 500;">R$ {{ r.spend }}</td>
+                <td style="color: {{ r.faultsColor }};">{{ r.faults }}</td>
+                <td>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <div style="width: 72px; height: 6px; border-radius: 3px; background: rgba(243,237,228,0.08); overflow: hidden;"><div style="width: {{ r.risk }}%; height: 100%; background: {{ r.riskColor }};"></div></div>
+                    <span style="font-size: 12px; color: #CFC6BA;">{{ r.riskLabel }}</span>
+                  </div>
+                </td>
+                <td><span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; font-size: 12px; font-weight: 500; background: {{ r.statusBg }}; color: {{ r.statusColor }};">{{ r.status }}</span></td>
+                <td style="text-align: right;"><a href="{{ r.href }}" class="btn" style="display: inline-flex; align-items: center; min-height: 36px; padding: 0 12px; font-size: 13px;">{{ r.action }}</a></td>
+              </tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-top: 1px solid rgba(243,237,228,0.08); font-size: 12px; color: #A89F93;">
+        <span>Mostrando {{ shown }} de {{ total }}</span>
+        <span>Risco de sumir = Jev, treinado com o histórico desta barbearia · atualizado às 06:00</span>
+      </div>
+    </section>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E8A84A","options":["#E8A84A","#D07A45","#C9A961","#8DA3B8"]},"$preview":{"width":1280,"height":1040}}'>
+var RED = '#E06B5A', GOLD = '#C9A961', MUTED = '#A89F93', AMB = '#E8A84A';
+var S = {
+  talking: { status: 'IA conversando', statusBg: 'rgba(232,168,74,0.14)', statusColor: AMB, action: 'Ver conversa', href: 'Conversas.dc.html' },
+  sent:    { status: 'Mensagem enviada', statusBg: 'rgba(243,237,228,0.08)', statusColor: '#CFC6BA', action: 'Ver conversa', href: 'Conversas.dc.html' },
+  booked:  { status: 'Reagendou ✓', statusBg: 'rgba(232,168,74,0.14)', statusColor: AMB, action: 'Ver na agenda', href: 'Agenda.dc.html' },
+  noreply: { status: 'Sem resposta (2 tentativas)', statusBg: 'rgba(224,107,90,0.12)', statusColor: RED, action: 'Ligar', href: '#' },
+  wait:    { status: 'Aguardando', statusBg: 'rgba(243,237,228,0.08)', statusColor: '#CFC6BA', action: 'Reativar agora', href: '#' },
+  ok:      { status: 'Em dia', statusBg: 'rgba(243,237,228,0.08)', statusColor: '#CFC6BA', action: 'Abrir', href: '#' },
+  queue:   { status: 'Na fila · quer antes', statusBg: 'rgba(232,168,74,0.14)', statusColor: AMB, action: 'Encaixar', href: 'Agenda.dc.html' }
+};
+function mk(initials, name, phone, pref, last, days, daysColor, freq, spend, faults, risk, riskLabel, riskColor, s) {
+  return Object.assign({ initials: initials, name: name, phone: phone, pref: pref, last: last, days: days, daysColor: daysColor,
+    freq: freq, spend: spend, faults: faults, faultsColor: faults > 1 ? RED : '#CFC6BA', risk: risk, riskLabel: riskLabel, riskColor: riskColor }, S[s]);
+}
+
+var DATA = {
+  sumidos: [
+    mk('EB','Eduardo Bastos','(11) 9 8812-3344','Léo · corte','11 set','há 47 dias',RED,'a cada 28 d','880',2,82,'Alto',RED,'talking'),
+    mk('RN','Rafael Nunes','(11) 9 7731-0021','Léo · corte','06 set','há 52 dias',RED,'a cada 31 d','560',1,8,'Voltou',AMB,'booked'),
+    mk('AC','André Campos','(11) 9 6654-8790','Caio · corte+barba','29 ago','há 60 dias',RED,'a cada 25 d','1.140',0,74,'Alto',RED,'sent'),
+    mk('VS','Vinícius Santos','(11) 9 5520-7713','Léo · degradê','21 ago','há 68 dias',RED,'a cada 35 d','630',1,61,'Médio',GOLD,'noreply'),
+    mk('PM','Paulo Martins','(11) 9 9941-2200','Caio · corte','14 ago','há 75 dias',RED,'a cada 30 d','720',0,69,'Médio',GOLD,'wait'),
+    mk('LA','Leandro Alves','(11) 9 8123-6611','Léo · barba','02 ago','há 87 dias',RED,'a cada 21 d','945',3,91,'Muito alto',RED,'noreply'),
+    mk('DS','Diego Silva','(11) 9 7034-5590','Caio · corte+barba','28 jul','há 92 dias',RED,'a cada 40 d','380',0,58,'Médio',GOLD,'wait'),
+    mk('GP','Guilherme Prado','(11) 9 6677-1830','Léo · corte','15 jul','há 105 dias',RED,'a cada 28 d','800',1,77,'Alto',RED,'talking')
+  ],
+  esfriando: [
+    mk('MP','Marcos Paulo','(11) 9 8800-1122','Léo · corte+barba','20 set','há 38 dias',GOLD,'a cada 26 d','1.045',0,34,'Baixo',AMB,'sent'),
+    mk('IF','Igor Fontes','(11) 9 7711-3344','Caio · barba','18 set','há 40 dias',GOLD,'a cada 22 d','540',0,41,'Médio',GOLD,'sent'),
+    mk('HS','Henrique Sá','(11) 9 6622-5566','Léo · pezinho','14 set','há 44 dias',GOLD,'a cada 30 d','360',1,48,'Médio',GOLD,'talking'),
+    mk('CR','Caíque Ramos','(11) 9 5533-7788','Caio · corte','10 set','há 48 dias',GOLD,'a cada 28 d','800',0,52,'Médio',GOLD,'wait'),
+    mk('OB','Otávio Brandão','(11) 9 4444-9900','Caio · degradê','05 set','há 53 dias',GOLD,'a cada 32 d','720',0,55,'Médio',GOLD,'booked')
+  ],
+  fila: [
+    mk('BC','Bruno Carvalho','(11) 9 8765-0001','Caio · corte','01 out','há 27 dias',MUTED,'a cada 28 d','960',0,12,'Baixo',AMB,'booked'),
+    mk('JV','João Vítor','(11) 9 8765-0002','Léo · barba','03 out','há 25 dias',MUTED,'a cada 20 d','675',0,9,'Baixo',AMB,'queue'),
+    mk('RT','Rodrigo Teixeira','(11) 9 8765-0003','Léo · corte','30 set','há 28 dias',MUTED,'a cada 30 d','800',0,14,'Baixo',AMB,'queue'),
+    mk('DR','Danilo Reis','(11) 9 8765-0004','Caio · corte+barba','28 set','há 30 dias',MUTED,'a cada 28 d','1.140',0,16,'Baixo',AMB,'queue'),
+    mk('LF','Lucas Ferreira','(11) 9 8765-0005','Léo · corte+barba','26 set','há 32 dias',MUTED,'a cada 30 d','1.045',0,18,'Baixo',AMB,'queue')
+  ],
+  vip: [
+    mk('TM','Thiago Mendes','(11) 9 9900-1001','Léo · corte','27 out','ontem',MUTED,'a cada 18 d','1.600',0,4,'Baixo',AMB,'ok'),
+    mk('AC','André Campos','(11) 9 6654-8790','Caio · corte+barba','29 ago','há 60 dias',RED,'a cada 25 d','1.140',0,74,'Alto',RED,'sent'),
+    mk('DR','Danilo Reis','(11) 9 8765-0004','Caio · corte+barba','28 set','há 30 dias',MUTED,'a cada 28 d','1.140',0,16,'Baixo',AMB,'queue'),
+    mk('MP','Marcos Paulo','(11) 9 8800-1122','Léo · corte+barba','20 set','há 38 dias',GOLD,'a cada 26 d','1.045',0,34,'Baixo',AMB,'sent'),
+    mk('LF','Lucas Ferreira','(11) 9 8765-0005','Léo · corte+barba','26 set','há 32 dias',MUTED,'a cada 30 d','1.045',0,18,'Baixo',AMB,'queue'),
+    mk('BC','Bruno Carvalho','(11) 9 8765-0001','Caio · corte','01 out','há 27 dias',MUTED,'a cada 28 d','960',0,12,'Baixo',AMB,'booked'),
+    mk('LA','Leandro Alves','(11) 9 8123-6611','Léo · barba','02 ago','há 87 dias',RED,'a cada 21 d','945',3,91,'Muito alto',RED,'noreply'),
+    mk('EB','Eduardo Bastos','(11) 9 8812-3344','Léo · corte','11 set','há 47 dias',RED,'a cada 28 d','880',2,82,'Alto',RED,'talking')
+  ]
+};
+DATA.todos = DATA.vip.slice(0, 3).concat(DATA.esfriando.slice(0, 2), DATA.sumidos.slice(0, 3));
+var TOTAL = { sumidos: 38, esfriando: 33, fila: 9, vip: 20, todos: 312 };
+
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var seg = (this.state && this.state.seg) || 'sumidos';
+    var rows = DATA[seg];
+    function on(k) { return seg === k ? 'true' : 'false'; }
+    return {
+      accent: this.props.accent || '#E8A84A',
+      rows: rows, shown: rows.length, total: TOTAL[seg],
+      segSumidos: on('sumidos'), segEsfriando: on('esfriando'), segFila: on('fila'), segVip: on('vip'), segTodos: on('todos'),
+      setSumidos: function () { self.setState({ seg: 'sumidos' }); },
+      setEsfriando: function () { self.setState({ seg: 'esfriando' }); },
+      setFila: function () { self.setState({ seg: 'fila' }); },
+      setVip: function () { self.setState({ seg: 'vip' }); },
+      setTodos: function () { self.setState({ seg: 'todos' }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

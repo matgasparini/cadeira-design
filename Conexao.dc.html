@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cadeira — Conectar WhatsApp</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap">
+<style>
+body{margin:0;background:#15110E}
+a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
+/* mobile */
+@container (max-width: 720px) {
+  nav[aria-label="Principal"] { order: 2; position: sticky; bottom: 0; z-index: 5; width: 100% !important; flex: 1 1 100% !important; flex-direction: row !important; align-items: stretch !important; gap: 0 !important; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)) !important; border-right: none !important; border-top: 1px solid rgba(243,237,228,0.10); background: #120F0C !important; }
+  nav[aria-label="Principal"] > div:first-child { display: none !important; }
+  nav[aria-label="Principal"] > div:nth-child(2) { flex-direction: row !important; flex: 1 1 auto; width: 100%; gap: 0 !important; justify-content: space-around; }
+  nav[aria-label="Principal"] > div:nth-child(2) a { position: relative; flex: 1 1 0; min-width: 0; flex-direction: column !important; justify-content: center; gap: 4px !important; min-height: 52px !important; padding: 4px 2px !important; font-size: 11px; line-height: 1.1; text-align: center; white-space: nowrap; }
+  nav[aria-label="Principal"] > div:nth-child(2) a svg { width: 20px; height: 20px; flex: 0 0 auto; }
+  nav[aria-label="Principal"] > div:nth-child(2) a > span { position: absolute; top: 2px; left: 50%; margin: 0 0 0 4px !important; min-width: 18px !important; height: 18px !important; font-size: 11px !important; }
+  nav[aria-label="Principal"] small { display: none !important; }
+  nav[aria-label="Principal"] > a[aria-label="Conexão WhatsApp"] { display: none !important; }
+  main { order: 1; }
+  main { padding: 18px 14px 40px !important; gap: 18px !important; }
+  main h1 { font-size: 26px !important; }
+  main h2 { font-size: 20px !important; }
+  main > header { align-items: flex-start !important; }
+  main > header > div:last-child { width: 100%; flex-wrap: wrap; }
+  main [style*="repeat(5, minmax"] { gap: 6px !important; font-size: 10px !important; }
+  main aside[aria-label="Lista de conversas"] { max-width: none !important; }
+  main table { font-size: 12px !important; }
+  main td, main th { padding-left: 6px !important; padding-right: 6px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
+
+  <nav aria-label="Principal" style="width: 232px; flex: 0 0 232px; box-sizing: border-box; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; border-right: 1px solid rgba(243,237,228,0.08); background: #120F0C;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg>
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
+        Receita<small style="font-size: inherit; font-weight: inherit;"> recuperada</small>
+      </a>
+      <a href="Agenda.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path><path d="M8 3v4"></path><path d="M16 3v4"></path></svg>
+        Agenda
+      </a>
+      <a href="Conversas.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"></path></svg>
+        Conversas
+        <span style="margin-left: auto; min-width: 22px; height: 22px; padding: 0 7px; box-sizing: border-box; border-radius: 11px; background: #E06B5A; color: #15110E; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center;">3</span>
+      </a>
+      <a href="Clientes.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7"></path><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"></path></svg>
+        Clientes
+      </a>
+      <a href="Catalogo.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"></path><path d="M4 18V5.5"></path><path d="M9 8h7"></path><path d="M9 12h5"></path></svg>
+        Catálogo
+      </a>
+      <a href="Regras.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path><circle cx="9" cy="6" r="2" fill="#120F0C"></circle><circle cx="15" cy="12" r="2" fill="#120F0C"></circle><circle cx="7" cy="18" r="2" fill="#120F0C"></circle></svg>
+        Regras
+      </a>
+    </div>
+    <a href="Conexao.dc.html" aria-label="Conexão WhatsApp" style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); color: inherit;">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #CFC6BA;">
+        <span style="width: 8px; height: 8px; border-radius: 4px; background: {{accent}};"></span>
+        WhatsApp conectado
+      </div>
+      <div style="font-size: 12px; color: #A89F93;">Barbearia do Léo · (11) 9 8765-4321</div>
+    </a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px 40px 48px; display: flex; flex-direction: column; gap: 24px;">
+
+    <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 13px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.08em;">Configuração · passo 3 de 5</span>
+        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">Conectar o WhatsApp da barbearia</h1>
+        <p style="margin: 0; color: #A89F93; max-width: 60ch;">A Cadeira entra como um dispositivo vinculado ao seu número. Você continua usando o WhatsApp normalmente no celular.</p>
+      </div>
+      <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-weight: 500; cursor: pointer;">Precisa de ajuda?</button>
+    </header>
+
+    <ol aria-label="Etapas da configuração" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px;">
+      <sc-for list="{{ steps }}" as="st">
+        <li aria-current="{{ st.state === 'current' ? 'step' : 'false' }}" style="flex: 1 1 160px; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; background: {{ st.state === 'current' ? 'rgba(232,168,74,0.12)' : '#1B1612' }}; border: 1px solid {{ st.state === 'current' ? accent : 'rgba(243,237,228,0.08)' }};">
+          <span style="width: 24px; height: 24px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; background: {{ st.state === 'done' ? accent : (st.state === 'current' ? 'transparent' : 'rgba(243,237,228,0.08)') }}; border: 1px solid {{ st.state === 'current' ? accent : 'transparent' }}; color: {{ st.state === 'done' ? '#15110E' : (st.state === 'current' ? accent : '#A89F93') }};">{{ st.state === 'done' ? '✓' : st.n }}</span>
+          <span style="font-size: 13px; color: {{ st.state === 'todo' ? '#A89F93' : '#F3EDE4' }};">{{ st.label }}</span>
+        </li>
+      </sc-for>
+    </ol>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: stretch;">
+
+      <section aria-label="Código QR" style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 18px; padding: 24px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+        <sc-if value="{{ !connected }}">
+          <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center;">
+            <div style="flex: 0 0 auto; position: relative; width: 240px; height: 240px; padding: 12px; box-sizing: border-box; border-radius: 14px; background: #F3EDE4;">
+              <svg viewBox="0 0 29 29" width="216" height="216" shape-rendering="crispEdges" aria-label="Código QR para vincular dispositivo" role="img">
+                <sc-for list="{{ qr }}" as="q"><rect x="{{ q.x }}" y="{{ q.y }}" width="1" height="1" fill="#15110E"></rect></sc-for>
+              </svg>
+              <sc-if value="{{ expired }}">
+                <button type="button" onClick="{{ regen }}" style="position: absolute; inset: 0; border-radius: 14px; border: none; background: rgba(21,17,14,0.88); color: #F3EDE4; font: inherit; font-weight: 500; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"></path><path d="M21 3v6h-6"></path></svg>
+                  Código expirou · gerar novo
+                </button>
+              </sc-if>
+            </div>
+            <ol style="flex: 1 1 200px; margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px;">
+              <li style="display: flex; gap: 12px; align-items: flex-start;"><span style="flex: 0 0 26px; height: 26px; border-radius: 13px; background: rgba(232,168,74,0.16); color: {{accent}}; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">1</span><span style="color: #CFC6BA; line-height: 1.5;">No celular da barbearia, abra o <strong style="color: #F3EDE4; font-weight: 500;">WhatsApp</strong></span></li>
+              <li style="display: flex; gap: 12px; align-items: flex-start;"><span style="flex: 0 0 26px; height: 26px; border-radius: 13px; background: rgba(232,168,74,0.16); color: {{accent}}; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">2</span><span style="color: #CFC6BA; line-height: 1.5;">Toque em <strong style="color: #F3EDE4; font-weight: 500;">⋮ › Dispositivos conectados › Conectar dispositivo</strong></span></li>
+              <li style="display: flex; gap: 12px; align-items: flex-start;"><span style="flex: 0 0 26px; height: 26px; border-radius: 13px; background: rgba(232,168,74,0.16); color: {{accent}}; display: inline-flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600;">3</span><span style="color: #CFC6BA; line-height: 1.5;">Aponte a câmera pra este código</span></li>
+            </ol>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 14px; border-top: 1px solid rgba(243,237,228,0.08);">
+            <div style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #CFC6BA;">
+              <span aria-hidden="true" style="width: 10px; height: 10px; border-radius: 5px; background: {{ expired ? '#E06B5A' : accent }}; box-shadow: 0 0 0 {{ pulse }}px rgba(232,168,74,0.18);"></span>
+              {{ expired ? 'Código expirado' : 'Aguardando leitura… expira em ' + countdown }}
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" onClick="{{ regen }}" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-weight: 500; cursor: pointer;">Gerar novo código</button>
+              <button type="button" onClick="{{ simulate }}" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: rgba(243,237,228,0.10); color: #F3EDE4; font: inherit; font-weight: 500; cursor: pointer;" title="Apenas para demonstração">Simular leitura</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ connected }}">
+          <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 14px; padding: 18px 0 6px;">
+            <span style="width: 64px; height: 64px; border-radius: 32px; background: rgba(232,168,74,0.16); display: inline-flex; align-items: center; justify-content: center; color: {{accent}};">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>
+            </span>
+            <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; font-size: 26px;">Conectado como Barbearia do Léo</h2>
+            <p style="margin: 0; color: #A89F93;">(11) 9 8765-4321 · dispositivo “Cadeira” · agora</p>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px; padding: 16px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08);">
+            <div style="display: flex; justify-content: space-between; font-size: 13px; color: #CFC6BA;"><span>{{ syncLabel }}</span><span style="font-variant-numeric: tabular-nums;">{{ sync }}%</span></div>
+            <div style="height: 8px; border-radius: 4px; background: rgba(243,237,228,0.08); overflow: hidden;"><div style="height: 100%; width: {{ sync }}%; background: {{accent}}; transition: width 0.3s;"></div></div>
+            <div style="display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: #A89F93;">
+              <span><strong style="color: #F3EDE4; font-weight: 500;">{{ Math.round(sync * 4.21) }}</strong> conversas</span>
+              <span><strong style="color: #F3EDE4; font-weight: 500;">{{ Math.round(sync * 1.87) }}</strong> contatos</span>
+              <span><strong style="color: #F3EDE4; font-weight: 500;">{{ Math.round(sync * 0.62) }}</strong> agendamentos reconhecidos</span>
+            </div>
+          </div>
+        </sc-if>
+      </section>
+
+      <aside aria-label="Antes de continuar" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+        <section style="display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+          <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">O que acontece depois</h2>
+          <ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px;">
+            <li style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: #CFC6BA; line-height: 1.5;"><span style="flex: 0 0 auto; margin-top: 5px; width: 8px; height: 8px; border-radius: 4px; background: {{accent}};"></span>Importamos as conversas dos últimos 90 dias pra IA aprender quem é cliente, quanto gasta e de quanto em quanto tempo volta.</li>
+            <li style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: #CFC6BA; line-height: 1.5;"><span style="flex: 0 0 auto; margin-top: 5px; width: 8px; height: 8px; border-radius: 4px; background: {{accent}};"></span><span><strong style="color: #F3EDE4; font-weight: 500;">Primeiras 24h em modo observação:</strong> a IA só sugere respostas, você aprova. Depois ela assume o que você liberar nas Regras.</span></li>
+            <li style="display: flex; gap: 10px; align-items: flex-start; font-size: 13px; color: #CFC6BA; line-height: 1.5;"><span style="flex: 0 0 auto; margin-top: 5px; width: 8px; height: 8px; border-radius: 4px; background: {{accent}};"></span>Nada é enviado em massa. Reativações saem no máximo 1 por cliente por semana.</li>
+          </ul>
+        </section>
+
+        <section style="display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border-radius: 12px; background: rgba(224,107,90,0.08); border: 1px solid rgba(224,107,90,0.28);">
+          <div style="display: flex; align-items: center; gap: 8px; color: #E06B5A; font-weight: 500;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>
+            Use um chip só da barbearia
+          </div>
+          <p style="margin: 0; font-size: 13px; color: #CFC6BA; line-height: 1.5;">Essa conexão usa o WhatsApp comum, não a API oficial da Meta. Funciona bem, mas o WhatsApp pode bloquear números com comportamento fora do padrão. Por isso limitamos o volume e não recomendamos usar seu número pessoal.</p>
+          <a href="#" style="font-size: 13px; color: {{accent}};">Prefiro a API oficial (Cloud API) →</a>
+        </section>
+
+        <section style="display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+          <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">Número que vai aparecer</h2>
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="width: 44px; height: 44px; border-radius: 22px; background: rgba(232,168,74,0.16); color: {{accent}}; display: inline-flex; align-items: center; justify-content: center; font-family: 'Instrument Serif', Georgia, serif; font-size: 18px;">BL</span>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-weight: 500;">Barbearia do Léo</span>
+              <span style="font-size: 12px; color: #A89F93;">(11) 9 8765-4321 · Rua Augusta, 1200</span>
+            </div>
+          </div>
+        </section>
+      </aside>
+    </div>
+
+    <footer style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 18px; border-top: 1px solid rgba(243,237,228,0.08);">
+      <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-weight: 500; cursor: pointer;">← Voltar</button>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-weight: 500; cursor: pointer;">Pular por agora</button>
+        <button type="button" aria-disabled="{{ !canContinue }}" style="min-height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: {{accent}}; color: #15110E; font: inherit; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; opacity: {{ canContinue ? 1 : 0.4 }}; cursor: {{ canContinue ? 'pointer' : 'not-allowed' }};">
+          {{ canContinue ? 'Continuar · importar clientes' : 'Continuar' }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg>
+        </button>
+      </div>
+    </footer>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent": {"editor": "color", "default": "#E8A84A", "options": ["#E8A84A", "#D07A45", "#C9A961", "#8DA3B8"]}, "$preview": {"width": 1280, "height": 1040}}'>
+
+function makeQr(seed) {
+  // Padrão determinístico tipo-QR (29x29) só para o mockup — não é um QR real.
+  let s = seed >>> 0; const rnd = () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; };
+  const cells = [];
+  const finder = (ox, oy) => { for (let y = 0; y < 7; y++) for (let x = 0; x < 7; x++) { const edge = x === 0 || y === 0 || x === 6 || y === 6; const core = x >= 2 && x <= 4 && y >= 2 && y <= 4; if (edge || core) cells.push({ x: ox + x, y: oy + y }); } };
+  finder(0, 0); finder(22, 0); finder(0, 22);
+  for (let i = 8; i < 21; i++) { if (i % 2 === 0) { cells.push({ x: i, y: 6 }); cells.push({ x: 6, y: i }); } }
+  for (let y = 0; y < 29; y++) for (let x = 0; x < 29; x++) {
+    const inFinder = (x < 8 && y < 8) || (x > 20 && y < 8) || (x < 8 && y > 20);
+    if (inFinder || x === 6 || y === 6) continue;
+    if (rnd() < 0.46) cells.push({ x, y });
+  }
+  return cells;
+}
+const STEPS = [
+  { n: 1, label: 'Dados da barbearia', state: 'done' },
+  { n: 2, label: 'Serviços e horários', state: 'done' },
+  { n: 3, label: 'Conectar WhatsApp', state: 'current' },
+  { n: 4, label: 'Importar clientes', state: 'todo' },
+  { n: 5, label: 'Testar com uma conversa', state: 'todo' },
+];
+class Component extends DCLogic {
+  componentDidMount() {
+    this.setState({ seed: 7, left: 60, connected: false, sync: 0, tick: 0 });
+    this._t = setInterval(() => {
+      const s = this.state;
+      if (s.connected) { if (s.sync < 100) this.setState({ sync: Math.min(100, s.sync + 4), tick: s.tick + 1 }); return; }
+      if (s.left > 0) this.setState({ left: s.left - 1, tick: s.tick + 1 });
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this._t); }
+  regen() { this.setState({ seed: (this.state.seed * 31 + 7) % 9973, left: 60 }); }
+  simulate() { this.setState({ connected: true, sync: 0 }); }
+  renderVals() {
+    const s = this.state; const accent = this.props.accent ?? '#E8A84A';
+    const regen = () => this.regen(), simulate = () => this.simulate();
+    if (!s) return { accent, regen, simulate, steps: STEPS, qr: [], expired: false, countdown: '1:00', pulse: 0, connected: false, sync: 0, syncLabel: '', canContinue: false };
+    const expired = s.left <= 0;
+    const m = Math.floor(s.left / 60), sec = String(s.left % 60).padStart(2, '0');
+    const steps = STEPS.map(st => st.n === 3 && s.connected && s.sync >= 100 ? { ...st, state: 'done' } : st);
+    const syncLabel = s.sync < 100 ? 'Importando conversas dos últimos 90 dias…' : 'Importação concluída';
+    return { accent, regen, simulate, steps, qr: makeQr(s.seed), expired, countdown: `${m}:${sec}`, pulse: s.tick % 2 ? 6 : 2, connected: s.connected, sync: s.sync, syncLabel, canContinue: s.connected && s.sync >= 100, Math };
+  }
+}
+
+</script>
+</body>
+</html>

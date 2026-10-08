@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cadeira — Pitch</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap">
+<style>
+  :root { --bg: #151016; --card: #1E171F; --line: rgba(243,237,228,0.10); --ink: #F3EDE4; --muted: #A89F93; --soft: #CFC6BA; --accent: #E8A84A; --copper: #D07A45; --good: #3EDE94; --bad: #E86B5A; }
+  .deck { width: 1920px; height: 1080px; background: var(--bg); color: var(--ink); font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; position: relative; overflow: hidden; outline: none; }
+  .slide { position: absolute; inset: 0; padding: 96px 120px; box-sizing: border-box; display: flex; flex-direction: column; }
+  .kicker { font-size: 15px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+  .h1 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 92px; line-height: 1.02; letter-spacing: -0.015em; margin: 0; }
+  .h2 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 64px; line-height: 1.06; letter-spacing: -0.015em; margin: 0; }
+  .h3 { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 36px; line-height: 1.15; margin: 0; }
+  .lead { font-size: 26px; line-height: 1.45; color: var(--soft); max-width: 1100px; }
+  .body { font-size: 20px; line-height: 1.5; color: var(--soft); }
+  .muted { color: var(--muted); }
+  .amber { color: var(--accent); }
+  .good { color: var(--good); }
+  .bad { color: var(--bad); }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 28px 32px; box-sizing: border-box; }
+  .big { font-family: 'Instrument Serif', Georgia, serif; font-size: 72px; line-height: 1; letter-spacing: -0.02em; }
+  .grid4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+  .grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; }
+  .frame { border: 1px solid rgba(243,237,228,0.18); border-radius: 22px; overflow: hidden; background: #0F0B10; box-shadow: 0 40px 90px rgba(0,0,0,0.55); position: relative; }
+  .frame .bar { height: 36px; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-bottom: 1px solid var(--line); background: #171119; }
+  .frame .bar i { width: 10px; height: 10px; border-radius: 50%; background: rgba(243,237,228,0.18); display: block; }
+  .frame .bar span { margin-left: auto; font-size: 12px; color: var(--muted); }
+  .frame iframe { border: 0; display: block; transform-origin: 0 0; }
+  .mock { display: grid; grid-template-columns: 220px 1fr; height: 890px; }
+  .mside { background: #151016; border-right: 1px solid var(--line); padding: 28px 18px; display: flex; flex-direction: column; gap: 10px; }
+  .mside b { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 26px; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+  .mside span { padding: 12px 14px; border-radius: 10px; font-size: 15px; color: var(--muted); }
+  .mside span.on { background: rgba(232,168,74,0.12); color: var(--ink); }
+  .mbody { padding: 36px; display: flex; flex-direction: column; gap: 28px; position: relative; }
+  .mstats { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+  .mstat { border: 1px solid var(--line); border-radius: 16px; padding: 22px; background: rgba(243,237,228,0.03); display: flex; flex-direction: column; gap: 8px; }
+  .mstat b { font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 40px; line-height: 1; }
+  .mstat span { font-size: 14px; color: var(--muted); }
+  .mlist { display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .mrow { display: flex; align-items: center; gap: 14px; padding: 20px 22px; font-size: 17px; border-bottom: 1px solid var(--line); }
+  .mrow:last-child { border-bottom: 0; }
+  .mrow i { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex: 0 0 auto; }
+  .open { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; min-height: 52px; padding: 0 24px; border-radius: 12px; background: var(--accent); color: #151016; font-weight: 600; font-size: 17px; text-decoration: none; }
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; font-size: 14px; font-weight: 600; border: 1px solid var(--line); background: rgba(243,237,228,0.04); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .nav { position: absolute; left: 0; right: 0; bottom: 0; height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 40px; box-sizing: border-box; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); background: rgba(21,16,22,0.9); }
+  .nav button { border: 1px solid var(--line); background: transparent; color: var(--soft); font: inherit; padding: 6px 14px; border-radius: 8px; cursor: pointer; }
+  .nav button:hover { border-color: var(--accent); color: var(--ink); }
+  .progress { position: absolute; left: 0; top: 0; height: 3px; background: var(--accent); }
+  .step { display: flex; flex-direction: column; gap: 10px; }
+  .step .n { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--accent); color: var(--accent); display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; }
+  .arrow { align-self: center; color: var(--muted); font-size: 32px; padding: 0 4px; }
+  .flow { display: flex; align-items: stretch; gap: 12px; }
+  .flow .card { flex: 1 1 0; display: flex; flex-direction: column; gap: 10px; }
+  .row { display: flex; align-items: center; gap: 14px; }
+  .check { width: 28px; height: 28px; border-radius: 50%; background: rgba(62,222,148,0.14); color: var(--good); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; font-size: 14px; font-weight: 700; }
+  .x { width: 28px; height: 28px; border-radius: 50%; background: rgba(232,107,90,0.14); color: var(--bad); display: flex; align-items: center; justify-content: center; flex: 0 0 auto; font-size: 14px; font-weight: 700; }
+  table.plans { width: 100%; border-collapse: collapse; }
+  table.plans th, table.plans td { text-align: left; padding: 18px 20px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.plans th { font-size: 14px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; }
+  .hl { background: rgba(232,168,74,0.08); }
+  .foot { position: absolute; left: 120px; bottom: 80px; font-size: 14px; color: var(--muted); }
+  /* mobile */
+  html, body { margin: 0; background: #151016; }
+  .stage { width: 100vw; height: 100vh; min-height: 100vh; overflow: hidden; background: #151016; display: flex; align-items: center; justify-content: center; }
+  .deck { transform-origin: center center; flex: 0 0 auto; touch-action: pan-y; }
+</style>
+</helmet>
+
+<div class="stage">
+<div class="deck" tabindex="0">
+  <div class="progress" style="width: {{ progress }}px;"></div>
+
+  <!-- 1 · Capa -->
+  <sc-if value="{{ s0 }}" hint-placeholder-val="{{ true }}"><section class="slide" style="justify-content: center; gap: 36px;">
+    <div class="row" style="gap: 22px; align-items: center;"><svg width="92" height="92" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 84px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span></div>
+    <p style="margin: -12px 0 0; font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: 40px; color: var(--muted);">Nunca mais uma cadeira vazia.</p>
+    <h1 class="h1" style="max-width: 1400px;">O sócio comercial que vai atrás do cliente que sumiu.</h1>
+    <p class="lead">Uma IA no WhatsApp da sua barbearia que reativa cliente, preenche buraco na agenda, reduz falta e atende — e te mostra em reais o que colocou de volta na cadeira.</p>
+    <div class="row" style="gap: 10px; margin-top: 12px;">
+      <span class="pill"><span class="dot" style="background: var(--accent);"></span>Reativação</span>
+      <span class="pill"><span class="dot" style="background: var(--accent);"></span>Preenchimento de buraco</span>
+      <span class="pill"><span class="dot" style="background: var(--accent);"></span>Anti no-show</span>
+      <span class="pill"><span class="dot" style="background: var(--accent);"></span>Atendimento 24h</span>
+    </div>
+    <div class="foot">Apresentação para a Barbearia do Léo · outubro de 2026</div>
+  </section></sc-if>
+
+  <!-- 2 · Problema -->
+  <sc-if value="{{ s1 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="gap: 40px;">
+    <span class="kicker">O problema</span>
+    <h2 class="h2" style="max-width: 1500px;">Você não perde cliente pra outra barbearia.<br>Perde pro <span class="amber">esquecimento</span>.</h2>
+    <p class="lead">O cliente que cortava a cada 3 semanas passa 6 sem aparecer. Ele não brigou com você — só ninguém chamou. Enquanto isso a agenda tem buraco, alguém falta sem avisar e o WhatsApp acumula pergunta de preço sem resposta.</p>
+    <div class="grid3" style="margin-top: 8px;">
+      <div class="card"><div class="big amber">38</div><div class="body" style="margin-top: 10px;">clientes sumidos na sua base hoje — passaram de 1,5× o intervalo habitual deles sem agendar</div></div>
+      <div class="card"><div class="big">R$ 6.240</div><div class="body" style="margin-top: 10px;">parados nesses clientes, pelo gasto médio de cada um</div></div>
+      <div class="card"><div class="big bad">1 em 5</div><div class="body" style="margin-top: 10px;">agendamentos vira falta ou cancelamento de última hora em barbearia de bairro</div></div>
+    </div>
+    <div class="foot">Números do diagnóstico da sua base (CSV do seu sistema atual). Substituídos pelos reais no dia da demo.</div>
+  </section></sc-if>
+
+  <!-- 3 · Por que agenda online não resolve -->
+  <sc-if value="{{ s2 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="gap: 40px;">
+    <span class="kicker">Por que agenda online não resolve</span>
+    <h2 class="h2">Todo mundo <span class="muted">espera</span> o cliente chegar.<br>Ninguém vai buscar.</h2>
+    <div class="grid2" style="margin-top: 8px;">
+      <div class="card" style="display: flex; flex-direction: column; gap: 18px;">
+        <div class="h3 muted">Trinks · AppBarber · RobotiZap · bot de agendamento</div>
+        <div class="row"><span class="x">✕</span><span class="body">Agenda online: só funciona se o cliente lembrar de abrir</span></div>
+        <div class="row"><span class="x">✕</span><span class="body">Lembrete automático: avisa quem já marcou, não quem sumiu</span></div>
+        <div class="row"><span class="x">✕</span><span class="body">Bot de WhatsApp: responde pergunta, não toma decisão</span></div>
+        <div class="row"><span class="x">✕</span><span class="body">Cobram mensalidade fixa, mostrando "mensagens enviadas"</span></div>
+      </div>
+      <div class="card" style="display: flex; flex-direction: column; gap: 18px; border-color: rgba(232,168,74,0.4);">
+        <div class="h3 amber">Cadeira</div>
+        <div class="row"><span class="check">✓</span><span class="body">Calcula o ritmo de cada cliente e percebe quem está sumindo <em>antes</em> de você</span></div>
+        <div class="row"><span class="check">✓</span><span class="body">Chama no WhatsApp com oferta certa, no horário que ele costuma vir</span></div>
+        <div class="row"><span class="check">✓</span><span class="body">Decide sozinha o que é seguro; o que não é, vem pra você com opções de um toque</span></div>
+        <div class="row"><span class="check">✓</span><span class="body">Mostra em R$ o que recuperou — e cobra uma parte só disso</span></div>
+      </div>
+    </div>
+  </section></sc-if>
+
+  <!-- 4 · O que faz -->
+  <sc-if value="{{ s3 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="gap: 40px;">
+    <span class="kicker">O que a Cadeira faz</span>
+    <h2 class="h2">Quatro coisas, todas dentro do WhatsApp que você já usa.</h2>
+    <div class="grid4" style="margin-top: 8px;">
+      <div class="card step"><span class="n">1</span><div class="h3">Reativa quem sumiu</div><p class="body">Todo dia de manhã escolhe quem vale chamar hoje, sem parecer insistente, e manda a oferta certa: lembrete, horário no hábito dele ou desconto leve.</p></div>
+      <div class="card step"><span class="n">2</span><div class="h3">Preenche buraco</div><p class="body">Cancelou com menos de 48h? Oferece o horário para quem costuma vir nesse dia e para a fila de espera. Em minutos, não no fim do dia.</p></div>
+      <div class="card step"><span class="n">3</span><div class="h3">Reduz falta</div><p class="body">Confirma 24h e 2h antes, entende a resposta ("acho que sim", "vou tentar"), e pede sinal via Pix só de quem já tem histórico de furar.</p></div>
+      <div class="card step"><span class="n">4</span><div class="h3">Atende 24h</div><p class="body">Preço, horário, "tem vaga sábado?", remarcação — resolve e agenda sozinha. Só escala para você o que não tem certeza.</p></div>
+    </div>
+    <p class="lead muted" style="font-size: 22px;">E uma quinta, para você: um resumo semanal e um painel que respondem "quanto a IA me deu esse mês?".</p>
+  </section></sc-if>
+
+  <!-- 5 · Como funciona -->
+  <sc-if value="{{ s4 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="gap: 40px;">
+    <span class="kicker">Como funciona por dentro</span>
+    <h2 class="h2">Quem <span class="amber">decide</span> não é quem <span class="amber">escreve</span>.</h2>
+    <p class="lead">A maioria dos bots deixa um modelo de texto decidir e falar ao mesmo tempo — por isso inventam horário. Na Cadeira, a decisão é separada da conversa, e cada decisão vem com um grau de certeza.</p>
+    <div class="flow" style="margin-top: 8px;">
+      <div class="card"><span class="kicker" style="font-size: 12px;">1 · Dados</span><div class="h3">Sua agenda e sua base</div><p class="body">Ritmo de cada cliente, histórico de faltas, horários livres, serviços e preços. Tudo em código, nada "lembrado" pela IA.</p></div>
+      <span class="arrow">→</span>
+      <div class="card" style="border-color: rgba(232,168,74,0.4);"><span class="kicker" style="font-size: 12px;">2 · Decisão</span><div class="h3">Modelo de decisão calibrado</div><p class="body">Responde perguntas fechadas: <em>"vale contatar hoje?"</em>, <em>"qual o risco de falta?"</em>, <em>"ele confirmou ou cancelou?"</em> — e diz com quanta certeza. Milissegundos, centavos.</p></div>
+      <span class="arrow">→</span>
+      <div class="card"><span class="kicker" style="font-size: 12px;">3 · Texto</span><div class="h3">Modelo de linguagem</div><p class="body">Só escreve a mensagem, no tom da sua barbearia, a partir do que já foi decidido. Escolhe horário <em>só</em> entre os que o código ofereceu.</p></div>
+      <span class="arrow">→</span>
+      <div class="card"><span class="kicker" style="font-size: 12px;">4 · Você</span><div class="h3">Só o que sobra</div><p class="body">Certeza alta → a IA executa. Média → ela faz e te avisa. Baixa → chega pra você com opções de um toque. Você ajusta esse limite por tipo de ação.</p></div>
+    </div>
+    <div class="foot">Toda decisão fica gravada com a certeza que a IA tinha. Dá pra auditar qualquer mensagem depois.</div>
+  </section></sc-if>
+
+  <!-- 6 · ROI -->
+  <sc-if value="{{ s5 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="flex-direction: row; gap: 56px; align-items: center;">
+    <div style="flex: 0 0 520px; display: flex; flex-direction: column; gap: 24px;">
+      <span class="kicker">O painel</span>
+      <h2 class="h2">A primeira coisa que você vê é quanto entrou.</h2>
+      <p class="body">Não "mensagens enviadas". Reais recuperados — e a conversa que fechou cada um, para você conferir que foi a IA mesmo.</p>
+      <div class="row" style="gap: 10px; flex-wrap: wrap;"><span class="pill">Receita recuperada no mês</span><span class="pill">Faltas evitadas</span><span class="pill">Buracos preenchidos</span></div>
+    </div>
+    <div class="frame" style="width: 1140px; height: 926px;">
+      <div class="bar"><i></i><i></i><i></i><span>Cadeira · Receita recuperada</span></div>
+      <div class="mock"><div class="mside"><b><svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg> <em style="color:#E8A84A;">O</em> Cadeira</b><span class="on">Receita recuperada</span><span>Agenda</span><span>Conversas</span><span>Clientes</span><span>Regras</span></div><div class="mbody"><div class="mstats"><div class="mstat"><b style="color:var(--good)">R$ 1.395</b><span>recuperados este mês</span></div><div class="mstat"><b style="color:var(--ink)">11</b><span>faltas evitadas</span></div><div class="mstat"><b style="color:var(--ink)">7</b><span>buracos preenchidos</span></div></div><div class="mlist"><div class="mrow"><i></i><span>Eduardo Bastos · reativado · corte R$ 45</span></div><div class="mrow"><i></i><span>Igor Fontes · confirmou presença · 14:00</span></div><div class="mrow"><i></i><span>Caio Lima · remarcou (evitou falta) · ter 10:00</span></div></div><a class="open" href="Main.dc.html">Abrir a tela ao vivo →</a></div></div>
+    </div>
+  </section></sc-if>
+
+  <!-- 7 · Conversas -->
+  <sc-if value="{{ s6 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="flex-direction: row; gap: 56px; align-items: center;">
+    <div style="flex: 0 0 520px; display: flex; flex-direction: column; gap: 24px;">
+      <span class="kicker">Conversas</span>
+      <h2 class="h2">Você só vê o que a IA não resolveu.</h2>
+      <p class="body">Cada resposta da IA mostra a decisão e a certeza. Quando ela não tem certeza — pedido de desconto, reclamação, cliente nervoso — o card chega pra você com três opções. Um toque e a IA continua.</p>
+      <p class="body muted">Nada de ficar lendo 80 conversas. Hoje: 3 pendentes.</p>
+    </div>
+    <div class="frame" style="width: 1140px; height: 926px;">
+      <div class="bar"><i></i><i></i><i></i><span>Cadeira · Conversas</span></div>
+      <div class="mock"><div class="mside"><b><svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg> <em style="color:#E8A84A;">O</em> Cadeira</b><span class="on">Conversas</span><span>Agenda</span><span>Conversas</span><span>Clientes</span><span>Regras</span></div><div class="mbody"><div class="mstats"><div class="mstat"><b style="color:var(--ink)">23</b><span>conversas hoje</span></div><div class="mstat"><b style="color:var(--accent)">4</b><span>pendentes de você</span></div><div class="mstat"><b style="color:var(--good)">R$ 405</b><span>fechados pela IA</span></div></div><div class="mlist"><div class="mrow"><i></i><span>Rafael Nunes — "Oferta de buraco 14h" · pendente</span></div><div class="mrow"><i></i><span>Bruno Carvalho — pediu desconto · handoff pra você</span></div><div class="mrow"><i></i><span>Wesley Dantas — "Beleza, tô dentro" · reativado</span></div></div><a class="open" href="Conversas.dc.html">Abrir a tela ao vivo →</a></div></div>
+    </div>
+  </section></sc-if>
+
+  <!-- 8 · Clientes -->
+  <sc-if value="{{ s7 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="flex-direction: row; gap: 56px; align-items: center;">
+    <div style="flex: 0 0 520px; display: flex; flex-direction: column; gap: 24px;">
+      <span class="kicker">Clientes</span>
+      <h2 class="h2">Dinheiro parado na sua base, com nome e sobrenome.</h2>
+      <p class="body">Sumidos, esfriando, fila de espera, quem mais gasta. A coluna "risco de sumir" é a IA avisando antes de acontecer. Quem já está em conversa aparece marcado — e quem a IA deixou de fora, você libera com um botão.</p>
+    </div>
+    <div class="frame" style="width: 1140px; height: 926px;">
+      <div class="bar"><i></i><i></i><i></i><span>Cadeira · Clientes</span></div>
+      <div class="mock"><div class="mside"><b><svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg> <em style="color:#E8A84A;">O</em> Cadeira</b><span class="on">Clientes</span><span>Agenda</span><span>Conversas</span><span>Clientes</span><span>Regras</span></div><div class="mbody"><div class="mstats"><div class="mstat"><b style="color:var(--ink)">47</b><span>clientes na base</span></div><div class="mstat"><b style="color:var(--bad)">18</b><span>sumidos (&gt; 45 dias)</span></div><div class="mstat"><b style="color:var(--good)">14</b><span>reativados</span></div></div><div class="mlist"><div class="mrow"><i></i><span>Leandro Alves · 73 dias · R$ 90 parados · abordar</span></div><div class="mrow"><i></i><span>Thiago Mendes · 52 dias · respondeu "semana que vem"</span></div><div class="mrow"><i></i><span>Vinícius Santos · 61 dias · reativado · R$ 45</span></div></div><a class="open" href="Clientes.dc.html">Abrir a tela ao vivo →</a></div></div>
+    </div>
+  </section></sc-if>
+
+  <!-- 9 · Agenda -->
+  <sc-if value="{{ s8 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="flex-direction: row; gap: 56px; align-items: center;">
+    <div style="flex: 0 0 520px; display: flex; flex-direction: column; gap: 24px;">
+      <span class="kicker">Agenda</span>
+      <h2 class="h2">Buraco tracejado é a IA já trabalhando.</h2>
+      <p class="body">Previsto do dia no topo. Horário vago em âmbar = a IA já está ofertando. Borda vermelha = risco de falta calculado — ali ela confirmou duas vezes e pediu sinal.</p>
+      <p class="body muted">No fim do dia, uma mensagem no seu WhatsApp: "9 agendados, todos vieram?". Você responde quem faltou. É isso que vira o número de receita recuperada.</p>
+    </div>
+    <div class="frame" style="width: 1140px; height: 926px;">
+      <div class="bar"><i></i><i></i><i></i><span>Cadeira · Agenda</span></div>
+      <div class="mock"><div class="mside"><b><svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg> <em style="color:#E8A84A;">O</em> Cadeira</b><span class="on">Agenda</span><span>Agenda</span><span>Conversas</span><span>Clientes</span><span>Regras</span></div><div class="mbody"><div class="mstats"><div class="mstat"><b style="color:var(--ink)">9</b><span>cortes hoje</span></div><div class="mstat"><b style="color:var(--accent)">2</b><span>buracos a preencher</span></div><div class="mstat"><b style="color:var(--good)">78%</b><span>ocupação da semana</span></div></div><div class="mlist"><div class="mrow"><i></i><span>10:00 — Rafael Nunes · confirmado</span></div><div class="mrow"><i></i><span>14:00 — buraco · IA oferecendo a 3 clientes</span></div><div class="mrow"><i></i><span>16:30 — Caio Lima · remarcado pela IA</span></div></div><a class="open" href="Agenda.dc.html">Abrir a tela ao vivo →</a></div></div>
+    </div>
+  </section></sc-if>
+
+  <!-- 10 · Regras -->
+  <sc-if value="{{ s9 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="flex-direction: row; gap: 56px; align-items: center;">
+    <div style="flex: 0 0 520px; display: flex; flex-direction: column; gap: 24px;">
+      <span class="kicker">Regras</span>
+      <h2 class="h2">Você decide até onde a IA vai sozinha.</h2>
+      <p class="body">Para cada tipo de ação — agendar, remarcar, oferecer desconto, responder reclamação — você escolhe: <strong>automático</strong>, <strong>pede confirmação</strong> ou <strong>vai pra você</strong>. Começa conservador; vai soltando conforme confia.</p>
+      <p class="body muted">O simulador no rodapé mostra ao vivo o que a IA faria com uma mensagem. Teste na demo.</p>
+    </div>
+    <div class="frame" style="width: 1140px; height: 926px;">
+      <div class="bar"><i></i><i></i><i></i><span>Cadeira · Regras</span></div>
+      <div class="mock"><div class="mside"><b><svg width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg> <em style="color:#E8A84A;">O</em> Cadeira</b><span class="on">Regras</span><span>Agenda</span><span>Conversas</span><span>Clientes</span><span>Regras</span></div><div class="mbody"><div class="mstats"><div class="mstat"><b style="color:var(--ink)">Informal</b><span>tom de voz</span></div><div class="mstat"><b style="color:var(--accent)">10%</b><span>teto de desconto</span></div><div class="mstat"><b style="color:var(--good)">Sempre</b><span>pede confirmação</span></div></div><div class="mlist"><div class="mrow"><i></i><span>Nunca inventa horário nem preço</span></div><div class="mrow"><i></i><span>Fora do horário: responde e agenda, não liga</span></div><div class="mrow"><i></i><span>Reclamação → passa pra você na hora</span></div></div><a class="open" href="Regras.dc.html">Abrir a tela ao vivo →</a></div></div>
+    </div>
+  </section></sc-if>
+
+  <!-- 11 · Confiança -->
+  <sc-if value="{{ s10 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="gap: 40px;">
+    <span class="kicker">Por que dá pra confiar</span>
+    <h2 class="h2">Só cobramos pelo cliente que <span class="amber">sentou na cadeira</span>.</h2>
+    <div class="grid3" style="margin-top: 8px;">
+      <div class="card step"><div class="h3">Presença confirmada, não presumida</div><p class="body">Agendou não conta. Conta quando você confirma que ele veio (um toque na agenda ou o "todos vieram?" da noite) ou quando o Pix caiu. Faltou? Não entra na conta nem na nossa cobrança.</p></div>
+      <div class="card step"><div class="h3">Sem spam no seu nome</div><p class="body">Cota diária de mensagens, intervalo mínimo de 30 dias depois de um "não", opt-out em uma palavra. Antes de mandar, a IA pergunta a si mesma: "isso vai parecer insistente?".</p></div>
+      <div class="card step"><div class="h3">Nunca inventa horário nem preço</div><p class="body">O texto só escolhe entre horários que a agenda liberou. Um verificador relê cada resposta antes de sair. Toda decisão fica gravada para auditoria.</p></div>
+    </div>
+    <div class="card" style="display: flex; gap: 24px; align-items: center; border-color: rgba(232,168,74,0.3);">
+      <span class="kicker" style="flex: 0 0 auto;">Honestidade sobre o WhatsApp</span>
+      <p class="body" style="margin: 0;">Começamos com um número conectado por QR (como o WhatsApp Web). É mais barato e rápido, mas a Meta pode bloquear números que mandam mensagem demais — por isso as proteções acima, e por isso recomendamos um número só para a barbearia. Quando o volume justificar, migramos para a API oficial sem mudar nada pra você.</p>
+    </div>
+  </section></sc-if>
+
+  <!-- 12 · Preço -->
+  <sc-if value="{{ s11 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="gap: 36px;">
+    <span class="kicker">Quanto custa</span>
+    <h2 class="h2">Um plano fixo e uma parte do que recuperar.</h2>
+    <table class="plans">
+      <thead><tr><th style="width: 18%;">Plano</th><th style="width: 24%;">Preço</th><th style="width: 22%;">Para quem</th><th>Inclui</th></tr></thead>
+      <tbody>
+        <tr><td class="h3">Agenda</td><td class="body"><strong style="color: var(--ink);">R$ 97</strong>/mês</td><td class="body">Barbeiro solo ou 2 cadeiras</td><td class="body">Atendimento no WhatsApp, confirmações, lembretes, painel</td></tr>
+        <tr class="hl"><td class="h3 amber">Sócio</td><td class="body"><strong style="color: var(--ink);">R$ 197</strong>/mês + <strong style="color: var(--ink);">10%</strong> da receita recuperada</td><td class="body">2 a 5 cadeiras</td><td class="body">Tudo do Agenda + reativação, preenchimento de buraco, score de falta com sinal via Pix, copiloto semanal</td></tr>
+        <tr><td class="h3">Rede</td><td class="body">sob consulta</td><td class="body">Mais de uma unidade</td><td class="body">Tudo + relatórios consolidados, API oficial do WhatsApp, SLA</td></tr>
+      </tbody>
+    </table>
+    <div class="grid3">
+      <div class="card"><div class="muted" style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em;">Conta de padaria</div><div class="big" style="font-size: 56px; margin-top: 10px;">10 clientes</div><div class="body" style="margin-top: 6px;">recuperados no mês × R$ 45 de corte = <strong style="color: var(--ink);">R$ 450</strong></div></div>
+      <div class="card"><div class="muted" style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em;">Você paga</div><div class="big" style="font-size: 56px; margin-top: 10px;">R$ 242</div><div class="body" style="margin-top: 6px;">R$ 197 fixo + R$ 45 sobre o recuperado</div></div>
+      <div class="card" style="border-color: rgba(62,222,148,0.4);"><div class="muted" style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em;">Sobra pra você</div><div class="big good" style="font-size: 56px; margin-top: 10px;">R$ 208</div><div class="body" style="margin-top: 6px;">sem contar as faltas evitadas e os buracos preenchidos — que ninguém mede hoje</div></div>
+    </div>
+  </section></sc-if>
+
+  <!-- 13 · Próximo passo -->
+  <sc-if value="{{ s12 }}" hint-placeholder-val="{{ false }}"><section class="slide" style="gap: 40px; justify-content: center;">
+    <span class="kicker">Próximo passo</span>
+    <h2 class="h2" style="max-width: 1500px;">Começa com um diagnóstico grátis da sua base.</h2>
+    <div class="grid3" style="margin-top: 8px;">
+      <div class="card step"><span class="n">1</span><div class="h3">Semana 1 — Diagnóstico</div><p class="body">Você exporta seus clientes e agendamentos (CSV). A gente devolve: quem está sumido, quanto dinheiro está dormindo e quais horários mais ficam vazios. Sem compromisso.</p></div>
+      <div class="card step"><span class="n">2</span><div class="h3">Semanas 2–5 — Reativação</div><p class="body">Conectamos um número da barbearia e ligamos só a reativação, em modo "pede confirmação". Meta combinada: 8 clientes de volta em 30 dias, zero reclamação.</p></div>
+      <div class="card step"><span class="n">3</span><div class="h3">Mês 2 — Atendimento</div><p class="body">Bateu a meta? Ligamos o atendimento e os lembretes. Você passa a só ver o que a IA não resolve. Não bateu? Você não paga nada e fica com o diagnóstico.</p></div>
+    </div>
+    <div class="row" style="gap: 24px; margin-top: 12px;">
+      <div class="card" style="padding: 20px 28px; border-color: rgba(232,168,74,0.4);"><span class="h3 amber">Design partner</span><p class="body" style="margin: 8px 0 0;">Como primeira barbearia, você fixa o preço do plano Sócio pra sempre e define com a gente o que o produto vira.</p></div>
+    </div>
+    <div class="foot">Cadeira · Matheus Gasparini · matheus.gasparini@spotmetrics.com</div>
+  
+    <div class="row" style="gap: 16px; align-items: center; margin-top: 24px; padding-top: 28px; border-top: 1px solid var(--line);"><svg width="44" height="44" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 36px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span><span style="font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-size: 26px; color: var(--muted); margin-left: 12px;">Nunca mais uma cadeira vazia.</span></div>
+  </section></sc-if>
+
+  <div class="nav">
+    <span>Cadeira · pitch</span>
+    <div class="row" style="gap: 10px;">
+      <button type="button" onClick="{{ prev }}">← Anterior</button>
+      <span style="min-width: 64px; text-align: center;">{{ pos }} / {{ total }}</span>
+      <button type="button" onClick="{{ next }}">Próximo →</button>
+    </div>
+    <span>← → ou espaço para navegar</span>
+  </div>
+</div>
+</div>
+
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1920,&quot;height&quot;:1080}}">
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { i: 0 }; this.total = 13; }
+  componentDidMount() {
+    var self = this;
+    this.onWinKey = function (e) {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { self.next(); e.preventDefault(); }
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') { self.prev(); e.preventDefault(); }
+      if (e.key === 'Home') { self.setState({ i: 0 }); }
+      if (e.key === 'End') { self.setState({ i: self.total - 1 }); }
+    };
+    window.addEventListener('keydown', this.onWinKey);
+    // fit-to-screen: o deck é 1920x1080; no celular escala pra caber (nunca amplia).
+    this.fit = function () { var d = document.querySelector('.deck'); if (!d) return; var k = Math.min(window.innerWidth / 1920, window.innerHeight / 1080, 1); d.style.transform = 'scale(' + k + ')'; };
+    this.fit(); window.addEventListener('resize', this.fit);
+    // swipe horizontal troca de slide
+    this.onTS = function (e) { self._x0 = e.touches[0].clientX; };
+    this.onTE = function (e) { if (self._x0 == null) return; var dx = e.changedTouches[0].clientX - self._x0; self._x0 = null; if (dx < -40) self.next(); if (dx > 40) self.prev(); };
+    window.addEventListener('touchstart', this.onTS, { passive: true }); window.addEventListener('touchend', this.onTE);
+  }
+  componentWillUnmount() { window.removeEventListener('keydown', this.onWinKey); window.removeEventListener('resize', this.fit); window.removeEventListener('touchstart', this.onTS); window.removeEventListener('touchend', this.onTE); }
+  next() { this.setState({ i: Math.min(this.total - 1, this.state.i + 1) }); }
+  prev() { this.setState({ i: Math.max(0, this.state.i - 1) }); }
+  renderVals() {
+    var self = this;
+    var vals = {
+      i: this.state.i,
+      pos: this.state.i + 1,
+      total: this.total,
+      progress: Math.round(1920 * (this.state.i + 1) / this.total),
+      next: function () { self.next(); },
+      prev: function () { self.prev(); }
+    };
+    for (var k = 0; k < this.total; k++) { vals['s' + k] = (this.state.i === k); }
+    return vals;
+  }
+}
+</script>
+</x-dc>
+</body>
+</html>

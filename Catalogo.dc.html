@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Cadeira — Catálogo</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap">
+<style>
+body{margin:0;background:#15110E}
+a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
+/* mobile */
+@container (max-width: 720px) {
+  nav[aria-label="Principal"] { order: 2; position: sticky; bottom: 0; z-index: 5; width: 100% !important; flex: 1 1 100% !important; flex-direction: row !important; align-items: stretch !important; gap: 0 !important; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)) !important; border-right: none !important; border-top: 1px solid rgba(243,237,228,0.10); background: #120F0C !important; }
+  nav[aria-label="Principal"] > div:first-child { display: none !important; }
+  nav[aria-label="Principal"] > div:nth-child(2) { flex-direction: row !important; flex: 1 1 auto; width: 100%; gap: 0 !important; justify-content: space-around; }
+  nav[aria-label="Principal"] > div:nth-child(2) a { position: relative; flex: 1 1 0; min-width: 0; flex-direction: column !important; justify-content: center; gap: 4px !important; min-height: 52px !important; padding: 4px 2px !important; font-size: 11px; line-height: 1.1; text-align: center; white-space: nowrap; }
+  nav[aria-label="Principal"] > div:nth-child(2) a svg { width: 20px; height: 20px; flex: 0 0 auto; }
+  nav[aria-label="Principal"] > div:nth-child(2) a > span { position: absolute; top: 2px; left: 50%; margin: 0 0 0 4px !important; min-width: 18px !important; height: 18px !important; font-size: 11px !important; }
+  nav[aria-label="Principal"] small { display: none !important; }
+  nav[aria-label="Principal"] > a[aria-label="Conexão WhatsApp"] { display: none !important; }
+  main { order: 1; }
+  main { padding: 18px 14px 40px !important; gap: 18px !important; }
+  main h1 { font-size: 26px !important; }
+  main h2 { font-size: 20px !important; }
+  main > header { align-items: flex-start !important; }
+  main > header > div:last-child { width: 100%; flex-wrap: wrap; }
+  main [style*="repeat(5, minmax"] { gap: 6px !important; font-size: 10px !important; }
+  main aside[aria-label="Lista de conversas"] { max-width: none !important; }
+  main table { font-size: 12px !important; }
+  main td, main th { padding-left: 6px !important; padding-right: 6px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
+
+  <nav aria-label="Principal" style="width: 232px; flex: 0 0 232px; box-sizing: border-box; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; border-right: 1px solid rgba(243,237,228,0.08); background: #120F0C;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg>
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
+        Receita<small style="font-size: inherit; font-weight: inherit;"> recuperada</small>
+      </a>
+      <a href="Agenda.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path><path d="M8 3v4"></path><path d="M16 3v4"></path></svg>
+        Agenda
+      </a>
+      <a href="Conversas.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"></path></svg>
+        Conversas
+        <span style="margin-left: auto; min-width: 22px; height: 22px; padding: 0 7px; box-sizing: border-box; border-radius: 11px; background: #E06B5A; color: #15110E; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center;">3</span>
+      </a>
+      <a href="Clientes.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7"></path><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"></path></svg>
+        Clientes
+      </a>
+      <a href="#" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; background: rgba(232,168,74,0.12); color: #F3EDE4; font-weight: 500;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"></path><path d="M4 18V5.5"></path><path d="M9 8h7"></path><path d="M9 12h5"></path></svg>
+        Catálogo
+      </a>
+      <a href="Regras.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path><circle cx="9" cy="6" r="2" fill="#120F0C"></circle><circle cx="15" cy="12" r="2" fill="#120F0C"></circle><circle cx="7" cy="18" r="2" fill="#120F0C"></circle></svg>
+        Regras
+      </a>
+    </div>
+    <a href="Conexao.dc.html" aria-label="Conexão WhatsApp" style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); color: inherit;">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #CFC6BA;">
+        <span style="width: 8px; height: 8px; border-radius: 4px; background: {{accent}};"></span>
+        WhatsApp conectado
+      </div>
+      <div style="font-size: 12px; color: #A89F93;">Barbearia do Léo · (11) 9 8765-4321</div>
+    </a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px 40px 48px; display: flex; flex-direction: column; gap: 24px;">
+
+    <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 13px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.08em;">Catálogo</span>
+        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">O que a Cadeira sabe responder</h1>
+        <p style="margin: 0; color: #A89F93; max-width: 62ch;">Preço, duração e explicação de cada serviço saem daqui — e só daqui. O que não estiver no catálogo a IA não inventa: manda pra você e aprende com a sua resposta.</p>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-weight: 500; cursor: pointer;">Importar da tabela</button>
+        <button type="button" style="min-height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: {{accent}}; color: #15110E; font: inherit; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+          Novo serviço
+        </button>
+      </div>
+    </header>
+
+    <section aria-label="Resumo" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 12px;">
+      <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Serviços ativos</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; line-height: 1;">{{ activeCount }}</span>
+        <span style="font-size: 12px; color: #A89F93;">{{ completeCount }} com ficha completa</span>
+      </div>
+      <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Respostas aprovadas</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; line-height: 1; color: {{accent}};">{{ approvedCount }}</span>
+        <span style="font-size: 12px; color: #A89F93;">perguntas que a IA responde sozinha</span>
+      </div>
+      <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; border-color: {{ openCount ? 'rgba(224,107,90,0.45)' : 'rgba(243,237,228,0.08)' }};">
+        <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Sem resposta · 30 dias</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; line-height: 1; color: {{ openCount ? '#E06B5A' : '#F3EDE4' }};">{{ openCount }}</span>
+        <span style="font-size: 12px; color: #A89F93;">a IA mandou pra você em vez de chutar</span>
+      </div>
+      <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px;">
+        <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Acerto sobre serviços</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; line-height: 1;">96%</span>
+        <span style="font-size: 12px; color: #A89F93;">verificador reprovou 2 de 51 respostas</span>
+      </div>
+    </section>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+
+      <section aria-label="Serviços" style="flex: 1 1 300px; max-width: 420px; display: flex; flex-direction: column; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); overflow: hidden;">
+        <div style="padding: 14px 16px; border-bottom: 1px solid rgba(243,237,228,0.08); display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+          <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">Serviços</h2>
+          <span style="font-size: 12px; color: #A89F93;">toque pra abrir a ficha</span>
+        </div>
+        <sc-for list="{{ groups }}" as="g">
+          <div style="padding: 10px 16px 4px; font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">{{ g.name }}</div>
+          <sc-for list="{{ g.items }}" as="s">
+            <button type="button" aria-pressed="{{ s.selected }}" onClick="{{ s.pick }}" style="display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 10px 16px; border: none; border-left: 3px solid {{ s.borderL }}; background: {{ s.bg }}; color: inherit; font: inherit; cursor: pointer;">
+              <span title="{{ s.covLabel }}" style="width: 8px; height: 8px; border-radius: 4px; flex: 0 0 auto; background: {{ s.covColor }};"></span>
+              <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                <span style="font-weight: 500; color: {{ s.active ? '#F3EDE4' : '#A89F93' }}; text-decoration: {{ s.active ? 'none' : 'line-through' }};">{{ s.name }}</span>
+                <span style="font-size: 12px; color: #A89F93;">{{ s.dur }} min · {{ s.faqCount }} perguntas</span>
+              </span>
+              <span style="font-weight: 500; font-variant-numeric: tabular-nums; color: {{ s.active ? '#F3EDE4' : '#A89F93' }};">{{ s.priceLabel }}</span>
+            </button>
+          </sc-for>
+        </sc-for>
+        <div style="padding: 12px 16px; border-top: 1px solid rgba(243,237,228,0.08); display: flex; gap: 14px; font-size: 12px; color: #A89F93; flex-wrap: wrap;">
+          <span style="display: flex; align-items: center; gap: 6px;"><i style="width: 8px; height: 8px; border-radius: 4px; background: #3EDE94; display: inline-block;"></i>ficha completa</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><i style="width: 8px; height: 8px; border-radius: 4px; background: #E8A84A; display: inline-block;"></i>falta algo</span>
+          <span style="display: flex; align-items: center; gap: 6px;"><i style="width: 8px; height: 8px; border-radius: 4px; background: #5C544B; display: inline-block;"></i>desligado</span>
+        </div>
+      </section>
+
+      <section aria-label="Ficha do serviço" style="flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+
+        <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px;">
+            <div style="display: flex; flex-direction: column; gap: 4px;">
+              <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">{{ cur.group }}</span>
+              <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; font-size: 28px;">{{ cur.name }}</h2>
+            </div>
+            <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #CFC6BA; cursor: pointer;">
+              {{ cur.active ? 'A IA oferece' : 'Desligado — a IA diz que não faz' }}
+              <button type="button" role="switch" aria-checked="{{ cur.active }}" onClick="{{ toggleActive }}" style="width: 40px; height: 24px; border-radius: 12px; border: none; cursor: pointer; position: relative; background: {{ cur.switchBg }};"><span style="position: absolute; top: 3px; left: {{ cur.knobLeft }}; width: 18px; height: 18px; border-radius: 9px; background: #15110E;"></span></button>
+            </label>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 10px;">
+            <div style="padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08); display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Preço</span>
+              <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 26px; line-height: 1;">{{ cur.priceLabel }}</span>
+              <span style="font-size: 11px; color: #A89F93;">{{ cur.priceNote }}</span>
+            </div>
+            <div style="padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08); display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Duração</span>
+              <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 26px; line-height: 1;">{{ cur.dur }} min</span>
+              <span style="font-size: 11px; color: #A89F93;">a agenda reserva este tempo</span>
+            </div>
+            <div style="padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08); display: flex; flex-direction: column; gap: 2px;">
+              <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Quem faz</span>
+              <span style="font-size: 15px; font-weight: 500; line-height: 1.3; padding-top: 4px;">{{ cur.barbers }}</span>
+              <span style="font-size: 11px; color: #A89F93;">a IA só oferece horário destes</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+              <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Como a IA explica</span>
+              <span style="font-size: 11px; color: #A89F93;">até 2 frases · sem prometer resultado</span>
+            </div>
+            <sc-if value="{{ cur.desc }}">
+              <p style="margin: 0; padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08); color: #F3EDE4; line-height: 1.5;">{{ cur.desc }}</p>
+            </sc-if>
+            <sc-if value="{{ !cur.desc }}">
+              <div style="padding: 12px 14px; border-radius: 10px; background: rgba(232,168,74,0.08); border: 1px dashed rgba(232,168,74,0.5); color: #CFC6BA; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between;">
+                <span>Sem explicação ainda — se perguntarem "o que é?", a IA manda pra você.</span>
+                <button type="button" onClick="{{ fillDesc }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-size: 12px; cursor: pointer; border-color: {{accent}}; color: {{accent}};">Escrever agora</button>
+              </div>
+            </sc-if>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+              <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Como o cliente chama</span>
+              <span style="font-size: 11px; color: #A89F93;">a IA usa pra reconhecer o pedido</span>
+            </div>
+            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+              <sc-for list="{{ cur.syn }}" as="w">
+                <span style="padding: 6px 10px; border-radius: 999px; background: rgba(243,237,228,0.08); font-size: 13px; color: #F3EDE4;">“{{ w }}”</span>
+              </sc-for>
+              <button type="button" onClick="{{ addSyn }}" style="padding: 6px 10px; border-radius: 999px; border: 1px dashed rgba(243,237,228,0.25); background: transparent; color: #A89F93; font: inherit; font-size: 13px; cursor: pointer;">+ adicionar</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+            <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">Perguntas que os clientes fazem</h2>
+            <span style="font-size: 12px; color: #A89F93;">{{ cur.approved }} aprovadas · {{ cur.pending }} esperando você</span>
+          </div>
+          <sc-for list="{{ cur.faq }}" as="q">
+            <article style="display: flex; flex-direction: column; gap: 8px; padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid {{ q.ok ? 'rgba(243,237,228,0.08)' : 'rgba(224,107,90,0.45)' }};">
+              <div style="display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; flex-wrap: wrap;">
+                <span style="font-weight: 500;">“{{ q.q }}”</span>
+                <span style="font-size: 11px; color: {{ q.ok ? '#A89F93' : '#E06B5A' }}; white-space: nowrap;">{{ q.ok ? 'perguntada ' + q.n + 'x · a IA responde' : 'perguntada ' + q.n + 'x · foi pra você' }}</span>
+              </div>
+              <sc-if value="{{ q.ok }}">
+                <p style="margin: 0; color: #CFC6BA; line-height: 1.5; padding-left: 10px; border-left: 2px solid {{ q.accent }};">{{ q.a }}</p>
+              </sc-if>
+              <sc-if value="{{ !q.ok }}">
+                <p style="margin: 0; color: #CFC6BA; line-height: 1.5; padding-left: 10px; border-left: 2px solid rgba(224,107,90,0.6); font-style: italic;">{{ q.a }}</p>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button type="button" onClick="{{ q.approve }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-size: 12px; cursor: pointer; background: {{ q.accent }}; border-color: {{ q.accent }}; color: #15110E; font-weight: 600;">Aprovar — a IA passa a responder</button>
+                  <button type="button" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-size: 12px; cursor: pointer;">Editar resposta</button>
+                </div>
+              </sc-if>
+            </article>
+          </sc-for>
+        </div>
+
+        <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+            <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">Testar: cliente pergunta sobre este serviço</h2>
+            <span style="font-size: 12px; color: #A89F93;">usa só os fatos acima</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ probes }}" as="p">
+              <button type="button" aria-pressed="{{ p.selected }}" onClick="{{ p.pick }}" style="min-height: 36px; padding: 0 12px; border-radius: 999px; border: 1px solid {{ p.border }}; background: {{ p.bg }}; color: #F3EDE4; font: inherit; font-size: 13px; cursor: pointer;">“{{ p.text }}”</button>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+            <div style="flex: 1 1 220px; padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08); display: flex; flex-direction: column; gap: 6px; font-size: 13px;">
+              <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Jev decide</span>
+              <div style="display: flex; justify-content: space-between; color: #CFC6BA;"><span>Intenção</span><span style="color: #F3EDE4;">{{ probeR.intent }}</span></div>
+              <div style="display: flex; justify-content: space-between; color: #CFC6BA;"><span>Serviço</span><span style="color: #F3EDE4;">{{ cur.name }}</span></div>
+              <div style="display: flex; justify-content: space-between; color: #CFC6BA;"><span>Confiança</span><span style="color: {{ probeR.conf &gt;= 0.85 ? '#3EDE94' : probeR.conf &gt;= 0.6 ? accent : '#E06B5A' }}; font-variant-numeric: tabular-nums;">{{ probeR.confLabel }}</span></div>
+              <div style="height: 1px; background: rgba(243,237,228,0.08);"></div>
+              <div style="font-weight: 500; color: {{ probeR.handoff ? '#E06B5A' : '#F3EDE4' }};">{{ probeR.verdict }}</div>
+            </div>
+            <div style="flex: 2 1 280px; display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">O cliente recebe</span>
+              <div style="padding: 12px 14px; border-radius: 12px 12px 12px 4px; background: {{ probeR.handoff ? 'rgba(224,107,90,0.12)' : 'rgba(232,168,74,0.12)' }}; border: 1px solid {{ probeR.handoff ? 'rgba(224,107,90,0.45)' : 'rgba(232,168,74,0.35)' }}; line-height: 1.5; color: #F3EDE4;">{{ probeR.reply }}</div>
+              <span style="font-size: 11px; color: #A89F93;">{{ probeR.note }}</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <section aria-label="Perguntas sem resposta" style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">Perguntas que a IA não soube responder</h2>
+          <span style="font-size: 13px; color: #A89F93;">Fora do catálogo. Em vez de chutar, a IA respondeu "vou confirmar com o {{ owner }}" e te avisou. Responda uma vez e vira regra.</span>
+        </div>
+        <span style="font-size: 12px; color: {{ openCount ? '#E06B5A' : '#3EDE94' }};">{{ openCount ? openCount + ' pendentes' : 'tudo respondido' }}</span>
+      </div>
+      <sc-if value="{{ !openCount }}">
+        <div style="padding: 14px; border-radius: 10px; background: rgba(62,222,148,0.08); border: 1px solid rgba(62,222,148,0.3); color: #CFC6BA;">Nenhuma pergunta pendente. A IA está respondendo tudo que chega sobre serviços.</div>
+      </sc-if>
+      <sc-for list="{{ open }}" as="o">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08);">
+          <div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-weight: 500;">“{{ o.q }}”</span>
+            <span style="font-size: 12px; color: #A89F93;">{{ o.n }} clientes · última vez {{ o.when }}</span>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" onClick="{{ o.add }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-size: 12px; cursor: pointer; border-color: {{ o.accent }}; color: {{ o.accent }};">{{ o.addLabel }}</button>
+            <button type="button" onClick="{{ o.no }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-size: 12px; cursor: pointer;">Não oferecemos</button>
+          </div>
+        </div>
+      </sc-for>
+      <sc-for list="{{ resolved }}" as="r">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 10px; border: 1px dashed rgba(243,237,228,0.12); color: #A89F93; font-size: 13px;">
+          <span style="flex: 1 1 260px;">“{{ r.q }}” — <span style="color: #CFC6BA;">{{ r.how }}</span></span>
+          <span style="color: #3EDE94;">a IA já responde</span>
+        </div>
+      </sc-for>
+    </section>
+
+    <section aria-label="Limites" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 12px;">
+      <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">A IA nunca promete</span>
+        <ul style="margin: 0; padding-left: 18px; color: #CFC6BA; line-height: 1.6; font-size: 13px;">
+          <li>resultado ("vai ficar igual à foto")</li>
+          <li>encaixe fora da agenda ou sem barbeiro disponível</li>
+          <li>preço diferente do catálogo, desconto ou "promoção"</li>
+          <li>serviço desligado ou que não está aqui</li>
+        </ul>
+      </div>
+      <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Quando pedem algo fora do catálogo</span>
+        <p style="margin: 0; color: #CFC6BA; line-height: 1.6; font-size: 13px;">A IA responde <em style="color: #F3EDE4;">"Essa eu vou confirmar com o {{ owner }} e já te falo"</em>, cria o item acima e te avisa no WhatsApp. Nada de "acho que sim".</p>
+      </div>
+      <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Mudou o preço?</span>
+        <p style="margin: 0; color: #CFC6BA; line-height: 1.6; font-size: 13px;">Edite aqui e vale na próxima mensagem. Agendamentos já confirmados mantêm o preço combinado — a IA avisa o cliente só se você pedir.</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent": {"editor": "color", "default": "#E8A84A", "options": ["#E8A84A", "#D07A45", "#C9A961", "#8DA3B8"]}, "$preview": {"width": 1280, "height": 1500}}'>
+
+const OWNER = 'Leo';
+const SERVICES = [
+  { id: 'corte', group: 'Cabelo', name: 'Corte', price: 45, dur: 30, barbers: 'Leo, Rafa', active: true,
+    desc: 'Corte masculino na máquina e tesoura, com acabamento na navalha. Inclui lavagem e finalização.',
+    syn: ['cortar o cabelo', 'degradê', 'social', 'na máquina', 'só o cabelo'],
+    faq: [
+      { id: 'c1', q: 'Faz degradê?', a: 'Faz sim — degradê, social, na tesoura. O barbeiro ajusta na hora com você. Corte é R$ 45 e leva uns 30 min.', ok: true, n: 14 },
+      { id: 'c2', q: 'Inclui lavagem?', a: 'Inclui lavagem e finalização, sem custo extra.', ok: true, n: 6 },
+      { id: 'c3', q: 'Posso mandar foto de referência?', a: 'Pode! Manda aqui que eu deixo anotado pro barbeiro. Ele vê o que dá pra fazer no seu cabelo na hora.', ok: true, n: 9 },
+      { id: 'c4', q: 'Quanto tempo dura o corte até precisar cortar de novo?', a: 'Em geral 3 a 4 semanas pra manter o desenho. Quer que eu já deixe um horário reservado pra daqui a 3 semanas?', ok: false, n: 3 },
+    ] },
+  { id: 'corte-barba', group: 'Combos', name: 'Corte + Barba', price: 70, dur: 50, barbers: 'Leo, Rafa', active: true,
+    desc: 'Corte completo e barba com toalha quente, no mesmo horário. Sai R$ 10 mais em conta que separado.',
+    syn: ['corte e barba', 'completo', 'os dois', 'cabelo e barba'],
+    faq: [
+      { id: 'cb1', q: 'Sai mais barato fazer junto?', a: 'Sai: Corte + Barba é R$ 70, separado seria R$ 80. Leva uns 50 min.', ok: true, n: 11 },
+      { id: 'cb2', q: 'Dá pra fazer com barbeiros diferentes?', a: 'Dá, mas aí são dois horários. No mesmo barbeiro é um horário só de 50 min — mais fácil pra você.', ok: true, n: 2 },
+    ] },
+  { id: 'barba', group: 'Barba', name: 'Barba', price: 35, dur: 25, barbers: 'Leo, Rafa', active: true,
+    desc: 'Barba desenhada com toalha quente, navalha e finalização com balm.',
+    syn: ['fazer a barba', 'aparar a barba', 'desenhar a barba', 'barba na navalha'],
+    faq: [
+      { id: 'b1', q: 'Usa navalha?', a: 'Usa — toalha quente, navalha e balm no final. R$ 35, uns 25 min.', ok: true, n: 7 },
+      { id: 'b2', q: 'Só aparar com máquina é mais barato?', a: 'Aparar simples é o Pezinho/acabamento por R$ 15. A Barba completa com navalha é R$ 35.', ok: true, n: 4 },
+    ] },
+  { id: 'pigmentacao', group: 'Barba', name: 'Pigmentação de barba', price: 40, dur: 20, barbers: 'Leo', active: true,
+    desc: '',
+    syn: ['pintar a barba', 'preencher falha', 'pigmentar'],
+    faq: [
+      { id: 'p1', q: 'Dura quanto tempo?', a: 'Depende da pele e da lavagem; em média de 3 a 7 dias. Vai saindo aos poucos, sem marca.', ok: false, n: 5 },
+    ] },
+  { id: 'sobrancelha', group: 'Extras', name: 'Sobrancelha', price: 15, dur: 10, barbers: 'Leo, Rafa', active: true,
+    desc: 'Limpeza e alinhamento da sobrancelha na navalha, mantendo o formato natural.',
+    syn: ['sobrancelha', 'tirar o excesso', 'alinhar a sobrancelha'],
+    faq: [ { id: 's1', q: 'É na navalha ou na pinça?', a: 'Na navalha, só o contorno — fica natural, sem afinar.', ok: true, n: 3 } ] },
+  { id: 'pezinho', group: 'Extras', name: 'Pezinho', price: 15, dur: 10, barbers: 'Leo, Rafa', active: true,
+    desc: 'Acabamento da nuca e laterais na máquina e navalha, entre um corte e outro.',
+    syn: ['pezinho', 'acabamento', 'contorno', 'só a nuca'],
+    faq: [ { id: 'pz1', q: 'Dá pra fazer sem marcar?', a: 'Dá se tiver barbeiro livre — leva 10 min. Me manda um "to chegando" que eu confirmo na hora.', ok: true, n: 8 } ] },
+  { id: 'hidratacao', group: 'Cabelo', name: 'Hidratação capilar', price: 30, dur: 20, barbers: 'Rafa', active: true,
+    desc: 'Máscara de hidratação com massagem no couro cabeludo. Boa pra quem faz platinado ou tem o cabelo ressecado.',
+    syn: ['hidratação', 'hidratar', 'tratamento'],
+    faq: [ { id: 'h1', q: 'Faz junto com o corte?', a: 'Faz — fica Corte R$ 45 + Hidratação R$ 30, uns 50 min no total, só com o Rafa.', ok: true, n: 2 } ] },
+  { id: 'platinado', group: 'Cabelo', name: 'Platinado / luzes', price: 120, priceFrom: true, dur: 90, barbers: 'Rafa', active: true,
+    desc: 'Descoloração com avaliação do fio antes de começar. Preço fechado no local, de acordo com o comprimento e o estado do cabelo.',
+    syn: ['platinado', 'luzes', 'descolorir', 'nevou', 'mechas'],
+    faq: [
+      { id: 'pl1', q: 'Quanto custa?', a: 'A partir de R$ 120 — o valor final o Rafa fecha na avaliação, depende do comprimento e de quantas sessões precisa. Quer agendar uma avaliação sem compromisso?', ok: true, n: 12 },
+      { id: 'pl2', q: 'Fica branco em uma sessão?', a: 'Depende do seu cabelo — às vezes precisa de duas. O Rafa te fala na avaliação, sem prometer o que não dá.', ok: true, n: 6 },
+    ] },
+  { id: 'pacote', group: 'Combos', name: 'Pacote mensal · 4 cortes', price: 160, dur: 30, barbers: 'Leo, Rafa', active: false,
+    desc: '4 cortes no mês por R$ 160 (R$ 40 cada), válidos por 35 dias.',
+    syn: ['pacote', 'plano mensal', 'assinatura'],
+    faq: [] },
+];
+const OPEN = [
+  { id: 'o1', q: 'Corte infantil tem preço diferente?', n: 3, when: 'ontem, 18:40', addLabel: 'Adicionar "Corte infantil"' },
+  { id: 'o2', q: 'Vocês fazem relaxamento?', n: 2, when: 'ter, 11:05', addLabel: 'Adicionar "Relaxamento"' },
+  { id: 'o3', q: 'Fazem limpeza de pele?', n: 1, when: 'seg, 20:12', addLabel: 'Adicionar "Limpeza de pele"' },
+  { id: 'o4', q: 'Aceitam Pix e cartão?', n: 4, when: 'hoje, 09:31', addLabel: 'Responder como regra geral' },
+];
+const PROBES = [
+  { id: 'preco', text: 'quanto é?', intent: 'preço', conf: 0.97 },
+  { id: 'tempo', text: 'demora quanto?', intent: 'duração', conf: 0.94 },
+  { id: 'oque', text: 'o que vem nesse serviço?', intent: 'detalhe do serviço', conf: 0.91 },
+  { id: 'desconto', text: 'faz por menos?', intent: 'desconto', conf: 0.93 },
+  { id: 'vago', text: 'e aquele negócio de barba?', intent: 'serviço ambíguo', conf: 0.58 },
+];
+const fmt = (s) => (s.priceFrom ? 'a partir de R$ ' : 'R$ ') + s.price;
+
+class Component extends DCLogic {
+  componentDidMount() {
+    this.setState({ sel: 'corte', probe: 'preco', approved: {}, descs: {}, syns: {}, actives: {}, resolved: {} });
+  }
+  pick(id) { this.setState({ sel: id }); }
+  setProbe(id) { this.setState({ probe: id }); }
+  approve(qid) { this.setState({ approved: { ...this.state.approved, [qid]: true } }); }
+  toggleActive() { const s = this.state; const cur = SERVICES.find(x => x.id === s.sel); const now = s.actives[s.sel] ?? cur.active; this.setState({ actives: { ...s.actives, [s.sel]: !now } }); }
+  fillDesc() { this.setState({ descs: { ...this.state.descs, [this.state.sel]: 'Preenchimento de falhas da barba com pigmento, aplicado só onde precisa. Fica natural e vai saindo aos poucos.' } }); }
+  addSyn() { const s = this.state; const extra = (s.syns[s.sel] || []).length; const words = ['dar um trato', 'ajeitar', 'arrumar']; if (extra < words.length) this.setState({ syns: { ...s.syns, [s.sel]: [...(s.syns[s.sel] || []), words[extra]] } }); }
+  resolveOpen(id, how) { this.setState({ resolved: { ...this.state.resolved, [id]: how } }); }
+  renderVals() {
+    const s = this.state; const accent = this.props.accent ?? '#E8A84A';
+    if (!s) return { accent, owner: OWNER, groups: [], cur: SERVICES[0], probes: PROBES, probe: 'preco', probeR: {}, open: OPEN, resolved: [], openCount: OPEN.length, activeCount: 0, completeCount: 0, approvedCount: 0 };
+    const items = SERVICES.map(sv => {
+      const active = s.actives[sv.id] ?? sv.active;
+      const desc = s.descs[sv.id] ?? sv.desc;
+      const syn = [...sv.syn, ...(s.syns[sv.id] || [])];
+      const faq = sv.faq.map(q => ({ ...q, ok: q.ok || !!s.approved[q.id], accent, approve: () => this.approve(q.id) }));
+      const pending = faq.filter(q => !q.ok).length;
+      const complete = !!desc && pending === 0 && syn.length >= 3;
+      const selected = sv.id === s.sel;
+      return { ...sv, active, desc, syn, faq, pending, approved: faq.length - pending, faqCount: faq.length, priceLabel: fmt(sv),
+        selected, pick: () => this.pick(sv.id), borderL: selected ? accent : 'transparent', bg: selected ? 'rgba(232,168,74,0.10)' : 'transparent',
+        switchBg: active ? accent : 'rgba(243,237,228,0.14)', knobLeft: active ? '19px' : '3px',
+        priceNote: sv.priceFrom ? 'valor final na avaliação — a IA diz "a partir de"' : 'a IA nunca cita outro valor',
+        covColor: !active ? '#5C544B' : complete ? '#3EDE94' : '#E8A84A', covLabel: !active ? 'desligado' : complete ? 'ficha completa' : 'falta algo' };
+    });
+    const groups = ['Cabelo', 'Barba', 'Combos', 'Extras'].map(g => ({ name: g, items: items.filter(i => i.group === g) }));
+    const cur = items.find(i => i.id === s.sel) || items[0];
+    const p = PROBES.find(x => x.id === s.probe) || PROBES[0];
+    let reply, note, handoff = false, intent = p.intent, conf = p.conf;
+    if (!cur.active) { reply = `Esse a gente não está fazendo no momento. Posso te ajudar com ${cur.group === 'Combos' ? 'Corte ou Barba' : 'outro serviço'}?`; note = 'serviço desligado → a IA não oferece nem cita preço'; }
+    else if (p.id === 'preco') { reply = `${cur.name} é ${cur.priceLabel}${cur.priceFrom ? ' — o valor final o ' + cur.barbers.split(',')[0] + ' fecha na avaliação' : ''} e leva uns ${cur.dur} min. Quer ver horário?`; note = 'preço e duração vieram do catálogo, não do modelo'; }
+    else if (p.id === 'tempo') { reply = `Uns ${cur.dur} minutos. Tenho horário hoje às 16:30 e 17:30 com ${cur.barbers.split(',')[0]} — algum serve?`; note = 'horários vêm da agenda real; o texto só escolhe entre os oferecidos'; }
+    else if (p.id === 'oque') { if (cur.desc) { reply = cur.desc + ' Quer que eu veja um horário?'; note = 'usa "Como a IA explica" palavra por palavra no essencial'; } else { reply = `Boa pergunta — essa eu vou confirmar com o ${OWNER} e já te falo.`; note = 'sem explicação cadastrada → vai pra você, não inventa'; handoff = true; } }
+    else if (p.id === 'desconto') { reply = `O valor é ${cur.priceLabel} mesmo — mas se quiser, ${cur.id === 'corte' || cur.id === 'barba' ? 'Corte + Barba junto sai R$ 70 em vez de R$ 80' : 'posso ver o melhor horário pra você hoje'}.`; note = 'regra: nunca oferece desconto; pode sugerir o combo existente'; }
+    else { reply = `Você quer a Barba completa (navalha e toalha quente, R$ 35) ou só o acabamento (R$ 15)?`; note = 'confiança 0,58 < 0,60 → pede pra esclarecer antes de agir'; }
+    const verdict = handoff ? 'Vai pra você — fora do que está cadastrado' : conf >= 0.85 ? 'Automático — a IA responde' : conf >= 0.6 ? 'Responde pedindo confirmação' : 'Pergunta de volta antes de agir';
+    const open = OPEN.filter(o => !s.resolved[o.id]).map(o => ({ ...o, accent, add: () => this.resolveOpen(o.id, 'add'), no: () => this.resolveOpen(o.id, 'no') }));
+    const probes = PROBES.map(p => { const selected = p.id === s.probe; return { ...p, selected, pick: () => this.setProbe(p.id), border: selected ? accent : 'rgba(243,237,228,0.14)', bg: selected ? 'rgba(232,168,74,0.12)' : 'transparent' }; });
+    const resolved = OPEN.filter(o => s.resolved[o.id]).map(o => ({ ...o, how: s.resolved[o.id] === 'no' ? 'a IA diz que não oferecemos e sugere o mais próximo' : 'virou item do catálogo (rascunho)' }));
+    return {
+      accent, owner: OWNER, groups, cur, sel: s.sel, probes, probe: s.probe,
+      toggleActive: () => this.toggleActive(), fillDesc: () => this.fillDesc(), addSyn: () => this.addSyn(),
+      probeR: { intent, conf, confLabel: conf.toFixed(2).replace('.', ','), verdict, reply, note, handoff },
+      open, resolved, openCount: open.length,
+      activeCount: items.filter(i => i.active).length, completeCount: items.filter(i => i.active && i.covColor === '#3EDE94').length,
+      approvedCount: items.reduce((n, i) => n + i.approved, 0),
+    };
+  }
+}
+
+</script>
+</body>
+</html>

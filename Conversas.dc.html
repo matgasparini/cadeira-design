@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Conversas</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap">
+<style>
+body{margin:0;background:#15110E}
+a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
+.row:hover{background:rgba(243,237,228,0.04)}
+.tab{min-height:36px;padding:0 12px;border-radius:8px;border:none;background:transparent;color:#CFC6BA;font:inherit;font-size:13px;font-weight:500;cursor:pointer}
+.tab[aria-selected="true"]{background:rgba(243,237,228,0.10);color:#F3EDE4;font-weight:600}
+.tab.alert[aria-selected="true"]{background:rgba(224,107,90,0.16);color:#E06B5A}
+.btn{min-height:40px;padding:0 14px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:transparent;color:#F3EDE4;font:inherit;font-weight:500;cursor:pointer}
+.btn:hover{border-color:rgba(243,237,228,0.3)}
+.btn.primary{border:none;background:#E8A84A;color:#15110E;font-weight:600}
+.btn.ghost{border:none;color:#CFC6BA}
+/* mobile */
+@container (max-width: 720px) {
+  nav[aria-label="Principal"] { order: 2; position: sticky; bottom: 0; z-index: 5; width: 100% !important; flex: 1 1 100% !important; flex-direction: row !important; align-items: stretch !important; gap: 0 !important; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)) !important; border-right: none !important; border-top: 1px solid rgba(243,237,228,0.10); background: #120F0C !important; }
+  nav[aria-label="Principal"] > div:first-child { display: none !important; }
+  nav[aria-label="Principal"] > div:nth-child(2) { flex-direction: row !important; flex: 1 1 auto; width: 100%; gap: 0 !important; justify-content: space-around; }
+  nav[aria-label="Principal"] > div:nth-child(2) a { position: relative; flex: 1 1 0; min-width: 0; flex-direction: column !important; justify-content: center; gap: 4px !important; min-height: 52px !important; padding: 4px 2px !important; font-size: 11px; line-height: 1.1; text-align: center; white-space: nowrap; }
+  nav[aria-label="Principal"] > div:nth-child(2) a svg { width: 20px; height: 20px; flex: 0 0 auto; }
+  nav[aria-label="Principal"] > div:nth-child(2) a > span { position: absolute; top: 2px; left: 50%; margin: 0 0 0 4px !important; min-width: 18px !important; height: 18px !important; font-size: 11px !important; }
+  nav[aria-label="Principal"] small { display: none !important; }
+  nav[aria-label="Principal"] > a[aria-label="Conexão WhatsApp"] { display: none !important; }
+  main { order: 1; }
+  main { padding: 18px 14px 40px !important; gap: 18px !important; }
+  main h1 { font-size: 26px !important; }
+  main h2 { font-size: 20px !important; }
+  main > header { align-items: flex-start !important; }
+  main > header > div:last-child { width: 100%; flex-wrap: wrap; }
+  main [style*="repeat(5, minmax"] { gap: 6px !important; font-size: 10px !important; }
+  main aside[aria-label="Lista de conversas"] { max-width: none !important; }
+  main table { font-size: 12px !important; }
+  main td, main th { padding-left: 6px !important; padding-right: 6px !important; }
+}
+</style>
+</helmet>
+<div style="container-type: inline-size; min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
+
+  <nav aria-label="Principal" style="width: 232px; flex: 0 0 232px; box-sizing: border-box; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; border-right: 1px solid rgba(243,237,228,0.08); background: #120F0C;">
+    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg>
+      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 4px;">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
+        Receita<small style="font-size: inherit; font-weight: inherit;"> recuperada</small>
+      </a>
+      <a href="Agenda.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path><path d="M8 3v4"></path><path d="M16 3v4"></path></svg>
+        Agenda
+      </a>
+      <a href="#" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; background: rgba(232,168,74,0.12); color: #F3EDE4; font-weight: 500;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"></path></svg>
+        Conversas
+        <sc-if value="{{ hasPending }}" hint-placeholder-val="{{ true }}"><span style="margin-left: auto; min-width: 22px; height: 22px; padding: 0 7px; box-sizing: border-box; border-radius: 11px; background: #E06B5A; color: #15110E; font-size: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center;">{{ pendingCount }}</span></sc-if>
+      </a>
+      <a href="Catalogo.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"></path><path d="M4 18V5.5"></path><path d="M9 8h7"></path><path d="M9 12h5"></path></svg>
+        Catálogo
+      </a>
+      <a href="Clientes.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7"></path><path d="M18 14.5a6.5 6.5 0 0 1 3.5 5.5"></path></svg>
+        Clientes
+      </a>
+      <a href="Regras.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16"></path><path d="M4 12h16"></path><path d="M4 18h16"></path><circle cx="9" cy="6" r="2" fill="#120F0C"></circle><circle cx="15" cy="12" r="2" fill="#120F0C"></circle><circle cx="7" cy="18" r="2" fill="#120F0C"></circle></svg>
+        Regras
+      </a>
+    </div>
+    <a href="Conexao.dc.html" aria-label="Conexão WhatsApp" style="margin-top: auto; display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); color: inherit;">
+      <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #CFC6BA;">
+        <span style="width: 8px; height: 8px; border-radius: 4px; background: {{accent}};"></span>
+        WhatsApp conectado
+      </div>
+      <div style="font-size: 12px; color: #A89F93;">Barbearia do Léo · (11) 9 8765-4321</div>
+    </a>
+  </nav>
+
+  <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px 40px 48px; display: flex; flex-direction: column; gap: 20px;">
+
+    <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px;">
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <span style="font-size: 13px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.08em;">Conversas</span>
+        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">A IA resolveu {{ resolvedCount }} de 44 hoje</h1>
+      </div>
+      <div style="display: flex; gap: 20px; align-items: center; padding: 12px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+        <div style="display: flex; flex-direction: column;"><span style="font-size: 12px; color: #A89F93;">Fechado em conversa</span><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; line-height: 1; color: {{accent}};">R$ {{ revenue }}</span></div>
+        <div style="width: 1px; height: 32px; background: rgba(243,237,228,0.10);"></div>
+        <div style="display: flex; flex-direction: column;"><span style="font-size: 12px; color: #A89F93;">Tempo médio de resposta</span><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; line-height: 1;">38 s</span></div>
+        <div style="width: 1px; height: 32px; background: rgba(243,237,228,0.10);"></div>
+        <div style="display: flex; flex-direction: column;"><span style="font-size: 12px; color: #A89F93;">Precisam de você</span><span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; line-height: 1; color: #E06B5A;">{{ pendingCount }}</span></div>
+      </div>
+    </header>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch; min-height: 760px;">
+
+      <aside aria-label="Lista de conversas" style="flex: 1 1 300px; max-width: 380px; display: flex; flex-direction: column; border-radius: 16px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); overflow: hidden;">
+        <div role="tablist" style="display: flex; gap: 6px; padding: 12px; border-bottom: 1px solid rgba(243,237,228,0.08);">
+          <button type="button" role="tab" class="tab alert" aria-selected="{{ tabPending }}" onClick="{{ showPending }}">Precisam de você · {{ pendingCount }}</button>
+          <button type="button" role="tab" class="tab" aria-selected="{{ tabAll }}" onClick="{{ showAll }}">Todas</button>
+          <button type="button" role="tab" class="tab" aria-selected="{{ tabResolved }}" onClick="{{ showResolved }}">Resolvidas</button>
+        </div>
+        <div style="padding: 10px 12px; border-bottom: 1px solid rgba(243,237,228,0.08);">
+          <input type="search" placeholder="Buscar cliente ou telefone…" aria-label="Buscar" style="width: 100%; box-sizing: border-box; min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.12); background: #15110E; color: #F3EDE4; font: inherit; outline: none;">
+        </div>
+
+        <div role="list" style="display: flex; flex-direction: column; overflow-y: auto;">
+          <sc-for list="{{ visible }}" as="c" hint-placeholder-count="4">
+            <div role="listitem" class="row" tabindex="0" onClick="{{ c.pick }}" style="display: flex; gap: 12px; padding: 14px 16px; border-top: 1px solid rgba(243,237,228,0.06); cursor: pointer; background: {{ c.rowBg }}; border-left: 3px solid {{ c.rowBorder }};">
+              <span style="width: 40px; height: 40px; flex: 0 0 40px; border-radius: 20px; background: {{ c.avBg }}; color: {{ c.avColor }}; display: flex; align-items: center; justify-content: center; font-weight: 600;">{{ c.initials }}</span>
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px;">
+                <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="font-weight: {{ c.nameWeight }};">{{ c.name }}</span><span style="font-size: 12px; color: #A89F93;">{{ c.time }}</span></div>
+                <span style="font-size: 13px; color: {{ c.previewColor }}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ c.preview }}</span>
+                <span style="font-size: 12px; font-weight: 500; color: {{ c.tagColor }};">{{ c.tag }}</span>
+              </div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ listEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 40px 20px; text-align: center; color: #A89F93; font-size: 13px;">Nada pendente. A IA está cuidando de tudo. 🎉</div>
+          </sc-if>
+        </div>
+      </aside>
+
+      <section aria-label="Conversa" style="flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; border-radius: 16px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); overflow: hidden;">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; border-bottom: 1px solid rgba(243,237,228,0.08);">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <span style="width: 40px; height: 40px; border-radius: 20px; background: #3A2E24; color: {{accent}}; display: flex; align-items: center; justify-content: center; font-weight: 600;">{{ cur.initials }}</span>
+            <div style="display: flex; flex-direction: column;">
+              <span style="font-weight: 600; font-size: 15px;">{{ cur.name }}</span>
+              <span style="font-size: 12px; color: #A89F93;">{{ cur.meta }}</span>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px;">
+            <a href="Agenda.dc.html" class="btn" style="display: inline-flex; align-items: center;">Ver na agenda</a>
+            <sc-if value="{{ curPending }}" hint-placeholder-val="{{ true }}"><button type="button" class="btn" onClick="{{ returnToAi }}">Devolver para a IA</button></sc-if>
+            <sc-if value="{{ curResolved }}" hint-placeholder-val="{{ false }}"><button type="button" class="btn ghost">Assumir conversa</button></sc-if>
+          </div>
+        </div>
+
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 14px; padding: 20px; overflow-y: auto;">
+          <div style="align-self: center; font-size: 11px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.08em;">{{ cur.day }}</div>
+
+          <sc-for list="{{ cur.msgs }}" as="m" hint-placeholder-count="4">
+            <sc-if value="{{ m.isClient }}" hint-placeholder-val="{{ true }}">
+              <div style="align-self: flex-start; max-width: 70%; display: flex; flex-direction: column; gap: 4px;">
+                <div style="padding: 10px 14px; border-radius: 14px 14px 14px 4px; background: #26211C; color: #F3EDE4;">{{ m.text }}</div>
+                <span style="font-size: 11px; color: #A89F93; padding-left: 4px;">{{ m.time }}</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ m.isAi }}" hint-placeholder-val="{{ false }}">
+              <div style="align-self: flex-end; max-width: 72%; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+                <div style="padding: 10px 14px; border-radius: 14px 14px 4px 14px; background: rgba(232,168,74,0.14); border: 1px solid rgba(232,168,74,0.25); color: #F3EDE4;">{{ m.text }}</div>
+                <div style="display: flex; align-items: center; gap: 8px; font-size: 11px; color: #A89F93; padding-right: 4px;">
+                  <span style="display: inline-flex; align-items: center; gap: 4px;"><span style="width: 6px; height: 6px; border-radius: 3px; background: {{accent}};"></span>IA · <strong style="color: #CFC6BA; font-weight: 500;">{{ m.decision }}</strong> · confiança {{ m.conf }}</span>
+                  <span>·</span><span>{{ m.time }}</span>
+                </div>
+              </div>
+            </sc-if>
+            <sc-if value="{{ m.isMe }}" hint-placeholder-val="{{ false }}">
+              <div style="align-self: flex-end; max-width: 72%; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
+                <div style="padding: 10px 14px; border-radius: 14px 14px 4px 14px; background: #F3EDE4; color: #15110E;">{{ m.text }}</div>
+                <span style="font-size: 11px; color: #A89F93; padding-right: 4px;">Você · {{ m.time }}</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ m.isSystem }}" hint-placeholder-val="{{ false }}">
+              <div style="align-self: center; display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: rgba(232,168,74,0.10); color: {{accent}}; font-size: 12px; font-weight: 500;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>
+                {{ m.text }}
+              </div>
+            </sc-if>
+          </sc-for>
+
+          <sc-if value="{{ showHandoff }}" hint-placeholder-val="{{ true }}">
+            <div style="align-self: stretch; display: flex; flex-direction: column; gap: 10px; padding: 14px 16px; border-radius: 12px; background: rgba(224,107,90,0.08); border: 1px solid rgba(224,107,90,0.30);">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px;">
+                <span style="display: inline-flex; align-items: center; gap: 8px; font-weight: 600; color: #E06B5A;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>
+                  IA parou e chamou você
+                </span>
+                <span style="font-size: 12px; color: #CFC6BA;">{{ handoff.since }} · cliente ainda não viu nada</span>
+              </div>
+              <div style="font-size: 13px; color: #CFC6BA; display: flex; flex-direction: column; gap: 4px;">
+                <span><strong style="color: #F3EDE4; font-weight: 500;">Intenção:</strong> {{ handoff.intent }}</span>
+                <span><strong style="color: #F3EDE4; font-weight: 500;">Regra:</strong> {{ handoff.rule }}</span>
+                <span><strong style="color: #F3EDE4; font-weight: 500;">Contexto:</strong> {{ handoff.context }}</span>
+              </div>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px;">
+                <sc-for list="{{ handoff.options }}" as="o" hint-placeholder-count="3">
+                  <button type="button" class="{{ o.cls }}" onClick="{{ o.choose }}">{{ o.label }}</button>
+                </sc-for>
+                <button type="button" class="btn ghost">Vou responder eu</button>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-top: 1px solid rgba(243,237,228,0.08); background: #171310;">
+          <input type="text" placeholder="Responder como Léo…" aria-label="Mensagem" style="flex: 1; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: #1B1612; color: #F3EDE4; font: inherit; outline: none;">
+          <button type="button" class="btn primary" style="min-height: 44px;">Enviar</button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E8A84A","options":["#E8A84A","#D07A45","#C9A961","#8DA3B8"]},"$preview":{"width":1280,"height":1040}}'>
+var CONVS = [
+  { id: 'eb', initials: 'EB', name: 'Eduardo Bastos', time: '09:52', day: 'Hoje', pending: true,
+    preview: '"tá caro, o cara da esquina faz por 50"', tag: 'Pedido de desconto · fora da regra',
+    meta: 'Cliente há 14 meses · 11 cortes · 2 faltas · gasto R$ 880 · último há 47 dias',
+    msgs: [
+      { from: 'client', text: 'Oi, quero marcar um corte essa semana', time: '09:47' },
+      { from: 'ai', text: 'Fala Eduardo! Que bom te ver de volta 👊 Tenho ter 16:00 ou qui 11:00 com o Léo. Qual fica melhor?', decision: 'reativação', conf: '0,91', time: '09:47' },
+      { from: 'client', text: 'terça. quanto tá o corte?', time: '09:50' },
+      { from: 'ai', text: 'Corte tá R$ 80. Reservo ter 16:00 pra você?', decision: 'informar preço', conf: '0,97', time: '09:50' },
+      { from: 'client', text: 'tá caro, o cara da esquina faz por 50', time: '09:52' }
+    ],
+    handoff: { since: 'há 4 min', intent: 'pedido de desconto · confiança 0,88', rule: 'você definiu "nunca dar desconto sem me perguntar"',
+      context: 'cliente de R$ 880 no ano, sumido há 47 dias, 2 faltas. Vale segurar.',
+      options: [ { label: 'Manter R$ 80 e explicar', primary: true }, { label: 'Oferecer R$ 70 (volta)' }, { label: 'Oferecer barba grátis' } ] },
+    gain: 80 },
+  { id: 'ms', initials: 'MS', name: 'Marina Souza', time: '09:31', day: 'Hoje', pending: true,
+    preview: '"vcs fazem corte infantil? meu filho tem 4 anos"', tag: 'Serviço não cadastrado · confiança 0,41',
+    meta: 'Cliente nova · chegou pelo Instagram · 0 atendimentos',
+    msgs: [
+      { from: 'client', text: 'Boa tarde! vcs fazem corte infantil? meu filho tem 4 anos', time: '09:31' }
+    ],
+    handoff: { since: 'há 25 min', intent: 'pergunta sobre serviço · confiança 0,41 (abaixo do mínimo 0,70)', rule: '"Corte infantil" não está no catálogo',
+      context: 'cliente nova vinda do Instagram. Primeira impressão.',
+      options: [ { label: 'Sim, R$ 60 — oferecer horário', primary: true }, { label: 'Não fazemos' }, { label: 'Adicionar serviço ao catálogo' } ] },
+    gain: 60 },
+  { id: 'fl', initials: 'FL', name: 'Felipe Lima', time: '08:47', day: 'Hoje', pending: true,
+    preview: '"o corte de ontem ficou torto, quero refazer"', tag: 'Reclamação · passado para você',
+    meta: 'Cliente há 3 meses · 4 cortes · 0 faltas · atendido ontem pelo Caio',
+    msgs: [
+      { from: 'client', text: 'o corte de ontem ficou torto, quero refazer', time: '08:47' },
+      { from: 'ai', text: 'Poxa Felipe, sinto muito. Já avisei o Léo e ele vai falar com você em instantes.', decision: 'reclamação → humano', conf: '0,94', time: '08:47' }
+    ],
+    handoff: { since: 'há 1h09', intent: 'reclamação de serviço · confiança 0,94', rule: 'reclamações sempre vão para você',
+      context: 'cliente fiel, 0 faltas. Atendido pelo Caio ontem às 15h.',
+      options: [ { label: 'Refazer grátis — oferecer horário', primary: true }, { label: 'Pedir foto' } ] },
+    gain: 0 },
+  { id: 'rn', initials: 'RN', name: 'Rafael Nunes', time: '09:40', day: 'Hoje', pending: false,
+    preview: 'Reativado · agendou ter 17:00 com Léo', tag: '+ R$ 80', gain: 80,
+    meta: 'Cliente há 8 meses · 6 cortes · 1 falta · estava sumido há 52 dias',
+    msgs: [
+      { from: 'ai', text: 'E aí Rafael, sumiu! 😄 Já tem quase 2 meses. O Léo tem ter 17:00 ou qua 10:00 livre — quer garantir?', decision: 'reativação (52 dias)', conf: '0,89', time: '09:12' },
+      { from: 'client', text: 'kkk verdade. terça 17h fechou', time: '09:38' },
+      { from: 'ai', text: 'Fechado: ter 28/10 às 17:00, corte com o Léo, R$ 80. Te lembro na véspera 👍', decision: 'agendar', conf: '0,98', time: '09:38' },
+      { from: 'system', text: 'Agendamento criado · ter 17:00 · Léo · R$ 80', time: '09:40' }
+    ] },
+  { id: 'bc', initials: 'BC', name: 'Bruno Carvalho', time: '09:18', day: 'Hoje', pending: false,
+    preview: 'Aceitou buraco 14:00 com Caio', tag: '+ R$ 80', gain: 80,
+    meta: 'Cliente há 1 ano · 9 cortes · na fila de espera desde sáb',
+    msgs: [
+      { from: 'ai', text: 'Bruno, abriu um horário hoje 14:00 com o Caio. Você tinha pedido pra avisar — quer?', decision: 'ofertar buraco (fila)', conf: '0,93', time: '09:16' },
+      { from: 'client', text: 'quero sim!', time: '09:18' },
+      { from: 'ai', text: 'Reservado: hoje 14:00 com o Caio, corte R$ 80. Até mais tarde!', decision: 'agendar', conf: '0,99', time: '09:18' },
+      { from: 'system', text: 'Buraco preenchido · hoje 14:00 · Caio · R$ 80', time: '09:18' }
+    ] },
+  { id: 'wd', initials: 'WD', name: 'Wesley Dantas', time: 'ontem 21:14', day: 'Ontem', pending: false,
+    preview: 'Confirmou 12:00 após lembrete', tag: 'Falta evitada', gain: 0,
+    meta: 'Cliente há 5 meses · 3 cortes · 1 falta · risco de falta 0,71',
+    msgs: [
+      { from: 'ai', text: 'Wesley, confirmando seu horário amanhã (ter) 12:00 com o Caio. Tá de pé? Responde SIM ou me fala se precisa mudar.', decision: 'confirmar (risco 0,71)', conf: '0,96', time: '19:00' },
+      { from: 'client', text: 'sim', time: '21:14' },
+      { from: 'ai', text: 'Show, te esperamos! 💈', decision: 'confirmação recebida', conf: '0,99', time: '21:14' },
+      { from: 'system', text: 'Confirmado · risco de falta caiu para 0,18', time: '21:14' }
+    ] },
+  { id: 'tm', initials: 'TM', name: 'Thiago Mendes', time: 'ontem 18:02', day: 'Ontem', pending: false,
+    preview: 'Remarcou de seg para ter 10:00', tag: 'Remarcação sem perda', gain: 0,
+    meta: 'Cliente há 2 anos · 22 cortes · 0 faltas',
+    msgs: [
+      { from: 'client', text: 'cara, não vou conseguir amanhã. tem como passar pra terça?', time: '17:58' },
+      { from: 'ai', text: 'Tranquilo Thiago. Terça tenho 10:00 ou 15:00 com o Léo.', decision: 'remarcar', conf: '0,95', time: '17:58' },
+      { from: 'client', text: '10h', time: '18:02' },
+      { from: 'ai', text: 'Remarcado pra ter 10:00. O horário de seg já liberei pra outra pessoa 👍', decision: 'agendar', conf: '0,98', time: '18:02' },
+      { from: 'system', text: 'Horário de seg 11:00 ofertado para 6 clientes da fila', time: '18:03' }
+    ] }
+];
+
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var accent = this.props.accent || '#E8A84A';
+    var st = this.state || {};
+    var resolved = st.resolved || {};
+    var filter = st.filter || 'pending';
+    var selected = st.selected || 'eb';
+
+    var convs = CONVS.map(function (c) {
+      var isResolvedByMe = !!resolved[c.id];
+      var pending = c.pending && !isResolvedByMe;
+      var msgs = c.msgs.slice();
+      var tag = c.tag, preview = c.preview;
+      if (isResolvedByMe) {
+        msgs.push({ from: 'me', text: resolved[c.id], time: 'agora' });
+        msgs.push({ from: 'system', text: 'IA retomou a conversa', time: 'agora' });
+        tag = c.gain ? '+ R$ ' + c.gain : 'Resolvido por você';
+        preview = 'Você: ' + resolved[c.id];
+      }
+      var sel = c.id === selected;
+      return {
+        id: c.id, initials: c.initials, name: c.name, time: c.time, day: c.day, meta: c.meta,
+        pending: pending, gain: c.gain, handoff: c.handoff, tag: tag, preview: preview,
+        msgs: msgs.map(function (m) {
+          return { text: m.text, time: m.time, decision: m.decision || '', conf: m.conf || '',
+            isClient: m.from === 'client', isAi: m.from === 'ai', isMe: m.from === 'me', isSystem: m.from === 'system' };
+        }),
+        rowBg: sel ? 'rgba(232,168,74,0.08)' : 'transparent',
+        rowBorder: sel ? accent : 'transparent',
+        avBg: pending ? '#3A2E24' : '#26211C',
+        avColor: pending ? accent : '#CFC6BA',
+        nameWeight: pending ? 600 : 500,
+        previewColor: pending ? '#CFC6BA' : '#A89F93',
+        tagColor: pending ? '#E06B5A' : (c.gain ? accent : '#A89F93'),
+        pick: function () { self.setState({ selected: c.id }); }
+      };
+    });
+
+    var pending = convs.filter(function (c) { return c.pending; });
+    var visible = filter === 'pending' ? pending : filter === 'resolved' ? convs.filter(function (c) { return !c.pending; }) : convs;
+    var cur = convs.filter(function (c) { return c.id === selected; })[0] || convs[0];
+    var extra = convs.filter(function (c) { return resolved[c.id]; }).reduce(function (s, c) { return s + (c.gain || 0); }, 0);
+
+    function resolveWith(text) {
+      var next = Object.assign({}, resolved); next[cur.id] = text;
+      var still = pending.filter(function (c) { return c.id !== cur.id; });
+      self.setState({ resolved: next, selected: still.length ? still[0].id : cur.id, filter: still.length ? filter : 'all' });
+    }
+
+    var handoff = cur.handoff ? {
+      since: cur.handoff.since, intent: cur.handoff.intent, rule: cur.handoff.rule, context: cur.handoff.context,
+      options: cur.handoff.options.map(function (o) {
+        return { label: o.label, cls: o.primary ? 'btn primary' : 'btn', choose: function () { resolveWith(o.label); } };
+      })
+    } : { since: '', intent: '', rule: '', context: '', options: [] };
+
+    return {
+      accent: accent,
+      visible: visible, cur: cur, handoff: handoff,
+      pendingCount: pending.length,
+      hasPending: pending.length > 0,
+      resolvedCount: 44 - pending.length,
+      revenue: (1120 + extra).toLocaleString('pt-BR'),
+      listEmpty: visible.length === 0,
+      curPending: cur.pending,
+      curResolved: !cur.pending,
+      showHandoff: cur.pending && !!cur.handoff,
+      tabPending: filter === 'pending' ? 'true' : 'false',
+      tabAll: filter === 'all' ? 'true' : 'false',
+      tabResolved: filter === 'resolved' ? 'true' : 'false',
+      showPending: function () { self.setState({ filter: 'pending' }); },
+      showAll: function () { self.setState({ filter: 'all' }); },
+      showResolved: function () { self.setState({ filter: 'resolved' }); },
+      returnToAi: function () { resolveWith('Devolvido para a IA'); }
+    };
+  }
+}
+</script>
+</body>
+</html>
