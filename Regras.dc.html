@@ -3,17 +3,71 @@
 <head>
 <meta charset="utf-8">
 <title>Cadeira — Regras</title>
-<script src="./vendor/react.js"></script>
-<script src="./vendor/react-dom.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
 <style>
 body{margin:0;background:#15110E}
 a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
+/* regras: seções */
+button,input,textarea{font:inherit}
+button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid #E8A84A;outline-offset:2px}
+.cols{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+.col-main{flex:2 1 560px;min-width:0;display:flex;flex-direction:column;gap:24px}
+.side{flex:1 1 300px;min-width:0;display:flex;flex-direction:column;gap:24px;position:sticky;top:24px}
+.sec{display:flex;flex-direction:column;gap:18px;padding:20px 22px;border-radius:16px;background:#1B1612;border:1px solid rgba(243,237,228,0.08);font-size:15px;color:#CFC6BA}
+.sec-h{display:flex;flex-direction:column;gap:4px}
+.sec-h h2{margin:0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:20px;line-height:1.25;letter-spacing:-0.01em;color:#F3EDE4}
+.sec-h p{margin:0;font-size:14px;line-height:1.5;color:#A89F93;max-width:62ch}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld>label,.fld>.lbl{font-size:13px;font-weight:500;color:#CFC6BA}
+.hint{font-size:13px;line-height:1.45;color:#A89F93}
+.inp{box-sizing:border-box;width:100%;min-height:44px;padding:0 12px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:#1B1612;color:#F3EDE4;font-size:16px;color-scheme:dark}
+.ta{min-height:104px;padding:12px;line-height:1.5;resize:vertical}
+.btn1{min-height:44px;padding:0 20px;border-radius:10px;border:none;color:#15110E;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn2{min-height:44px;padding:0 16px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:transparent;color:#CFC6BA;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn1:active,.btn2:active,.opt:active,.chip:active,.sw:active{opacity:.85}
+.sw{flex:0 0 auto;min-width:44px;min-height:44px;padding:0;border:none;background:transparent;cursor:pointer;display:inline-flex;align-items:center;gap:10px;color:#CFC6BA;font-size:15px}
+.sw[disabled]{cursor:not-allowed}
+.track{position:relative;display:block;flex:0 0 40px;width:40px;height:24px;border-radius:12px;transition:background-color .15s ease-out}
+.knob{position:absolute;top:2px;width:20px;height:20px;border-radius:10px;transition:left .15s ease-out}
+.trow{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:44px}
+.trow-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.trow-t strong{font-weight:500;color:#F3EDE4}
+.opt{display:flex;align-items:flex-start;gap:12px;width:100%;min-height:44px;box-sizing:border-box;padding:12px 14px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:transparent;color:#CFC6BA;text-align:left;cursor:pointer;transition:border-color .15s ease-out}
+.dot{flex:0 0 18px;width:18px;height:18px;margin-top:2px;box-sizing:border-box;border-radius:9px;border:1.5px solid rgba(243,237,228,0.14);display:flex;align-items:center;justify-content:center}
+.dot>span{width:8px;height:8px;border-radius:4px}
+.opt-t{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:15px;font-weight:500;color:#F3EDE4}
+.opt-d{display:block;margin-top:2px;font-size:14px;color:#A89F93}
+.tag{font-size:10px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;padding:2px 6px;border-radius:6px;border:1px solid rgba(243,237,228,0.14);color:#A89F93}
+.hours{display:flex;flex-direction:column}
+.hrow{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding:10px 0;border-top:1px solid rgba(243,237,228,0.08)}
+.hrow:first-child{border-top:none}
+.hhead{display:flex;align-items:center;gap:12px;flex:0 0 auto}
+.hday{flex:0 0 88px;font-size:16px;font-weight:500;color:#F3EDE4}
+.hstate{min-width:60px;text-align:left}
+.htimes{display:flex;align-items:center;gap:10px;flex:1 1 auto}
+.htimes .inp{width:132px;font-variant-numeric:tabular-nums}
+.hsep{color:#A89F93;font-size:14px}
+.hclosed{flex:1 1 auto;font-size:15px;color:#A89F93}
+.chip{min-height:40px;padding:0 14px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:transparent;color:#CFC6BA;font-size:14px;cursor:pointer;text-align:left}
+.box{display:flex;flex-direction:column;gap:6px;padding:14px;border-radius:10px;background:#15110E;border:1px solid rgba(243,237,228,0.08)}
+.eyebrow{font-size:12px;font-weight:500;color:#A89F93;text-transform:uppercase;letter-spacing:.04em}
+.ok{margin:0;padding:8px 12px;border-radius:10px;background:rgba(62,222,148,0.10);color:#3EDE94;font-size:13px}
+.err{margin:0;padding:8px 12px;border-radius:10px;background:rgba(224,107,90,0.10);color:#E06B5A;font-size:13px}
+.inv p{margin:0;line-height:1.6;max-width:66ch}
+.inv strong{color:#F3EDE4;font-weight:600}
+.why{position:relative;align-self:flex-start}
+.why>button{min-height:44px;padding:0;border:none;background:transparent;color:#CFC6BA;font-size:14px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.tip{position:absolute;left:0;top:calc(100% + 4px);z-index:2;width:min(340px,80vw);padding:10px 12px;border-radius:10px;background:#15110E;border:1px solid rgba(243,237,228,0.14);color:#CFC6BA;font-size:13px;line-height:1.5}
+.states{display:flex;flex-wrap:wrap;gap:16px}
+.states>div{flex:1 1 210px;min-width:0;display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:14px;background:#1B1612;border:1px solid rgba(243,237,228,0.08)}
+@keyframes sk{0%,100%{opacity:1}50%{opacity:.45}}
+.sk{display:block;border-radius:6px;background:rgba(243,237,228,0.14);animation:sk 1.6s ease-in-out infinite}
+.savebar{display:none}
 /* mobile */
 @container (max-width: 720px) {
   nav[aria-label="Principal"] { order: 2; position: sticky; bottom: 0; z-index: 5; width: 100% !important; flex: 1 1 100% !important; flex-direction: row !important; align-items: stretch !important; gap: 0 !important; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)) !important; border-right: none !important; border-top: 1px solid rgba(243,237,228,0.10); background: #120F0C !important; }
@@ -25,6 +79,7 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
   nav[aria-label="Principal"] small { display: none !important; }
   nav[aria-label="Principal"] > a[aria-label="Conexão WhatsApp"] { display: none !important; }
   main { order: 1; }
+  main > div[data-mobile-only] { display: flex !important; }
   main { padding: 18px 14px 40px !important; gap: 18px !important; }
   main h1 { font-size: 26px !important; }
   main h2 { font-size: 20px !important; }
@@ -34,15 +89,32 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
   main aside[aria-label="Lista de conversas"] { max-width: none !important; }
   main table { font-size: 12px !important; }
   main td, main th { padding-left: 6px !important; padding-right: 6px !important; }
+  .cols { gap: 18px !important; }
+  .col-main { gap: 18px !important; }
+  main aside { position: static !important; }
+  .sec { padding: 16px !important; }
+  .hrow { flex-direction: column; align-items: stretch !important; gap: 8px !important; padding: 12px 0 !important; }
+  .hhead { flex: 1 1 auto !important; justify-content: space-between; }
+  .htimes, .hclosed { flex: 1 1 auto !important; }
+  .htimes .inp { flex: 1 1 0; width: auto !important; min-width: 0; }
+  .save-top { display: none !important; }
+  .savebar { display: flex !important; position: sticky; bottom: 65px; z-index: 4; margin: 0 -14px -40px; padding: 12px 14px; align-items: center; justify-content: space-between; gap: 12px; background: #15110E; border-top: 1px solid rgba(243,237,228,0.08); }
+  .savebar .btn1 { flex: 1 1 auto; }
 }
 </style>
 </helmet>
 <div style="container-type: inline-size; min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
 
   <nav aria-label="Principal" style="width: 232px; flex: 0 0 232px; box-sizing: border-box; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; border-right: 1px solid rgba(243,237,228,0.08); background: #120F0C;">
-    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 0 8px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
       <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg>
       <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+      </div>
+      <div aria-label="Estabelecimento" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 10px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.10); background: rgba(243,237,228,0.03);">
+        <small style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #A89F93;">Estabelecimento</small>
+        <strong style="font-size: 13px; font-weight: 500; color: #F3EDE4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Barbearia do Leo</strong>
+      </div>
     </div>
     <div style="display: flex; flex-direction: column; gap: 4px;">
       <a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
@@ -81,236 +153,491 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
   </nav>
 
   <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px 40px 48px; display: flex; flex-direction: column; gap: 24px;">
+    <div aria-label="Estabelecimento" data-mobile-only="" style="display: none; align-items: baseline; gap: 8px; margin-bottom: -14px; font-size: 12px; color: #A89F93;"><small style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;">Estabelecimento</small><strong style="font-weight: 500; color: #F3EDE4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Barbearia do Leo</strong></div>
 
     <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px;">
       <div style="display: flex; flex-direction: column; gap: 6px;">
         <span style="font-size: 13px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.08em;">Regras</span>
-        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">O que a Cadeira decide sozinha</h1>
-        <p style="margin: 0; color: #A89F93; max-width: 60ch;">Cada regra tem um nível de autonomia. Abaixo do limite de confiança do Jev, a IA não responde — manda pra você com as opções prontas.</p>
+        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">O que o assistente decide sozinho</h1>
+        <p style="margin: 0; color: #A89F93; font-size: 15px; max-width: 60ch;">Como ele se apresenta, o que fala e quando chama você. Vale a partir da próxima mensagem.</p>
       </div>
-      <div style="display: flex; gap: 8px; align-items: center;">
-        <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-weight: 500; cursor: pointer;">Histórico de mudanças</button>
-        <button type="button" onClick="{{ save }}" style="min-height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: {{accent}}; color: #15110E; font: inherit; font-weight: 600; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"></path></svg>
-          {{ saved ? 'Salvo' : 'Salvar alterações' }}
-        </button>
+      <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+        <span role="status" class="save-top" style="font-size: 13px; color: #A89F93; margin-right: 4px;">{{ statusText }}</span>
+        <button type="button" class="btn2">Histórico de mudanças</button>
+        <button type="button" class="btn1 save-top" onClick="{{ save }}" style="background: {{ accent }};">Salvar alterações</button>
       </div>
     </header>
 
-    <section aria-label="Resumo das decisões" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch;">
-      <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-        <span style="font-size: 12px; color: #A89F93;">Decisões automáticas · 7 dias</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; line-height: 1;">{{ autoCount }}</span>
-        <span style="font-size: 12px; color: #A89F93;">{{ autoPct }}% do total · 3 revertidas por você</span>
+    <sc-if value="{{ saved }}"><p class="ok" role="status">Regras salvas. Valem a partir da próxima mensagem.</p></sc-if>
+    <sc-if value="{{ blocked }}"><p class="err" role="alert">Corrija o campo destacado em Diferenciais para salvar.</p></sc-if>
+
+    <section aria-label="Resumo das decisões" style="display: flex; flex-wrap: wrap; gap: 16px;">
+      <div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; border-radius: 14px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+        <span style="font-size: 13px; color: #A89F93;">Resolvidas sozinho · 7 dias</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 36px; line-height: 1; color: #F3EDE4;">{{ autoCount }}</span>
+        <span style="font-size: 13px; color: #A89F93;">{{ autoPct }}% das conversas · 3 desfeitas por você</span>
       </div>
-      <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-        <span style="font-size: 12px; color: #A89F93;">Enviadas pra você</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; line-height: 1;">{{ handoffCount }}</span>
-        <span style="font-size: 12px; color: #A89F93;">tempo médio de resposta 11 min</span>
-      </div>
-      <div style="flex: 2 1 320px; display: flex; flex-direction: column; gap: 10px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;">
-          <label for="thr" style="font-size: 12px; color: #A89F93;">Limite de confiança do Jev para agir sozinha</label>
-          <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 26px; line-height: 1; color: {{accent}};">{{ thrLabel }}</span>
-        </div>
-        <input id="thr" type="range" min="50" max="95" step="5" value="{{ thr }}" onInput="{{ setThr }}" style="width: 100%; accent-color: {{accent}};">
-        <div style="display: flex; justify-content: space-between; font-size: 11px; color: #A89F93;">
-          <span>Mais autonomia · menos interrupções</span>
-          <span>Mais cautela · você revisa mais</span>
-        </div>
-        <div style="font-size: 12px; color: #CFC6BA;">Com esse limite, nos últimos 7 dias <strong style="color: #F3EDE4;">{{ wouldHandoff }}</strong> conversas teriam ido pra você.</div>
+      <div style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 4px; padding: 16px 20px; border-radius: 14px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+        <span style="font-size: 13px; color: #A89F93;">Vieram pra você · 7 dias</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 36px; line-height: 1; color: #F3EDE4;">{{ handoffCount }}</span>
+        <span style="font-size: 13px; color: #A89F93;">você respondeu em 11 min, em média</span>
       </div>
     </section>
 
-    <div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start;">
+    <div class="cols">
+      <div class="col-main">
 
-      <section aria-label="Regras de decisão" style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
-        <sc-for list="{{ rules }}" as="r">
-          <article style="display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); opacity: {{ r.on ? 1 : 0.55 }};">
-            <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
-              <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
-                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-                  <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; font-size: 18px;">{{ r.name }}</h2>
-                  <sc-if value="{{ r.locked }}"><span style="font-size: 11px; padding: 2px 8px; border-radius: 999px; background: rgba(224,107,90,0.16); color: #E06B5A; font-weight: 500;">Sempre vai pra você</span></sc-if>
-                </div>
-                <p style="margin: 0; color: #A89F93; font-size: 13px;">{{ r.desc }}</p>
-              </div>
-              <button type="button" role="switch" aria-checked="{{ r.on }}" aria-label="{{ r.switchLabel }}" onClick="{{ r.toggle }}" style="flex: 0 0 auto; width: 44px; height: 26px; border-radius: 13px; border: none; cursor: {{ r.cursor }}; background: {{ r.switchBg }}; position: relative;">
-                <span style="position: absolute; top: 3px; left: {{ r.on ? '21px' : '3px' }}; width: 20px; height: 20px; border-radius: 10px; background: #F3EDE4;"></span>
+        <section aria-labelledby="sec-id" class="sec">
+          <div class="sec-h">
+            <h2 id="sec-id">Identidade</h2>
+            <p>Nome, jeito de falar e endereço que o assistente usa com seus clientes.</p>
+          </div>
+          <div class="fld">
+            <label for="f-name">Nome do assistente</label>
+            <input id="f-name" class="inp" type="text" value="{{ name }}" onChange="{{ setName }}" aria-describedby="f-name-h">
+            <span id="f-name-h" class="hint">Ele se apresenta assim: “Aqui é a {{ name }}, da Barbearia do Leo.”</span>
+          </div>
+          <div class="fld">
+            <span class="lbl" id="f-tone">Tom</span>
+            <div role="radiogroup" aria-labelledby="f-tone" style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{ tones }}" as="t">
+                <button type="button" role="radio" class="chip" aria-checked="{{ t.aria }}" onClick="{{ t.pick }}" style="flex: 1 1 120px; min-height: 44px; text-align: center; font-size: 15px; border-color: {{ t.border }}; background: {{ t.bg }}; color: {{ t.color }};">{{ t.label }}</button>
+              </sc-for>
+            </div>
+            <div class="box" style="font-size: 15px; line-height: 1.5;">
+              <span class="eyebrow">Exemplo · confirmação</span>
+              <span style="color: #F3EDE4;">{{ toneSample }}</span>
+            </div>
+          </div>
+          <div class="fld">
+            <label for="f-addr">Endereço</label>
+            <input id="f-addr" class="inp" type="text" value="{{ address }}" onChange="{{ setAddress }}" aria-describedby="f-addr-h">
+            <span id="f-addr-h" class="hint">Enviado quando o cliente pergunta onde fica.</span>
+          </div>
+        </section>
+
+        <section aria-labelledby="sec-price" class="sec">
+          <div class="sec-h">
+            <h2 id="sec-price">Preço</h2>
+            <p>Quando o assistente fala quanto custa. Os valores vêm sempre do Catálogo.</p>
+          </div>
+          <div role="radiogroup" aria-labelledby="sec-price" style="display: flex; flex-direction: column; gap: 8px;">
+            <sc-for list="{{ prices }}" as="o">
+              <button type="button" role="radio" class="opt" aria-checked="{{ o.aria }}" onClick="{{ o.pick }}" style="border-color: {{ o.border }}; background: {{ o.bg }};">
+                <span class="dot" style="border-color: {{ o.dotBorder }};"><span style="background: {{ o.dotFill }};"></span></span>
+                <span>
+                  <span class="opt-t">{{ o.label }}<sc-if value="{{ o.isDefault }}"><span class="tag">Padrão</span></sc-if></span>
+                  <span class="opt-d">{{ o.desc }}</span>
+                </span>
               </button>
-            </div>
-            <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
-              <div role="radiogroup" aria-label="Autonomia da regra {{ r.name }}" style="display: inline-flex; padding: 3px; border-radius: 10px; background: rgba(243,237,228,0.06); gap: 2px;">
-                <sc-for list="{{ r.modeOpts }}" as="m">
-                  <button type="button" role="radio" aria-checked="{{ m.selected }}" onClick="{{ m.pick }}" style="min-height: 34px; padding: 0 12px; border-radius: 8px; border: none; font: inherit; font-size: 12px; font-weight: 500; cursor: pointer; background: {{ m.bg }}; color: {{ m.color }};">{{ m.label }}</button>
-                </sc-for>
-              </div>
-              <div style="display: flex; gap: 14px; font-size: 12px; color: #A89F93; flex-wrap: wrap;">
-                <sc-if value="{{ r.limit }}"><span>Limite: <strong style="color: #CFC6BA; font-weight: 500;">{{ r.limit }}</strong></span></sc-if>
-                <span>7 dias: <strong style="color: #CFC6BA; font-weight: 500;">{{ r.n }}</strong> decisões · <strong style="color: {{ r.rev ? '#E06B5A' : '#CFC6BA' }}; font-weight: 500;">{{ r.rev }}</strong> revertidas</span>
-              </div>
-            </div>
-          </article>
-        </sc-for>
-      </section>
-
-      <aside aria-label="Tom, horários e catálogo" style="flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
-
-        <section style="display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-          <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">Tom de voz</h2>
-          <div role="radiogroup" aria-label="Tom de voz" style="display: flex; gap: 6px;">
-            <sc-for list="{{ tones }}" as="t">
-              <button type="button" role="radio" aria-checked="{{ t.selected }}" onClick="{{ t.pick }}" style="flex: 1; min-height: 38px; border-radius: 8px; border: 1px solid {{ t.border }}; background: {{ t.bg }}; color: {{ t.color }}; font: inherit; font-size: 13px; cursor: pointer;">{{ t.label }}</button>
             </sc-for>
           </div>
-          <div style="padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08); font-size: 13px; color: #CFC6BA; line-height: 1.5;">
-            <span style="display: block; font-size: 11px; color: #A89F93; margin-bottom: 4px;">Exemplo · confirmação</span>
-            {{ toneSample }}
-          </div>
-          <label style="display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: #A89F93;">
-            Nome que a IA usa
-            <input type="text" value="Léo (atendimento)" style="min-height: 40px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: #15110E; color: #F3EDE4; font: inherit;">
-          </label>
         </section>
 
-        <section style="display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-          <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">Quando a IA responde</h2>
-          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px;">
-            <div style="display: flex; justify-content: space-between; color: #CFC6BA;"><span>Seg – Sex</span><span>08:00 – 20:00</span></div>
-            <div style="display: flex; justify-content: space-between; color: #CFC6BA;"><span>Sábado</span><span>08:00 – 18:00</span></div>
-            <div style="display: flex; justify-content: space-between; color: #A89F93;"><span>Domingo</span><span>fechado</span></div>
+        <section aria-labelledby="sec-diff" class="sec">
+          <div class="sec-h">
+            <h2 id="sec-diff">Diferenciais</h2>
+            <p>O que faz o cliente escolher a sua barbearia. O assistente cita no máximo um por conversa, e só quando o cliente hesita ou compara preço.</p>
           </div>
-          <div style="height: 1px; background: rgba(243,237,228,0.08);"></div>
-          <label style="display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; color: #CFC6BA; cursor: pointer;">
-            Fora do horário: responde e agenda, mas não oferta desconto
-            <input type="checkbox" checked="" style="width: 18px; height: 18px; accent-color: {{accent}};">
-          </label>
-          <label style="display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; color: #CFC6BA; cursor: pointer;">
-            Pausa automática quando você está na conversa
-            <input type="checkbox" checked="" style="width: 18px; height: 18px; accent-color: {{accent}};">
-          </label>
+          <div class="fld">
+            <label for="f-diff">O que vocês oferecem</label>
+            <textarea id="f-diff" class="inp ta" rows="3" placeholder="Café, água, videogame, estacionamento na porta" value="{{ diff }}" onChange="{{ setDiff }}" aria-invalid="{{ diffInvalid }}" aria-describedby="f-diff-c f-diff-e" style="border-color: {{ diffBorder }};"></textarea>
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+              <sc-if value="{{ diffOver }}"><span id="f-diff-e" style="font-size: 13px; color: #E06B5A;">Passou de 300 caracteres. Tire {{ diffExcess }} para salvar.</span></sc-if>
+              <sc-if value="{{ diffOk }}"><span class="hint">Frases curtas, separadas por vírgula.</span></sc-if>
+              <span id="f-diff-c" style="flex: 0 0 auto; font-size: 13px; font-variant-numeric: tabular-nums; color: {{ diffCountColor }};">{{ diffLen }}/300</span>
+            </div>
+          </div>
         </section>
 
-        <section style="display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-          <div style="display: flex; justify-content: space-between; align-items: baseline;">
-            <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">Catálogo</h2>
-            <a href="Catalogo.dc.html" style="min-height: 32px; padding: 0 10px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); color: #CFC6BA; font-size: 12px; display: inline-flex; align-items: center;">Ver catálogo</a>
+        <section aria-labelledby="sec-hours" class="sec">
+          <div class="sec-h">
+            <h2 id="sec-hours">Horários</h2>
+            <p>Dias e horas em que a barbearia atende. O assistente só oferece horário dentro deles.</p>
           </div>
-          <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
-            <tbody>
-              <sc-for list="{{ catalog }}" as="c">
-                <tr style="border-top: 1px solid rgba(243,237,228,0.06);">
-                  <td style="padding: 8px 0; color: #CFC6BA;">{{ c.name }}</td>
-                  <td style="padding: 8px 0; color: #A89F93; text-align: right;">{{ c.dur }}</td>
-                  <td style="padding: 8px 0; text-align: right; font-weight: 500;">{{ c.price }}</td>
-                </tr>
-              </sc-for>
-            </tbody>
-          </table>
-          <div style="font-size: 12px; color: #A89F93;">Palavras que a IA nunca usa: <span style="color: #CFC6BA;">promoção · grátis · urgente</span></div>
+          <div class="hours">
+            <sc-for list="{{ days }}" as="d">
+              <div class="hrow">
+                <div class="hhead">
+                  <span class="hday">{{ d.name }}</span>
+                  <button type="button" role="switch" class="sw" aria-checked="{{ d.sw.aria }}" aria-label="{{ d.name }} aberta" onClick="{{ d.toggle }}">
+                    <span class="track" style="background: {{ d.sw.track }};"><span class="knob" style="left: {{ d.sw.knob }}; background: {{ d.sw.knobBg }};"></span></span>
+                    <span class="hstate">{{ d.stateLabel }}</span>
+                  </button>
+                </div>
+                <sc-if value="{{ d.open }}">
+                  <div class="htimes">
+                    <input class="inp" type="time" value="{{ d.from }}" onChange="{{ d.setFrom }}" aria-label="{{ d.name }}, abre às">
+                    <span class="hsep">até</span>
+                    <input class="inp" type="time" value="{{ d.to }}" onChange="{{ d.setTo }}" aria-label="{{ d.name }}, fecha às">
+                  </div>
+                </sc-if>
+                <sc-if value="{{ d.closed }}"><span class="hclosed">Fechado o dia todo</span></sc-if>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px;">
+            <button type="button" class="btn2" onClick="{{ copyHours }}">Copiar para os outros dias</button>
+            <span class="hint">Usa o horário de segunda em todos os dias abertos.</span>
+          </div>
+          <sc-if value="{{ copied }}"><p class="ok" role="status">Horário de segunda copiado para os outros dias abertos.</p></sc-if>
+          <div class="trow" style="border-top: 1px solid rgba(243,237,228,0.08); padding-top: 14px;">
+            <span class="trow-t"><strong>Fora do horário</strong><span class="hint">Responde e agenda, mas não oferece desconto.</span></span>
+            <button type="button" role="switch" class="sw" aria-checked="{{ afterSw.aria }}" aria-label="Responder fora do horário" onClick="{{ toggleAfter }}">
+              <span class="track" style="background: {{ afterSw.track }};"><span class="knob" style="left: {{ afterSw.knob }}; background: {{ afterSw.knobBg }};"></span></span>
+            </button>
+          </div>
         </section>
 
+        <section aria-labelledby="sec-auto" class="sec">
+          <div class="sec-h">
+            <h2 id="sec-auto">Autonomia</h2>
+            <p>Para cada situação, escolha se o assistente resolve sozinho, espera seu ok ou passa pra você.</p>
+          </div>
+          <div aria-label="Regras de decisão" role="list" style="display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{ rules }}" as="r">
+              <article role="listitem" style="display: flex; flex-direction: column; gap: 12px; padding: 16px; border-radius: 12px; background: #15110E; border: 1px solid rgba(243,237,228,0.08); opacity: {{ r.opacity }};">
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;">
+                  <div style="display: flex; flex-direction: column; gap: 4px; min-width: 0;">
+                    <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                      <h3 style="margin: 0; font-size: 16px; font-weight: 500; color: #F3EDE4;">{{ r.name }}</h3>
+                      <sc-if value="{{ r.locked }}"><span style="font-size: 12px; padding: 2px 8px; border-radius: 6px; background: rgba(224,107,90,0.12); color: #E06B5A; font-weight: 500;">Sempre vai pra você</span></sc-if>
+                    </div>
+                    <p style="margin: 0; color: #A89F93; font-size: 14px;">{{ r.desc }}</p>
+                  </div>
+                  <button type="button" role="switch" class="sw" aria-checked="{{ r.sw.aria }}" aria-label="Regra {{ r.name }} ligada" onClick="{{ r.toggle }}" disabled="{{ r.locked }}">
+                    <span class="track" style="background: {{ r.sw.track }};"><span class="knob" style="left: {{ r.sw.knob }}; background: {{ r.sw.knobBg }};"></span></span>
+                  </button>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+                  <div role="radiogroup" aria-label="Autonomia da regra {{ r.name }}" style="display: inline-flex; flex-wrap: wrap; padding: 3px; border-radius: 10px; background: rgba(243,237,228,0.06); gap: 2px;">
+                    <sc-for list="{{ r.modes }}" as="m">
+                      <button type="button" role="radio" aria-checked="{{ m.aria }}" onClick="{{ m.pick }}" style="min-height: 40px; padding: 0 12px; border-radius: 8px; border: none; font-size: 13px; font-weight: 500; cursor: {{ m.cursor }}; background: {{ m.bg }}; color: {{ m.color }};">{{ m.label }}</button>
+                    </sc-for>
+                  </div>
+                  <span style="font-size: 13px; color: #A89F93;">7 dias: <strong style="color: #CFC6BA; font-weight: 500;">{{ r.n }}</strong> decisões · <strong style="color: {{ r.revColor }}; font-weight: 500;">{{ r.rev }}</strong> desfeitas</span>
+                </div>
+                <sc-if value="{{ r.limit }}"><span style="font-size: 13px; color: #A89F93;">Limite: <span style="color: #CFC6BA;">{{ r.limit }}</span></span></sc-if>
+                <sc-if value="{{ r.tol }}">
+                  <label for="f-late" style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #A89F93;">
+                    Tolerância
+                    <input id="f-late" class="inp" type="number" min="0" max="60" value="{{ late }}" onChange="{{ setLate }}" style="width: 80px; min-height: 40px;" aria-describedby="f-late-h">
+                    <span id="f-late-h">min de atraso</span>
+                  </label>
+                </sc-if>
+              </article>
+            </sc-for>
+          </div>
+          <div class="trow" style="border-top: 1px solid rgba(243,237,228,0.08); padding-top: 14px;">
+            <span class="trow-t"><strong>Pausa quando você entra na conversa</strong><span class="hint">O assistente para de responder até você devolver a conversa.</span></span>
+            <button type="button" role="switch" class="sw" aria-checked="{{ pauseSw.aria }}" aria-label="Pausar quando você entra na conversa" onClick="{{ togglePause }}">
+              <span class="track" style="background: {{ pauseSw.track }};"><span class="knob" style="left: {{ pauseSw.knob }}; background: {{ pauseSw.knobBg }};"></span></span>
+            </button>
+          </div>
+        </section>
+
+        <section aria-labelledby="sec-react" class="sec">
+          <div class="sec-h">
+            <h2 id="sec-react">Reativação</h2>
+            <p>Mensagem para quem passou da frequência de sempre e não marcou de novo.</p>
+          </div>
+          <div class="box" style="flex-direction: row; flex-wrap: wrap; align-items: baseline; gap: 6px 12px;">
+            <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 30px; line-height: 1; color: #C9A961;">R$ 210</span>
+            <span style="font-size: 14px; color: #A89F93;">recuperados nos últimos 7 dias · 3 clientes voltaram de 14 mensagens</span>
+          </div>
+          <div class="trow">
+            <span class="trow-t"><strong>Reativar clientes sumidos</strong><span class="hint">Uma mensagem curta, sem insistir. Quem pede pra parar não recebe mais.</span></span>
+            <button type="button" role="switch" class="sw" aria-checked="{{ reactSw.aria }}" aria-label="Reativar clientes sumidos" onClick="{{ toggleReact }}">
+              <span class="track" style="background: {{ reactSw.track }};"><span class="knob" style="left: {{ reactSw.knob }}; background: {{ reactSw.knobBg }};"></span></span>
+            </button>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 16px;">
+            <div class="fld" style="flex: 1 1 150px;">
+              <label for="f-quota">Reativações por dia</label>
+              <input id="f-quota" class="inp" type="number" min="0" max="50" value="{{ quota }}" onChange="{{ setQuota }}" aria-describedby="f-quota-h">
+              <span id="f-quota-h" class="hint">clientes</span>
+            </div>
+            <div class="fld" style="flex: 1 1 150px;">
+              <label for="f-disc">Desconto oferecido</label>
+              <input id="f-disc" class="inp" type="number" min="0" max="30" value="{{ discount }}" onChange="{{ setDiscount }}" aria-describedby="f-disc-h">
+              <span id="f-disc-h" class="hint">% no próximo corte</span>
+            </div>
+            <div class="fld" style="flex: 1 1 150px;">
+              <label for="f-cap">Teto de desconto</label>
+              <input id="f-cap" class="inp" type="number" min="0" max="30" value="{{ cap }}" onChange="{{ setCap }}" aria-describedby="f-cap-h">
+              <span id="f-cap-h" class="hint">% no máximo, em qualquer oferta</span>
+            </div>
+          </div>
+          <span class="hint">Quantas vezes ele tenta e quanto tempo espera não mudam — veja “Como o assistente decide”.</span>
+        </section>
+
+        <section aria-labelledby="sec-inv" class="sec inv">
+          <div class="sec-h">
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <h2 id="sec-inv">Como o assistente decide</h2>
+              <span style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; padding: 2px 8px; border-radius: 6px; border: 1px solid rgba(141,163,184,0.4); color: #8DA3B8;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+                Fixo
+              </span>
+            </div>
+            <p>Valem para todas as barbearias. Você não precisa configurar nada aqui.</p>
+          </div>
+          <p>Quando o cliente pede para marcar, remarcar, cancelar ou falar com você, o assistente mede o quanto tem certeza do pedido. Com <strong>0,85 ou mais</strong>, ele executa sozinho. Entre <strong>0,60 e 0,85</strong>, executa e pede para o cliente confirmar antes de fechar. Abaixo de <strong>0,60</strong>, ele chama você.</p>
+          <p>Dúvidas e conversa solta nunca vêm pra você por falta de certeza: ele pergunta como pode ajudar e só te chama se o cliente não avançar em 3 tentativas.</p>
+          <p>Na reativação, cada cliente recebe no máximo <strong>2 mensagens por ciclo</strong> e depois descansa <strong>60 dias</strong>. Quem pede pra parar não recebe mais nada.</p>
+          <div class="why">
+            <button type="button" aria-expanded="{{ tipAria }}" aria-controls="inv-tip" onClick="{{ toggleTip }}">Por que não posso mudar?</button>
+            <sc-if value="{{ tipOpen }}"><span id="inv-tip" role="tooltip" class="tip">São iguais para toda barbearia e só mudam por decisão registrada (ADR 0015), para o assistente nunca agir sem certeza nem te chamar à toa.</span></sc-if>
+          </div>
+        </section>
+
+      </div>
+
+      <aside aria-label="Simulador e catálogo" class="side">
+        <section aria-label="Simulador de decisão" class="sec">
+          <div class="sec-h">
+            <h2>Testar: o que ele faria se o cliente dissesse…</h2>
+            <p>Usa as regras desta tela, mesmo antes de salvar.</p>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <sc-for list="{{ sims }}" as="s">
+              <button type="button" class="chip" aria-pressed="{{ s.aria }}" onClick="{{ s.pick }}" style="border-color: {{ s.border }}; background: {{ s.bg }}; color: {{ s.color }};">“{{ s.text }}”</button>
+            </sc-for>
+          </div>
+          <div class="box">
+            <span class="eyebrow">Entendeu</span>
+            <span style="font-size: 15px; color: #F3EDE4;">{{ simR.intent }}</span>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #A89F93;">
+              <span style="flex: 1; height: 6px; border-radius: 3px; background: rgba(243,237,228,0.08); overflow: hidden; display: block;"><span style="display: block; height: 100%; width: {{ simR.confPct }}; background: {{ simR.confColor }};"></span></span>
+              certeza {{ simR.confLabel }}
+            </div>
+          </div>
+          <div class="box">
+            <span class="eyebrow">O que acontece</span>
+            <span style="font-size: 15px; font-weight: 500; color: {{ simR.verdictColor }};">{{ simR.verdictLabel }}</span>
+            <span style="font-size: 13px; color: #A89F93;">{{ simR.why }}</span>
+          </div>
+          <div class="box">
+            <span class="eyebrow">{{ simR.replyLabel }}</span>
+            <span style="font-size: 15px; color: #CFC6BA; line-height: 1.5;">{{ simR.reply }}</span>
+          </div>
+        </section>
+
+        <section aria-label="Catálogo" class="sec">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px;">
+            <div class="sec-h" style="flex: 1 1 180px;">
+              <h2>Catálogo</h2>
+              <p>8 serviços. O assistente só fala do que está lá.</p>
+            </div>
+            <a href="Catalogo.dc.html" class="btn2" style="flex: 0 0 auto; font-size: 14px;">Ver catálogo</a>
+          </div>
+        </section>
       </aside>
     </div>
 
-    <section aria-label="Simulador de decisão" style="display: flex; flex-direction: column; gap: 14px; padding: 18px 20px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px;">
-        <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em;">Testar: o que a IA faria se o cliente dissesse…</h2>
-        <span style="font-size: 12px; color: #A89F93;">usa as regras acima, sem salvar</span>
-      </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-        <sc-for list="{{ sims }}" as="s">
-          <button type="button" aria-pressed="{{ s.selected }}" onClick="{{ s.pick }}" style="min-height: 38px; padding: 0 14px; border-radius: 999px; border: 1px solid {{ s.border }}; background: {{ s.bg }}; color: {{ s.color }}; font: inherit; font-size: 13px; cursor: pointer;">“{{ s.text }}”</button>
-        </sc-for>
-      </div>
-      <div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch;">
-        <div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08);">
-          <span style="font-size: 11px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Jev classificou</span>
-          <span style="font-size: 15px;">{{ simR.intent }}</span>
-          <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #A89F93;">
-            <span style="flex: 1; height: 6px; border-radius: 3px; background: rgba(243,237,228,0.08); overflow: hidden; display: block;"><span style="display: block; height: 100%; width: {{ simR.conf }}%; background: {{ simR.conf &gt;= thr ? accent : '#E06B5A' }};"></span></span>
-            confiança {{ (simR.conf/100).toFixed(2).replace('.', ',') }}
+    <section aria-label="Estados da tela" style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px; padding-top: 24px; border-top: 1px dashed rgba(243,237,228,0.14);">
+      <span class="eyebrow">Estados da tela · referência para o código</span>
+      <span class="hint" style="margin-top: -6px;">Sem estado vazio: toda barbearia começa com as regras padrão preenchidas.</span>
+      <div class="states">
+        <div>
+          <span class="eyebrow">Salvo</span>
+          <p class="ok" role="status">Regras salvas. Valem a partir da próxima mensagem.</p>
+          <span class="hint">Fica na tela até a próxima mudança.</span>
+        </div>
+        <div>
+          <span class="eyebrow">Erro de validação</span>
+          <div class="fld">
+            <label for="st-diff">O que vocês oferecem</label>
+            <textarea id="st-diff" class="inp ta" rows="3" readonly aria-invalid="true" aria-describedby="st-diff-e" value="Café expresso e água com gás por nossa conta, cerveja artesanal gelada no fim de semana, videogame com dois controles na sala de espera, televisão com futebol ao vivo, wi-fi rápido, estacionamento gratuito na porta, toalha quente na barba, produtos para cabelo à venda no balcão e sala climatizada o ano inteiro, sem precisar esperar." style="border-color: #E06B5A; min-height: 80px; font-size: 14px;"></textarea>
+            <div style="display: flex; justify-content: space-between; gap: 12px;">
+              <span id="st-diff-e" style="font-size: 13px; color: #E06B5A;">Passou de 300 caracteres. Tire 34 para salvar.</span>
+              <span style="font-size: 13px; color: #E06B5A; font-variant-numeric: tabular-nums;">334/300</span>
+            </div>
           </div>
         </div>
-        <div style="flex: 1 1 240px; display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08);">
-          <span style="font-size: 11px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Regra aplicada</span>
-          <span style="font-size: 15px;">{{ simR.ruleName }}</span>
-          <span style="font-size: 12px; color: {{ simR.verdict === 'auto' ? accent : (simR.verdict === 'confirm' ? '#CFC6BA' : '#E06B5A') }}; font-weight: 500;">{{ simR.verdictLabel }}</span>
+        <div aria-busy="true">
+          <span class="eyebrow">Carregando</span>
+          <span class="sk" style="width: 40%; height: 18px;"></span>
+          <span class="sk" style="width: 75%; height: 12px;"></span>
+          <span class="sk" style="width: 100%; height: 44px; border-radius: 10px;"></span>
+          <span class="sk" style="width: 100%; height: 44px; border-radius: 10px;"></span>
         </div>
-        <div style="flex: 2 1 320px; display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08);">
-          <span style="font-size: 11px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">{{ simR.verdict === 'auto' ? 'A IA responderia' : 'Você receberia' }}</span>
-          <span style="font-size: 13px; color: #CFC6BA; line-height: 1.5;">{{ simR.reply }}</span>
+        <div>
+          <span class="eyebrow">Erro ao carregar</span>
+          <p class="err" role="alert">Não foi possível carregar as regras.</p>
+          <button type="button" class="btn2" style="align-self: flex-start;">Tentar de novo</button>
         </div>
       </div>
     </section>
+
+    <div class="savebar" role="region" aria-label="Salvar regras">
+      <span role="status" style="font-size: 13px; color: #A89F93;">{{ statusText }}</span>
+      <button type="button" class="btn1" onClick="{{ save }}" style="background: {{ accent }};">Salvar alterações</button>
+    </div>
 
   </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"accent": {"editor": "color", "default": "#E8A84A", "options": ["#E8A84A", "#D07A45", "#C9A961", "#8DA3B8"]}, "$preview": {"width": 1280, "height": 1300}}'>
+<script type="text/x-dc" data-dc-script data-props='{"accent": {"editor": "color", "default": "#E8A84A", "options": ["#E8A84A", "#D07A45", "#C9A961", "#8DA3B8"]}, "$preview": {"width": 1280, "height": 5100}}'>
+
+const INK = '#F3EDE4', SOFT = '#CFC6BA', MUTED = '#A89F93', DANGER = '#E06B5A', SUCCESS = '#3EDE94', COPPER = '#D07A45';
+const LINE_STRONG = 'rgba(243,237,228,0.14)', SEL_BORDER = 'rgba(232,168,74,0.40)', SEL_BG = 'rgba(232,168,74,0.08)';
+const DIFF_MAX = 300;
 
 const RULES = [
-  { id: 'book',    name: 'Agendar e remarcar',               desc: 'Cliente pede horário, troca ou confirma. A IA consulta a agenda e fecha.', mode: 'auto',    on: true,  n: 61, rev: 1, limit: null },
-  { id: 'offer',   name: 'Oferecer buraco da agenda',        desc: 'Quando sobra horário nas próximas 3h, oferece pra quem está perto ou na fila.', mode: 'auto', on: true, n: 23, rev: 0, limit: 'desconto até R$ 10 · acima disso pede confirmação' },
-  { id: 'react',   name: 'Reativar cliente sumido',          desc: 'Cliente passou da cadência (> 45 dias sem vir). Uma mensagem, sem insistir.', mode: 'auto', on: true, n: 14, rev: 1, limit: '1 mensagem por semana · máx. 2 tentativas' },
-  { id: 'remind',  name: 'Lembrete 24h e confirmação',       desc: 'Lembra na véspera e pede confirmação. Sem resposta até 2h antes, libera o horário.', mode: 'auto', on: true, n: 38, rev: 0, limit: null },
-  { id: 'price',   name: 'Preço, serviços e endereço',       desc: 'Responde pelo catálogo. Não inventa serviço que não está lá.', mode: 'auto', on: true, n: 29, rev: 0, limit: null },
-  { id: 'cancel',  name: 'Cancelamento no mesmo dia',        desc: 'Cliente quer cancelar com menos de 4h. A IA segura e pergunta pra você.', mode: 'confirm', on: true, n: 5, rev: 1, limit: null },
-  { id: 'complain',name: 'Reclamação ou reembolso',          desc: 'Qualquer insatisfação ou pedido de dinheiro de volta. Nunca é automático.', mode: 'handoff', on: true, n: 2, rev: 0, limit: null, locked: true },
-  { id: 'human',   name: 'Cliente pede pra falar com humano', desc: 'Pediu você, recebe você. A IA avisa e sai da conversa.', mode: 'handoff', on: true, n: 4, rev: 0, limit: null, locked: true },
+  { id: 'book',     name: 'Agendar e remarcar',                desc: 'Cliente pede horário, troca ou confirma. O assistente consulta a agenda e fecha.', mode: 'auto', on: true, n: 61, rev: 1, limit: '' },
+  { id: 'offer',    name: 'Oferecer buraco da agenda',         desc: 'Quando sobra horário nas próximas 3h, oferece pra quem está perto ou na fila.', mode: 'auto', on: true, n: 23, rev: 0, limit: 'desconto até R$ 10 · acima disso espera seu ok' },
+  { id: 'remind',   name: 'Lembrete na véspera',               desc: 'Lembra na véspera e pede confirmação. Sem resposta até 2h antes, libera o horário.', mode: 'auto', on: true, n: 38, rev: 0, limit: '' },
+  { id: 'late',     name: 'Cliente avisa atraso',              desc: 'Dentro da tolerância, o assistente diz pra vir. Acima dela, avisa que pode perder a vez e oferece remarcar.', mode: 'auto', on: true, n: 7, rev: 0, limit: '', tol: true },
+  { id: 'price',    name: 'Preço, serviços e endereço',        desc: 'Responde pelo Catálogo e pela seção Preço. Não inventa serviço que não está lá.', mode: 'auto', on: true, n: 29, rev: 0, limit: '' },
+  { id: 'cancel',   name: 'Cancelamento no mesmo dia',         desc: 'Cliente quer cancelar com menos de 4h. O assistente segura e pergunta pra você.', mode: 'confirm', on: true, n: 5, rev: 1, limit: '' },
+  { id: 'complain', name: 'Reclamação ou reembolso',           desc: 'Qualquer insatisfação ou pedido de dinheiro de volta. Nunca é automático.', mode: 'handoff', on: true, n: 2, rev: 0, limit: '', locked: true },
+  { id: 'human',    name: 'Cliente pede pra falar com você',   desc: 'Pediu você, recebe você. O assistente avisa e sai da conversa.', mode: 'handoff', on: true, n: 4, rev: 0, limit: '', locked: true },
 ];
 const MODES = [
   { id: 'auto',    label: 'Automático' },
-  { id: 'confirm', label: 'Pede confirmação' },
+  { id: 'confirm', label: 'Espera seu ok' },
   { id: 'handoff', label: 'Vai pra você' },
 ];
 const TONES = [
-  { id: 'informal', label: 'Informal', sample: 'Fechou, Rafa! Te esperamos terça 17h com o Léo. Qualquer coisa é só chamar 👊' },
-  { id: 'neutral',  label: 'Neutro',   sample: 'Confirmado, Rafael: terça às 17h com o Léo. Se precisar remarcar, é só avisar por aqui.' },
-  { id: 'formal',   label: 'Formal',   sample: 'Olá, Rafael. Seu horário está confirmado para terça-feira às 17h com o Léo. Permanecemos à disposição.' },
+  { id: 'short',    label: 'Curto',    sample: 'Fechado, Rafa: terça 17h com o Léo.' },
+  { id: 'friendly', label: 'Amigável', sample: 'Fechou, Rafa! Te esperamos terça às 17h com o Léo. Qualquer coisa é só chamar.' },
+  { id: 'formal',   label: 'Formal',   sample: 'Olá, Rafael. Seu horário está confirmado para terça-feira às 17h com o Léo.' },
 ];
+const PRICES = [
+  { id: 'always', label: 'Sempre informar',       desc: 'Cita o preço do catálogo sempre que fala de um serviço.' },
+  { id: 'on_ask', label: 'Só quando perguntarem', desc: 'Fala o valor só se o cliente perguntar quanto custa.', isDefault: true },
+  { id: 'never',  label: 'Nunca pelo WhatsApp',   desc: 'Não passa valor por mensagem e orienta a combinar na barbearia.' },
+];
+const DAYS = [
+  { id: 'seg', name: 'Segunda', open: true,  from: '09:00', to: '20:00' },
+  { id: 'ter', name: 'Terça',   open: true,  from: '09:00', to: '20:00' },
+  { id: 'qua', name: 'Quarta',  open: true,  from: '13:00', to: '20:00' },
+  { id: 'qui', name: 'Quinta',  open: true,  from: '09:00', to: '20:00' },
+  { id: 'sex', name: 'Sexta',   open: true,  from: '09:00', to: '21:00' },
+  { id: 'sab', name: 'Sábado',  open: true,  from: '08:00', to: '18:00' },
+  { id: 'dom', name: 'Domingo', open: false, from: '09:00', to: '13:00' },
+];
+// action: pedido que mexe na agenda (invariante 3); info/other nunca vão ao dono por confiança (ADR 0015).
 const SIMS = [
-  { id: 's1', text: 'Posso remarcar pra sexta 18h?', intent: 'Remarcar · sexta 18:00', conf: 93, rule: 'book',   reply: 'Consigo sim, Rafa — sexta 18h com o Léo tá livre. Movi pra lá, ok?' },
-  { id: 's2', text: 'Quanto tá o corte + barba?',    intent: 'Pergunta de preço · Corte + Barba', conf: 97, rule: 'price', reply: 'Corte + barba é R$ 70, leva uns 50 min. Quer que eu veja um horário?' },
-  { id: 's3', text: 'Vou ter que cancelar hoje',      intent: 'Cancelar · mesmo dia (14:00, em 2h)', conf: 88, rule: 'cancel', reply: 'Cliente Bruno quer cancelar 14h (em 2h). Opções: [Liberar horário] [Oferecer 16h] [Cobrar taxa]' },
-  { id: 's4', text: 'O corte ficou horrível',         intent: 'Reclamação · qualidade do serviço', conf: 91, rule: 'complain', reply: 'Reclamação do Igor sobre o corte de ontem (Caio). A IA não respondeu. [Ligar] [Oferecer refazer grátis] [Responder]' },
-  { id: 's5', text: 'oi tem horario',                 intent: 'Agendar · sem data definida', conf: 64, rule: 'book', reply: 'Confiança baixa — a IA perguntaria "Pra qual dia você prefere?" só se o limite permitir; abaixo dele, vai pra você.' },
+  { id: 's1', text: 'Posso remarcar pra sexta 18h?', intent: 'Remarcar · sex 18:00',            conf: 93, rule: 'book',     action: true },
+  { id: 's2', text: 'Quanto tá o corte + barba?',    intent: 'Dúvida de preço · Corte + Barba', conf: 97, rule: 'price',    action: false },
+  { id: 's3', text: 'Quero cortar amanhã',           intent: 'Agendar · amanhã',                conf: 90, rule: 'book',     action: true },
+  { id: 's4', text: 'oi tem horario',                intent: 'Agendar · sem dia definido',      conf: 72, rule: 'book',     action: true },
+  { id: 's5', text: 'Tá caro, hein',                 intent: 'Dúvida · comparando preço',       conf: 88, rule: 'price',    action: false },
+  { id: 's6', text: 'Vou ter que cancelar hoje',     intent: 'Cancelar · hoje 14:00, em 2h',    conf: 88, rule: 'cancel',   action: true },
+  { id: 's7', text: 'O corte ficou horrível',        intent: 'Reclamação · qualidade',          conf: 91, rule: 'complain', action: true },
 ];
-class Component extends DCLogic {
-  componentDidMount() {
-    this.setState({ rules: RULES.map(r => ({ ...r })), thr: 80, tone: 'informal', sim: 's1', saved: false });
+
+function sw(on) {
+  return { aria: on ? 'true' : 'false', track: on ? SEL_BORDER : LINE_STRONG, knob: on ? '18px' : '2px', knobBg: on ? INK : MUTED };
+}
+function fmtConf(c) { return (c / 100).toFixed(2).replace('.', ','); }
+function initial() {
+  return {
+    ready: true, name: 'Bia', tone: 'friendly', address: 'Rua das Tesouras, 120 — Pinheiros, São Paulo',
+    price: 'on_ask', diff: 'Café e água por nossa conta, videogame na espera e estacionamento na porta.',
+    days: DAYS.map(d => ({ ...d })), afterHours: true, pause: true,
+    rules: RULES.map(r => ({ ...r })), late: '10', react: true, quota: '10', discount: '10', cap: '15',
+    sim: 's2', tipOpen: false, saved: false, blocked: false, dirty: false, copied: false,
+  };
+}
+function replyFor(sim, s) {
+  const diffs = s.diff.trim();
+  switch (sim.id) {
+    case 's1': return 'Consigo sim, Rafa: sexta 18h com o Léo está livre. Já movi pra lá.';
+    case 's2': return s.price === 'never'
+      ? 'O valor a gente combina aí na barbearia. Quer que eu veja um horário pra você?'
+      : 'Corte + barba sai R$ 70 e leva uns 50 min. Quer que eu veja um horário?';
+    case 's3': return s.price === 'always'
+      ? 'Amanhã tenho 10h ou 15h30 com o Léo. O corte sai R$ 45. Qual prefere?'
+      : 'Amanhã tenho 10h ou 15h30 com o Léo. Qual prefere?';
+    case 's4': return 'Tenho hoje 18h30 com o Léo. Posso reservar pra você?';
+    case 's5': return diffs
+      ? 'Entendo. Aqui o café é por nossa conta e tem estacionamento na porta. Quer que eu segure sexta 18h?'
+      : 'Entendo. Se quiser, te mostro os horários mais tranquilos da semana.';
+    case 's6': return 'Bruno quer cancelar o corte das 14h (em 2h). Opções: [Liberar horário] [Oferecer 16h] [Manter]';
+    default:   return 'Reclamação do Igor sobre o corte de ontem (Caio). O assistente não respondeu. [Ligar] [Refazer sem custo] [Responder]';
   }
-  toggle(id) { const r = this.state.rules.find(x => x.id === id); if (!r || r.locked) return; r.on = !r.on; this.setState({ rules: this.state.rules, saved: false }); }
-  setMode(id, m) { const r = this.state.rules.find(x => x.id === id); if (!r || r.locked) return; r.mode = m; this.setState({ rules: this.state.rules, saved: false }); }
-  setThr(e) { const v = e && e.target ? e.target.value : e; this.setState({ thr: Number(v), saved: false }); }
-  setTone(t) { this.setState({ tone: t, saved: false }); }
-  setSim(s) { this.setState({ sim: s }); }
-  save() { this.setState({ saved: true }); }
+}
+function simulate(sim, s) {
+  const rule = s.rules.find(r => r.id === sim.rule);
+  let verdict = 'auto', why = 'Certeza alta e a regra está em Automático.';
+  if (!rule.on || rule.mode === 'handoff') { verdict = 'owner'; why = 'Regra “' + rule.name + '”: ' + (rule.on ? 'vai pra você.' : 'desligada.'); }
+  else if (sim.action && sim.conf < 60) { verdict = 'owner'; why = 'Certeza abaixo de 0,60 num pedido de agenda.'; }
+  else if (rule.mode === 'confirm') { verdict = 'ownerOk'; why = 'Regra “' + rule.name + '” espera seu ok.'; }
+  else if (sim.action && sim.conf < 85) { verdict = 'client'; why = 'Certeza entre 0,60 e 0,85: confirma com o cliente antes de fechar.'; }
+  else if (sim.rule === 'price' && s.price === 'never') { why = 'Preço: nunca pelo WhatsApp.'; }
+  else if (sim.id === 's5') { why = s.diff.trim() ? 'Cliente comparou preço: cita um diferencial.' : 'Sem diferenciais cadastrados.'; }
+  const LABEL = { auto: 'Responde sozinho', client: 'Responde e pede confirmação ao cliente', ownerOk: 'Espera seu ok antes de agir', owner: 'Vai pra você' };
+  const COLOR = { auto: SUCCESS, client: SOFT, ownerOk: COPPER, owner: DANGER };
+  return {
+    intent: sim.intent, confPct: sim.conf + '%', confLabel: fmtConf(sim.conf),
+    confColor: sim.conf >= 85 ? SUCCESS : sim.conf >= 60 ? COPPER : DANGER,
+    verdictLabel: LABEL[verdict], verdictColor: COLOR[verdict], why,
+    replyLabel: verdict === 'owner' || verdict === 'ownerOk' ? 'Você receberia' : 'O assistente responderia',
+    reply: (verdict === 'owner' || verdict === 'ownerOk') && sim.id !== 's6' && sim.id !== 's7'
+      ? 'A conversa chega pra você com o pedido: “' + sim.text + '”. O assistente não respondeu.'
+      : replyFor(sim, s),
+  };
+}
+
+class Component extends DCLogic {
+  componentDidMount() { this.setState(initial()); }
   renderVals() {
-    const s = this.state; const accent = this.props.accent ?? '#E8A84A';
-    if (!s.rules) return { accent, rules: [], modes: MODES, tones: TONES, sims: SIMS, catalog: [ { name: 'Corte', dur: '30 min', price: 'R$ 45' }, { name: 'Corte + Barba', dur: '50 min', price: 'R$ 70' }, { name: 'Barba', dur: '25 min', price: 'R$ 35' }, { name: 'Pigmentação de barba', dur: '20 min', price: 'R$ 40' }, { name: 'Hidratação', dur: '20 min', price: 'R$ 30' }, { name: 'Platinado / luzes', dur: '90 min', price: 'a partir de R$ 120' }, { name: 'Sobrancelha', dur: '10 min', price: 'R$ 15' }, { name: 'Pezinho', dur: '10 min', price: 'R$ 15' } ], simR: {}, thr: 80, thrLabel: '0,80', autoCount: 0, autoPct: 0, handoffCount: 0, wouldHandoff: 0, tone: 'informal', toneSample: '', sim: 's1', saved: false };
-    const total = s.rules.reduce((a, r) => a + r.n, 0);
-    const autoCount = s.rules.filter(r => r.on && r.mode === 'auto').reduce((a, r) => a + r.n, 0);
-    const handoffCount = total - autoCount;
-    const wouldHandoff = Math.round(handoffCount + (s.thr - 80) * 1.4);
+    const s = this.state && this.state.ready ? this.state : initial();
+    const accent = this.props.accent || '#E8A84A';
+    const edit = (patch) => this.setState({ ...patch, dirty: true, saved: false, blocked: false, copied: false });
+    const val = (k) => (e) => edit({ [k]: e.target.value });
+    const diffLen = s.diff.length, diffOver = diffLen > DIFF_MAX;
+    const setDay = (id, patch) => edit({ days: s.days.map(d => (d.id === id ? { ...d, ...patch } : d)) });
+    const setRule = (id, patch) => edit({ rules: s.rules.map(r => (r.id === id && !r.locked ? { ...r, ...patch } : r)) });
+    const total = s.rules.reduce((a, r) => a + r.n, 0) + 14;
+    const autoCount = s.rules.filter(r => r.on && r.mode === 'auto').reduce((a, r) => a + r.n, 0) + (s.react ? 14 : 0);
     const sim = SIMS.find(x => x.id === s.sim) || SIMS[0];
-    const rule = s.rules.find(r => r.id === sim.rule);
-    let verdict = rule.mode; if (!rule.on) verdict = 'handoff'; if (sim.conf < s.thr && verdict === 'auto') verdict = 'confirm';
-    const chip = (sel) => ({ selected: sel, border: sel ? accent : 'rgba(243,237,228,0.14)', bg: sel ? 'rgba(232,168,74,0.12)' : 'transparent', color: sel ? '#F3EDE4' : '#CFC6BA' });
-    const rules = s.rules.map(r => ({ ...r, toggle: () => this.toggle(r.id), cursor: r.locked ? 'not-allowed' : 'pointer', switchBg: r.on ? accent : 'rgba(243,237,228,0.14)',
-      switchLabel: (r.on ? 'Desligar' : 'Ligar') + ' regra ' + r.name,
-      modeOpts: MODES.map(m => { const on = r.mode === m.id; return { ...m, selected: on, pick: () => this.setMode(r.id, m.id),
-        bg: on ? (m.id === 'handoff' ? 'rgba(224,107,90,0.18)' : 'rgba(232,168,74,0.18)') : 'transparent', color: on ? (m.id === 'handoff' ? '#E06B5A' : '#F3EDE4') : '#A89F93' }; }) }));
-    const tones = TONES.map(t => ({ ...t, ...chip(t.id === s.tone), pick: () => this.setTone(t.id) }));
-    const sims = SIMS.map(x => ({ ...x, ...chip(x.id === s.sim), pick: () => this.setSim(x.id) }));
-    const verdictLabel = verdict === 'auto' ? 'Automático — a IA responde' : verdict === 'confirm' ? (sim.conf < s.thr ? 'Confiança abaixo do limite — pede confirmação' : 'Pede sua confirmação antes de agir') : 'Handoff — vai pra você';
     return {
-      accent, rules, modes: MODES, tones, sims, save: () => this.save(), setThr: (e) => this.setThr(e),
-      catalog: [ { name: 'Corte', dur: '30 min', price: 'R$ 45' }, { name: 'Corte + Barba', dur: '50 min', price: 'R$ 70' }, { name: 'Barba', dur: '25 min', price: 'R$ 35' }, { name: 'Pigmentação de barba', dur: '20 min', price: 'R$ 40' }, { name: 'Hidratação', dur: '20 min', price: 'R$ 30' }, { name: 'Platinado / luzes', dur: '90 min', price: 'a partir de R$ 120' }, { name: 'Sobrancelha', dur: '10 min', price: 'R$ 15' }, { name: 'Pezinho', dur: '10 min', price: 'R$ 15' } ],
-      thr: s.thr, thrLabel: (s.thr / 100).toFixed(2).replace('.', ','),
-      autoCount, autoPct: total ? Math.round(autoCount / total * 100) : 0, handoffCount, wouldHandoff: Math.max(handoffCount, wouldHandoff),
-      tone: s.tone, toneSample: (TONES.find(t => t.id === s.tone) || TONES[0]).sample,
-      sim: s.sim, simR: { intent: sim.intent, conf: sim.conf, ruleName: rule.name, verdict, verdictLabel, reply: sim.reply }, saved: s.saved,
+      accent,
+      statusText: s.saved ? 'Salvo agora' : s.dirty ? 'Alterações não salvas' : 'Tudo salvo',
+      saved: s.saved, blocked: s.blocked, copied: s.copied,
+      save: () => (diffOver ? this.setState({ blocked: true, saved: false }) : this.setState({ saved: true, blocked: false, dirty: false, copied: false })),
+      autoCount, autoPct: total ? Math.round(autoCount / total * 100) : 0, handoffCount: total - autoCount,
+      name: s.name, setName: val('name'), address: s.address, setAddress: val('address'),
+      tones: TONES.map(t => ({ label: t.label, aria: t.id === s.tone ? 'true' : 'false', border: t.id === s.tone ? SEL_BORDER : LINE_STRONG, bg: t.id === s.tone ? SEL_BG : 'transparent', color: t.id === s.tone ? INK : SOFT, pick: () => edit({ tone: t.id }) })),
+      toneSample: (TONES.find(t => t.id === s.tone) || TONES[1]).sample,
+      prices: PRICES.map(o => {
+        const on = o.id === s.price;
+        return { label: o.label, desc: o.desc, isDefault: !!o.isDefault, aria: on ? 'true' : 'false', border: on ? SEL_BORDER : LINE_STRONG, bg: on ? SEL_BG : 'transparent', dotBorder: on ? SEL_BORDER : LINE_STRONG, dotFill: on ? INK : 'transparent', pick: () => edit({ price: o.id }) };
+      }),
+      diff: s.diff, setDiff: val('diff'), diffLen, diffOver, diffOk: !diffOver, diffExcess: diffLen - DIFF_MAX,
+      diffInvalid: diffOver ? 'true' : 'false', diffBorder: diffOver ? DANGER : LINE_STRONG, diffCountColor: diffOver ? DANGER : MUTED,
+      days: s.days.map(d => ({
+        name: d.name, open: d.open, closed: !d.open, from: d.from, to: d.to, sw: sw(d.open), stateLabel: d.open ? 'Aberto' : 'Fechado',
+        toggle: () => setDay(d.id, { open: !d.open }),
+        setFrom: (e) => setDay(d.id, { from: e.target.value }),
+        setTo: (e) => setDay(d.id, { to: e.target.value }),
+      })),
+      copyHours: () => {
+        const mon = s.days[0];
+        this.setState({ days: s.days.map(d => (d.open ? { ...d, from: mon.from, to: mon.to } : d)), dirty: true, saved: false, copied: true });
+      },
+      afterSw: sw(s.afterHours), toggleAfter: () => edit({ afterHours: !s.afterHours }),
+      pauseSw: sw(s.pause), togglePause: () => edit({ pause: !s.pause }),
+      rules: s.rules.map(r => ({
+        name: r.name, desc: r.desc, n: r.n, rev: r.rev, revColor: r.rev ? DANGER : SOFT, limit: r.limit, locked: !!r.locked, tol: !!r.tol,
+        opacity: r.on ? 1 : 0.55, sw: sw(r.on), toggle: () => setRule(r.id, { on: !r.on }),
+        modes: MODES.map(m => {
+          const on = r.mode === m.id;
+          return { label: m.label, aria: on ? 'true' : 'false', cursor: r.locked ? 'not-allowed' : 'pointer',
+            bg: on ? (m.id === 'handoff' ? 'rgba(224,107,90,0.14)' : 'rgba(243,237,228,0.10)') : 'transparent',
+            color: on ? (m.id === 'handoff' ? DANGER : INK) : MUTED, pick: () => setRule(r.id, { mode: m.id }) };
+        }),
+      })),
+      reactSw: sw(s.react), toggleReact: () => edit({ react: !s.react }),
+      late: s.late, setLate: val('late'),
+      quota: s.quota, setQuota: val('quota'), discount: s.discount, setDiscount: val('discount'), cap: s.cap, setCap: val('cap'),
+      tipOpen: s.tipOpen, tipAria: s.tipOpen ? 'true' : 'false', toggleTip: () => this.setState({ tipOpen: !s.tipOpen }),
+      sims: SIMS.map(x => ({ text: x.text, aria: x.id === s.sim ? 'true' : 'false', border: x.id === s.sim ? SEL_BORDER : LINE_STRONG, bg: x.id === s.sim ? SEL_BG : 'transparent', color: x.id === s.sim ? INK : SOFT, pick: () => this.setState({ sim: x.id }) })),
+      simR: simulate(sim, s),
     };
   }
 }

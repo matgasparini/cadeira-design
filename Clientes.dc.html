@@ -3,14 +3,12 @@
 <head>
 <meta charset="utf-8">
 <title>Clientes</title>
-<script src="./vendor/react.js"></script>
-<script src="./vendor/react-dom.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
 <style>
 body{margin:0;background:#15110E}
 a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
@@ -21,6 +19,16 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
 .btn.primary{border:none;background:#E8A84A;color:#15110E;font-weight:600}
 th{font-weight:500;font-size:12px;color:#A89F93;text-align:left;padding:12px 16px;border-bottom:1px solid rgba(243,237,228,0.08);white-space:nowrap}
 td{padding:14px 16px;border-top:1px solid rgba(243,237,228,0.06);vertical-align:middle;font-variant-numeric:tabular-nums}
+.notes{box-sizing:border-box;width:100%;min-height:104px;padding:12px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:#1B1612;color:#F3EDE4;font:inherit;font-size:16px;line-height:1.5;resize:vertical}
+.notes:focus-visible,.btn:focus-visible{outline:2px solid #E8A84A;outline-offset:2px}
+.btn:active{opacity:.85}
+.btn.primary:disabled{background:rgba(243,237,228,0.10);color:#A89F93;cursor:not-allowed}
+.btn.primary:disabled:active{opacity:1}
+.eyebrow{font-size:12px;font-weight:500;color:#A89F93;text-transform:uppercase;letter-spacing:.04em}
+.hint{font-size:13px;line-height:1.45;color:#A89F93}
+code{font-family:inherit;color:#A89F93;background:rgba(243,237,228,0.06);padding:0 4px;border-radius:3px}
+.states{display:flex;flex-wrap:wrap;gap:16px}
+.states>div{flex:1 1 210px;min-width:0;display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:14px;background:#1B1612;border:1px solid rgba(243,237,228,0.08)}
 /* mobile */
 @container (max-width: 720px) {
   nav[aria-label="Principal"] { order: 2; position: sticky; bottom: 0; z-index: 5; width: 100% !important; flex: 1 1 100% !important; flex-direction: row !important; align-items: stretch !important; gap: 0 !important; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)) !important; border-right: none !important; border-top: 1px solid rgba(243,237,228,0.10); background: #120F0C !important; }
@@ -32,6 +40,7 @@ td{padding:14px 16px;border-top:1px solid rgba(243,237,228,0.06);vertical-align:
   nav[aria-label="Principal"] small { display: none !important; }
   nav[aria-label="Principal"] > a[aria-label="Conexão WhatsApp"] { display: none !important; }
   main { order: 1; }
+  main > div[data-mobile-only] { display: flex !important; }
   main { padding: 18px 14px 40px !important; gap: 18px !important; }
   main h1 { font-size: 26px !important; }
   main h2 { font-size: 20px !important; }
@@ -47,9 +56,15 @@ td{padding:14px 16px;border-top:1px solid rgba(243,237,228,0.06);vertical-align:
 <div style="container-type: inline-size; min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
 
   <nav aria-label="Principal" style="width: 232px; flex: 0 0 232px; box-sizing: border-box; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; border-right: 1px solid rgba(243,237,228,0.08); background: #120F0C;">
-    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 0 8px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
       <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg>
       <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+      </div>
+      <div aria-label="Estabelecimento" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 10px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.10); background: rgba(243,237,228,0.03);">
+        <small style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #A89F93;">Estabelecimento</small>
+        <strong style="font-size: 13px; font-weight: 500; color: #F3EDE4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Barbearia do Leo</strong>
+      </div>
     </div>
     <div style="display: flex; flex-direction: column; gap: 4px;">
       <a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
@@ -88,57 +103,57 @@ td{padding:14px 16px;border-top:1px solid rgba(243,237,228,0.06);vertical-align:
   </nav>
 
   <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px 40px 48px; display: flex; flex-direction: column; gap: 24px;">
+    <div aria-label="Estabelecimento" data-mobile-only="" style="display: none; align-items: baseline; gap: 8px; margin-bottom: -14px; font-size: 12px; color: #A89F93;"><small style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;">Estabelecimento</small><strong style="font-weight: 500; color: #F3EDE4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Barbearia do Leo</strong></div>
 
     <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px;">
       <div style="display: flex; flex-direction: column; gap: 6px;">
         <span style="font-size: 13px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.08em;">Clientes</span>
-        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">R$ 6.240 parados em 38 clientes sumidos</h1>
-        <span style="font-size: 13px; color: #CFC6BA;">Estimativa pelo gasto médio de cada um. A IA já está falando com 24 deles.</span>
+        <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">{{ heroTitle }}</h1>
+        <sc-if value="{{ heroHasLost }}">
+          <span style="font-size: 13px; color: #CFC6BA;">Estimativa pelo gasto médio de cada um.</span>
+        </sc-if>
       </div>
       <div style="display: flex; gap: 8px;">
         <button type="button" class="btn">Importar contatos</button>
-        <button type="button" class="btn primary" style="display: flex; align-items: center; gap: 8px;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"></path></svg>
-          Reativar os 14 restantes
-        </button>
+        <sc-if value="{{ heroHasLost }}">
+          <button type="button" class="btn primary" disabled="{{ heroQuotaOut }}" title="{{ heroBtnTitle }}" style="display: flex; align-items: center; gap: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"></path></svg>
+            {{ heroBtn }}
+          </button>
+        </sc-if>
       </div>
     </header>
 
-    <section aria-label="Resumo da base" style="display: flex; flex-wrap: wrap; gap: 12px;">
-      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-        <span style="font-size: 12px; color: #A89F93;">Base total</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1;">312</span>
-        <span style="font-size: 12px; color: #CFC6BA;">+18 novos em outubro</span>
+    <section aria-label="Resumo da base" style="display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+        <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+          <span style="font-size: 12px; color: #A89F93;">Base total</span>
+          <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1;">{{ countTotal }}</span>
+        </div>
+        <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+          <span style="font-size: 12px; color: #A89F93;">Em dia</span>
+          <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: {{accent}};">{{ countActive }}</span>
+          <span style="font-size: 12px; color: #CFC6BA;">Cortaram dentro do intervalo de cada um</span>
+        </div>
+        <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+          <span style="font-size: 12px; color: #A89F93;">Esfriando</span>
+          <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: #C9A961;">{{ countCooling }}</span>
+          <span style="font-size: 12px; color: #CFC6BA;">Passaram do intervalo pessoal, ainda não sumiram (até 1,5×)</span>
+        </div>
+        <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
+          <span style="font-size: 12px; color: #A89F93;">Sumidos</span>
+          <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: #E06B5A;">{{ countLost }}</span>
+          <span style="font-size: 12px; color: #CFC6BA;">Mais de 1,5× o intervalo · a IA chama de volta</span>
+        </div>
       </div>
-      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-        <span style="font-size: 12px; color: #A89F93;">Em dia</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: {{accent}};">241</span>
-        <span style="font-size: 12px; color: #CFC6BA;">Cortaram nos últimos 35 dias</span>
-      </div>
-      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-        <span style="font-size: 12px; color: #A89F93;">Esfriando</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: #C9A961;">33</span>
-        <span style="font-size: 12px; color: #CFC6BA;">35–60 dias · IA manda lembrete leve</span>
-      </div>
-      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-        <span style="font-size: 12px; color: #A89F93;">Sumidos</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: #E06B5A;">38</span>
-        <span style="font-size: 12px; color: #CFC6BA;">+60 dias · R$ 6.240 em jogo</span>
-      </div>
-      <div style="flex: 1 1 180px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-        <span style="font-size: 12px; color: #A89F93;">Fila de espera</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1;">9</span>
-        <span style="font-size: 12px; color: #CFC6BA;">Querem horário antes · IA oferta buracos</span>
-      </div>
+      <span style="font-size: 12px; line-height: 1.45; color: #A89F93;">Intervalo pessoal = média entre as visitas de cada cliente. Quem já recebeu toque nos últimos 60 dias fica em pausa e não é chamado de novo.</span>
     </section>
 
     <section aria-label="Lista de clientes" style="display: flex; flex-direction: column; border-radius: 16px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); overflow: hidden;">
       <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; border-bottom: 1px solid rgba(243,237,228,0.08);">
         <div role="tablist" style="display: flex; flex-wrap: wrap; gap: 6px;">
-          <button type="button" role="tab" class="seg" aria-selected="{{ segSumidos }}" onClick="{{ setSumidos }}"><span style="width: 8px; height: 8px; border-radius: 4px; background: #E06B5A;"></span>Sumidos · 38</button>
-          <button type="button" role="tab" class="seg" aria-selected="{{ segEsfriando }}" onClick="{{ setEsfriando }}"><span style="width: 8px; height: 8px; border-radius: 4px; background: #C9A961;"></span>Esfriando · 33</button>
-          <button type="button" role="tab" class="seg" aria-selected="{{ segFila }}" onClick="{{ setFila }}">Fila de espera · 9</button>
-          <button type="button" role="tab" class="seg" aria-selected="{{ segVip }}" onClick="{{ setVip }}">Top 20 por gasto</button>
+          <button type="button" role="tab" class="seg" aria-selected="{{ segSumidos }}" onClick="{{ setSumidos }}" title="Mais de 1,5× o intervalo pessoal · a IA chama de volta"><span style="width: 8px; height: 8px; border-radius: 4px; background: #E06B5A;"></span>Sumidos · {{ countLost }}</button>
+          <button type="button" role="tab" class="seg" aria-selected="{{ segEsfriando }}" onClick="{{ setEsfriando }}" title="Passaram do intervalo pessoal, ainda não sumiram (até 1,5×)"><span style="width: 8px; height: 8px; border-radius: 4px; background: #C9A961;"></span>Esfriando · {{ countCooling }}</button>
           <button type="button" role="tab" class="seg" aria-selected="{{ segTodos }}" onClick="{{ setTodos }}">Todos · 312</button>
         </div>
         <input type="search" placeholder="Buscar nome ou telefone…" aria-label="Buscar cliente" style="min-width: 240px; min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.12); background: #15110E; color: #F3EDE4; font: inherit; outline: none;">
@@ -190,10 +205,64 @@ td{padding:14px 16px;border-top:1px solid rgba(243,237,228,0.06);vertical-align:
       </div>
     </section>
 
+    <section aria-label="Detalhe do cliente" style="display: flex; flex-direction: column; gap: 18px; padding: 20px 22px; border-radius: 16px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); max-width: 720px;">
+      <span style="font-size: 12px; font-weight: 500; color: #A89F93; text-transform: uppercase; letter-spacing: 0.04em;">Detalhe do cliente · abre ao tocar numa linha</span>
+      <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px;">
+        <div style="display: flex; align-items: center; gap: 12px; min-width: 0;">
+          <span style="flex: 0 0 auto; width: 44px; height: 44px; border-radius: 22px; background: rgba(243,237,228,0.08); color: #CFC6BA; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 14px;">EB</span>
+          <div style="display: flex; flex-direction: column; min-width: 0;">
+            <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 20px; color: #F3EDE4;">Eduardo Bastos</h2>
+            <span style="font-size: 13px; color: #A89F93;">(11) 9 8812-3344 · Léo · corte</span>
+          </div>
+        </div>
+        <span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 6px; font-size: 12px; font-weight: 500; background: rgba(232,168,74,0.14); color: #E8A84A;">IA conversando</span>
+      </div>
+      <dl style="margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 12px;">
+        <div><dt style="font-size: 12px; color: #A89F93;">Último corte</dt><dd style="margin: 2px 0 0; font-size: 15px;">11 set · <span style="color: #E06B5A;">há 47 dias</span></dd></div>
+        <div><dt style="font-size: 12px; color: #A89F93;">Frequência</dt><dd style="margin: 2px 0 0; font-size: 15px;">a cada 28 dias</dd></div>
+        <div><dt style="font-size: 12px; color: #A89F93;">Gasto 12 m</dt><dd style="margin: 2px 0 0; font-size: 15px; font-weight: 600;">R$ 880</dd></div>
+        <div><dt style="font-size: 12px; color: #A89F93;">Faltas</dt><dd style="margin: 2px 0 0; font-size: 15px;">2</dd></div>
+      </dl>
+      <div style="display: flex; flex-direction: column; gap: 6px; padding-top: 16px; border-top: 1px solid rgba(243,237,228,0.08);">
+        <label for="c-notes" style="font-size: 13px; font-weight: 500; color: #CFC6BA;">Observações</label>
+        <textarea id="c-notes" class="notes" rows="3" placeholder="Ex.: corta baixo dos lados, prefere manhã" value="{{ notes }}" onChange="{{ setNotes }}" aria-invalid="{{ notesInvalid }}" aria-describedby="c-notes-h c-notes-c" style="border-color: {{ notesBorder }};"></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px;">
+          <sc-if value="{{ notesOk }}"><span id="c-notes-h" style="font-size: 13px; color: #A89F93;">Só o assistente lê. Ex.: corta baixo dos lados, prefere manhã</span></sc-if>
+          <sc-if value="{{ notesOver }}"><span id="c-notes-h" style="font-size: 13px; color: #E06B5A;">Passou de 500 caracteres. Tire {{ notesExcess }} para salvar.</span></sc-if>
+          <span id="c-notes-c" style="flex: 0 0 auto; font-size: 13px; font-variant-numeric: tabular-nums; color: {{ notesCountColor }};">{{ notesLen }}/500</span>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 4px;">
+          <button type="button" class="btn" onClick="{{ saveNotes }}" style="min-height: 44px; color: #CFC6BA;">Salvar</button>
+          <sc-if value="{{ notesSaved }}"><p role="status" style="margin: 0; padding: 8px 12px; border-radius: 10px; background: rgba(62,222,148,0.10); color: #3EDE94; font-size: 13px;">Observações salvas. O assistente usa a partir da próxima conversa.</p></sc-if>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Estados da tela" style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px; padding-top: 24px; border-top: 1px dashed rgba(243,237,228,0.14);">
+      <span class="eyebrow">Estados da tela · referência para o código</span>
+      <span class="hint">Topo da tela a partir de <code>summary</code>. Também abrem na tela inteira com <code>#cota-zero</code> e <code>#vazio</code>.</span>
+      <div class="states">
+        <sc-for list="{{ heroExamples }}" as="x">
+          <div>
+            <span class="eyebrow">{{ x.label }}</span>
+            <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; line-height: 1.15;">{{ x.title }}</span>
+            <sc-if value="{{ x.hasLost }}">
+              <span style="font-size: 13px; color: #CFC6BA;">Estimativa pelo gasto médio de cada um.</span>
+              <button type="button" class="btn primary" tabindex="-1" disabled="{{ x.quotaOut }}" style="align-self: flex-start;">{{ x.btn }}</button>
+            </sc-if>
+            <sc-if value="{{ x.noLost }}">
+              <span class="hint">Sem botão de reativar.</span>
+            </sc-if>
+            <span class="hint"><code>{{ x.code }}</code></span>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
   </main>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E8A84A","options":["#E8A84A","#D07A45","#C9A961","#8DA3B8"]},"$preview":{"width":1280,"height":1040}}'>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E8A84A","options":["#E8A84A","#D07A45","#C9A961","#8DA3B8"]},"$preview":{"width":1280,"height":1560}}'>
 var RED = '#E06B5A', GOLD = '#C9A961', MUTED = '#A89F93', AMB = '#E8A84A';
 var S = {
   talking: { status: 'IA conversando', statusBg: 'rgba(232,168,74,0.14)', statusColor: AMB, action: 'Ver conversa', href: 'Conversas.dc.html' },
@@ -248,20 +317,69 @@ var DATA = {
 DATA.todos = DATA.vip.slice(0, 3).concat(DATA.esfriando.slice(0, 2), DATA.sumidos.slice(0, 3));
 var TOTAL = { sumidos: 38, esfriando: 33, fila: 9, vip: 20, todos: 312 };
 
+// GET /owner/customers → summary (segment.ts + reactivationDailyQuota). counts por segmento já existiam.
+var SUMMARY = { lostCount: 38, lostCents: 624000, coolingCount: 33, quotaRemainingToday: 14 };
+var COUNTS = { total: 312, active: 241, cooling: 33, lost: 38 };
+
+// Estados fixos por hash (#cota-zero, #vazio), como Agenda/Catálogo.
+function summaryFor(hash) {
+  var h = String(hash || '').replace('#', '');
+  if (h === 'cota-zero') return Object.assign({}, SUMMARY, { quotaRemainingToday: 0 });
+  if (h === 'vazio') return Object.assign({}, SUMMARY, { lostCount: 0, lostCents: 0 });
+  return SUMMARY;
+}
+
+function brl(cents) { return 'R$ ' + Math.round(cents / 100).toLocaleString('pt-BR'); }
+
+// Topo da tela a partir do summary.
+function heroOf(sm) {
+  var hasLost = sm.lostCount > 0;
+  // Nunca promete mais toques do que há sumidos.
+  var n = Math.min(sm.quotaRemainingToday, sm.lostCount);
+  var quotaOut = n === 0;
+  return {
+    hasLost: hasLost,
+    quotaOut: quotaOut,
+    title: !hasLost ? 'Nenhum cliente sumido'
+      : brl(sm.lostCents) + ' parados em ' + sm.lostCount + (sm.lostCount === 1 ? ' cliente sumido' : ' clientes sumidos'),
+    btn: quotaOut ? 'Cota de hoje esgotada' : (n === 1 ? 'Reativar o 1 restante' : 'Reativar os ' + n + ' restantes'),
+    btnTitle: quotaOut ? 'A IA já usou todos os toques de hoje. A cota renova amanhã.' : 'A IA manda mensagem para ' + (n === 1 ? '1 cliente sumido' : n + ' clientes sumidos') + ' hoje'
+  };
+}
+
+var HERO_EXAMPLES = [
+  { label: 'Normal', sm: SUMMARY, code: 'quotaRemainingToday > 0' },
+  { label: 'Cota esgotada', sm: summaryFor('#cota-zero'), code: 'quotaRemainingToday = 0' },
+  { label: 'Nenhum sumido', sm: summaryFor('#vazio'), code: 'lostCount = 0' }
+].map(function (e) {
+  var h = heroOf(e.sm);
+  return { label: e.label, code: e.code, title: h.title, hasLost: h.hasLost, noLost: !h.hasLost, quotaOut: h.quotaOut, btn: h.btn };
+});
+
 class Component extends DCLogic {
   renderVals() {
     var self = this;
+    var sm = summaryFor(window.location.hash);
+    var hero = heroOf(sm);
     var seg = (this.state && this.state.seg) || 'sumidos';
     var rows = DATA[seg];
     function on(k) { return seg === k ? 'true' : 'false'; }
+    var notes = (this.state && typeof this.state.notes === 'string') ? this.state.notes : 'Prefere sábado de manhã. Corta baixo dos lados e não gosta de conversa durante o corte.';
+    var notesOver = notes.length > 500;
     return {
+      notes: notes, notesLen: notes.length, notesOver: notesOver, notesOk: !notesOver, notesExcess: notes.length - 500,
+      notesInvalid: notesOver ? 'true' : 'false', notesBorder: notesOver ? RED : 'rgba(243,237,228,0.14)', notesCountColor: notesOver ? RED : MUTED,
+      notesSaved: !!(this.state && this.state.notesSaved),
+      setNotes: function (e) { self.setState({ notes: e.target.value, notesSaved: false }); },
+      saveNotes: function () { if (!notesOver) self.setState({ notesSaved: true }); },
       accent: this.props.accent || '#E8A84A',
+      heroTitle: hero.title, heroHasLost: hero.hasLost, heroQuotaOut: hero.quotaOut, heroBtn: hero.btn, heroBtnTitle: hero.btnTitle,
+      heroExamples: HERO_EXAMPLES,
+      countTotal: COUNTS.total, countActive: COUNTS.active, countCooling: sm.coolingCount, countLost: sm.lostCount,
       rows: rows, shown: rows.length, total: TOTAL[seg],
-      segSumidos: on('sumidos'), segEsfriando: on('esfriando'), segFila: on('fila'), segVip: on('vip'), segTodos: on('todos'),
+      segSumidos: on('sumidos'), segEsfriando: on('esfriando'), segTodos: on('todos'),
       setSumidos: function () { self.setState({ seg: 'sumidos' }); },
       setEsfriando: function () { self.setState({ seg: 'esfriando' }); },
-      setFila: function () { self.setState({ seg: 'fila' }); },
-      setVip: function () { self.setState({ seg: 'vip' }); },
       setTodos: function () { self.setState({ seg: 'todos' }); }
     };
   }

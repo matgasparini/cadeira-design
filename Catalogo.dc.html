@@ -25,6 +25,7 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
   nav[aria-label="Principal"] small { display: none !important; }
   nav[aria-label="Principal"] > a[aria-label="Conexão WhatsApp"] { display: none !important; }
   main { order: 1; }
+  main > div[data-mobile-only] { display: flex !important; }
   main { padding: 18px 14px 40px !important; gap: 18px !important; }
   main h1 { font-size: 26px !important; }
   main h2 { font-size: 20px !important; }
@@ -40,9 +41,15 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
 <div style="container-type: inline-size; min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
 
   <nav aria-label="Principal" style="width: 232px; flex: 0 0 232px; box-sizing: border-box; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; border-right: 1px solid rgba(243,237,228,0.08); background: #120F0C;">
-    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 0 8px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
       <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg>
       <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+      </div>
+      <div aria-label="Estabelecimento" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 10px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.10); background: rgba(243,237,228,0.03);">
+        <small style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #A89F93;">Estabelecimento</small>
+        <strong style="font-size: 13px; font-weight: 500; color: #F3EDE4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Barbearia do Leo</strong>
+      </div>
     </div>
     <div style="display: flex; flex-direction: column; gap: 4px;">
       <a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
@@ -81,6 +88,7 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
   </nav>
 
   <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px 40px 48px; display: flex; flex-direction: column; gap: 24px;">
+    <div aria-label="Estabelecimento" data-mobile-only="" style="display: none; align-items: baseline; gap: 8px; margin-bottom: -14px; font-size: 12px; color: #A89F93;"><small style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;">Estabelecimento</small><strong style="font-weight: 500; color: #F3EDE4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Barbearia do Leo</strong></div>
 
     <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px;">
       <div style="display: flex; flex-direction: column; gap: 6px;">
@@ -152,13 +160,24 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
         <div style="border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); padding: 18px 20px; display: flex; flex-direction: column; gap: 14px;">
           <div style="display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 12px;">
             <div style="display: flex; flex-direction: column; gap: 4px;">
-              <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">{{ cur.group }}</span>
               <h2 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 22px; letter-spacing: -0.01em; font-size: 28px;">{{ cur.name }}</h2>
             </div>
             <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #CFC6BA; cursor: pointer;">
               {{ cur.active ? 'A IA oferece' : 'Desligado — a IA diz que não faz' }}
               <button type="button" role="switch" aria-checked="{{ cur.active }}" onClick="{{ toggleActive }}" style="width: 40px; height: 24px; border-radius: 12px; border: none; cursor: pointer; position: relative; background: {{ cur.switchBg }};"><span style="position: absolute; top: 3px; left: {{ cur.knobLeft }}; width: 18px; height: 18px; border-radius: 9px; background: #15110E;"></span></button>
             </label>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap;">
+              <span id="grupo-label" style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Grupo</span>
+              <span style="font-size: 11px; color: #A89F93;">a IA usa o grupo pra entender "quero fazer a barba"</span>
+            </div>
+            <div role="radiogroup" aria-labelledby="grupo-label" style="display: flex; flex-wrap: wrap; gap: 8px;">
+              <sc-for list="{{ groupChips }}" as="gc">
+                <button type="button" role="radio" aria-checked="{{ gc.aria }}" onClick="{{ gc.pick }}" style="min-height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid {{ gc.border }}; background: {{ gc.bg }}; color: {{ gc.color }}; font: inherit; font-size: 13px; cursor: pointer;">{{ gc.label }}</button>
+              </sc-for>
+            </div>
           </div>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 10px;">
@@ -184,13 +203,37 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
               <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Como a IA explica</span>
               <span style="font-size: 11px; color: #A89F93;">até 2 frases · sem prometer resultado</span>
             </div>
-            <sc-if value="{{ cur.desc }}">
-              <p style="margin: 0; padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08); color: #F3EDE4; line-height: 1.5;">{{ cur.desc }}</p>
+            <sc-if value="{{ descSaved }}">
+              <div style="padding: 12px 14px; border-radius: 10px; background: #15110E; border: 1px solid rgba(243,237,228,0.08); display: flex; flex-direction: column; align-items: flex-start; gap: 6px;">
+                <p style="margin: 0; color: #F3EDE4; line-height: 1.5;">{{ cur.desc }}</p>
+                <button type="button" onClick="{{ editDesc }}" style="min-height: 32px; padding: 0; border: none; background: transparent; color: #A89F93; font: inherit; font-size: 12px; text-decoration: underline; cursor: pointer;">Editar</button>
+              </div>
             </sc-if>
-            <sc-if value="{{ !cur.desc }}">
-              <div style="padding: 12px 14px; border-radius: 10px; background: rgba(232,168,74,0.08); border: 1px dashed rgba(232,168,74,0.5); color: #CFC6BA; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between;">
-                <span>Sem explicação ainda — se perguntarem "o que é?", a IA manda pra você.</span>
-                <button type="button" onClick="{{ fillDesc }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-size: 12px; cursor: pointer; border-color: {{accent}}; color: {{accent}};">Escrever agora</button>
+            <sc-if value="{{ descEmpty }}">
+              <div style="padding: 12px 14px; border-radius: 10px; background: transparent; border: 1px dashed rgba(243,237,228,0.25); color: #CFC6BA; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between;">
+                <span style="flex: 1 1 260px;">Sem explicação — se perguntarem "o que é?", a IA diz que confirma na barbearia, não descreve.</span>
+                <button type="button" onClick="{{ suggestDesc }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-size: 12px; cursor: pointer; border-color: {{accent}}; color: {{accent}};">Sugerir explicação</button>
+              </div>
+            </sc-if>
+            <sc-if value="{{ descEditing }}">
+              <div style="display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <sc-if value="{{ descSuggest }}">
+                    <span style="padding: 3px 10px; border-radius: 999px; background: rgba(232,168,74,0.12); border: 1px solid rgba(232,168,74,0.35); color: #E8A84A; font-size: 12px;">Sugestão — revise, a IA não conhece sua barbearia</span>
+                  </sc-if>
+                  <span id="f-desc-c" style="margin-left: auto; font-size: 12px; font-variant-numeric: tabular-nums; color: {{ draftCountColor }};">{{ draftLen }}/160</span>
+                </div>
+                <textarea id="f-desc" rows="3" aria-label="Como a IA explica {{ cur.name }}" value="{{ draft }}" onChange="{{ editDraft }}" aria-invalid="{{ draftInvalid }}" aria-describedby="f-desc-c f-desc-e" style="box-sizing: border-box; width: 100%; min-height: 104px; padding: 12px; border-radius: 10px; border: 1px solid {{ draftBorder }}; background: #15110E; color: #F3EDE4; font: inherit; font-size: 16px; line-height: 1.5; resize: vertical; color-scheme: dark;"></textarea>
+                <sc-if value="{{ draftOver }}">
+                  <span id="f-desc-e" style="font-size: 12px; color: #E06B5A;">Passou de 160 caracteres. Tire {{ draftExcess }} para salvar.</span>
+                </sc-if>
+                <sc-if value="{{ descSuggest }}">
+                  <span style="font-size: 12px; color: #A89F93; line-height: 1.45;">Vem de um dicionário da vertical; se o nome não bater, a IA sugere uma frase genérica. Só vale depois que você salvar.</span>
+                </sc-if>
+                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                  <button type="button" onClick="{{ saveDesc }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #F3EDE4; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">Salvar</button>
+                  <button type="button" onClick="{{ discardDesc }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-size: 12px; cursor: pointer;">Descartar</button>
+                </div>
               </div>
             </sc-if>
           </div>
@@ -200,12 +243,30 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
               <span style="font-size: 12px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.06em;">Como o cliente chama</span>
               <span style="font-size: 11px; color: #A89F93;">a IA usa pra reconhecer o pedido</span>
             </div>
-            <div style="display: flex; flex-wrap: wrap; gap: 6px;">
-              <sc-for list="{{ cur.syn }}" as="w">
-                <span style="padding: 6px 10px; border-radius: 999px; background: rgba(243,237,228,0.08); font-size: 13px; color: #F3EDE4;">“{{ w }}”</span>
+            <sc-if value="{{ synEmpty }}" hint-placeholder-val="{{ false }}">
+              <span style="font-size: 13px; color: #A89F93;">Nenhum apelido ainda.</span>
+            </sc-if>
+            <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px;">
+              <sc-for list="{{ synChips }}" as="w">
+                <span style="display: inline-flex; align-items: center; gap: 2px; padding: 0 0 0 10px; border-radius: 999px; background: rgba(243,237,228,0.08); font-size: 13px; color: #F3EDE4;">“{{ w.text }}”
+                  <button type="button" aria-label="Remover “{{ w.text }}”" onClick="{{ w.remove }}" style="min-width: 32px; min-height: 32px; border: 0; border-radius: 999px; background: transparent; color: #A89F93; font: inherit; font-size: 15px; line-height: 1; cursor: pointer;">×</button>
+                </span>
               </sc-for>
-              <button type="button" onClick="{{ addSyn }}" style="padding: 6px 10px; border-radius: 999px; border: 1px dashed rgba(243,237,228,0.25); background: transparent; color: #A89F93; font: inherit; font-size: 13px; cursor: pointer;">+ adicionar</button>
+              <sc-if value="{{ synCanAdd }}" hint-placeholder-val="{{ true }}">
+                <button type="button" onClick="{{ addSyn }}" style="padding: 6px 10px; border-radius: 999px; border: 1px dashed rgba(243,237,228,0.25); background: transparent; color: #A89F93; font: inherit; font-size: 13px; cursor: pointer;">+ adicionar</button>
+              </sc-if>
             </div>
+            <sc-if value="{{ synAdding }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px;">
+                <input type="text" aria-label="Novo apelido" placeholder="ex.: degradê" maxlength="30" value="{{ synDraft }}" onChange="{{ setSynDraft }}" style="flex: 1; min-width: 160px; min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: #15110E; color: #F3EDE4; font: inherit; font-size: 13px; outline: none;">
+                <button type="button" onClick="{{ saveSyn }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #F3EDE4; font: inherit; font-size: 12px; font-weight: 600; cursor: pointer;">Salvar</button>
+                <button type="button" onClick="{{ cancelSyn }}" style="min-height: 32px; padding: 0 12px; border-radius: 8px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-size: 12px; cursor: pointer;">Cancelar</button>
+              </div>
+              <sc-if value="{{ hasSynError }}" hint-placeholder-val="{{ false }}">
+                <span role="alert" style="font-size: 12px; color: #E06B5A;">{{ synError }}</span>
+              </sc-if>
+              <span style="font-size: 11px; color: #A89F93;">Enter salva · até 10 apelidos, 30 letras cada</span>
+            </sc-if>
           </div>
         </div>
 
@@ -321,6 +382,8 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
 <script type="text/x-dc" data-dc-script data-props='{"accent": {"editor": "color", "default": "#E8A84A", "options": ["#E8A84A", "#D07A45", "#C9A961", "#8DA3B8"]}, "$preview": {"width": 1280, "height": 1500}}'>
 
 const OWNER = 'Leo';
+/** Apelidos por serviço ("Como o cliente chama"): até 10, 30 letras cada. */
+const SYN_MAX = 10;
 const SERVICES = [
   { id: 'corte', group: 'Cabelo', name: 'Corte', price: 45, dur: 30, barbers: 'Leo, Rafa', active: true,
     desc: 'Corte masculino na máquina e tesoura, com acabamento na navalha. Inclui lavagem e finalização.',
@@ -355,7 +418,7 @@ const SERVICES = [
     desc: 'Limpeza e alinhamento da sobrancelha na navalha, mantendo o formato natural.',
     syn: ['sobrancelha', 'tirar o excesso', 'alinhar a sobrancelha'],
     faq: [ { id: 's1', q: 'É na navalha ou na pinça?', a: 'Na navalha, só o contorno — fica natural, sem afinar.', ok: true, n: 3 } ] },
-  { id: 'pezinho', group: 'Extras', name: 'Pezinho', price: 15, dur: 10, barbers: 'Leo, Rafa', active: true,
+  { id: 'pezinho', group: null, name: 'Pezinho', price: 15, dur: 10, barbers: 'Leo, Rafa', active: true,
     desc: 'Acabamento da nuca e laterais na máquina e navalha, entre um corte e outro.',
     syn: ['pezinho', 'acabamento', 'contorno', 'só a nuca'],
     faq: [ { id: 'pz1', q: 'Dá pra fazer sem marcar?', a: 'Dá se tiver barbeiro livre — leva 10 min. Me manda um "to chegando" que eu confirmo na hora.', ok: true, n: 8 } ] },
@@ -372,7 +435,7 @@ const SERVICES = [
     ] },
   { id: 'pacote', group: 'Combos', name: 'Pacote mensal · 4 cortes', price: 160, dur: 30, barbers: 'Leo, Rafa', active: false,
     desc: '4 cortes no mês por R$ 160 (R$ 40 cada), válidos por 35 dias.',
-    syn: ['pacote', 'plano mensal', 'assinatura'],
+    syn: [],
     faq: [] },
 ];
 const OPEN = [
@@ -389,43 +452,70 @@ const PROBES = [
   { id: 'vago', text: 'e aquele negócio de barba?', intent: 'serviço ambíguo', conf: 0.58 },
 ];
 const fmt = (s) => (s.priceFrom ? 'a partir de R$ ' : 'R$ ') + s.price;
+// Grupos sugeridos pela vertical. Sem grupo (null) ou grupo desconhecido ('Extras') → 'Outros'.
+const GROUPS = ['Cabelo', 'Barba', 'Combos', 'Outros'];
+const groupOf = (g) => (GROUPS.includes(g) ? g : 'Outros');
+// Protótipo: sugestão fixa. No produto vem do dicionário da vertical ou de 1 chamada à IA.
+const SUGGESTION = 'Preenchimento de falhas da barba com pigmento, aplicado só onde precisa. Fica natural e vai saindo aos poucos.';
+const DESC_MAX = 160;
 
 class Component extends DCLogic {
   componentDidMount() {
-    this.setState({ sel: 'corte', probe: 'preco', approved: {}, descs: {}, syns: {}, actives: {}, resolved: {} });
+    this.setState({ sel: 'corte', probe: 'preco', approved: {}, descs: {}, syns: {}, actives: {}, resolved: {}, grp: {}, drafts: {} });
   }
-  pick(id) { this.setState({ sel: id }); }
+  pick(id) { this.setState({ sel: id, synAdding: false, synDraft: '' }); }
   setProbe(id) { this.setState({ probe: id }); }
   approve(qid) { this.setState({ approved: { ...this.state.approved, [qid]: true } }); }
   toggleActive() { const s = this.state; const cur = SERVICES.find(x => x.id === s.sel); const now = s.actives[s.sel] ?? cur.active; this.setState({ actives: { ...s.actives, [s.sel]: !now } }); }
-  fillDesc() { this.setState({ descs: { ...this.state.descs, [this.state.sel]: 'Preenchimento de falhas da barba com pigmento, aplicado só onde precisa. Fica natural e vai saindo aos poucos.' } }); }
-  addSyn() { const s = this.state; const extra = (s.syns[s.sel] || []).length; const words = ['dar um trato', 'ajeitar', 'arrumar']; if (extra < words.length) this.setState({ syns: { ...s.syns, [s.sel]: [...(s.syns[s.sel] || []), words[extra]] } }); }
+  setGroup(id, g) { this.setState({ grp: { ...this.state.grp, [id]: g } }); }
+  suggestDesc() { this.setState({ drafts: { ...this.state.drafts, [this.state.sel]: SUGGESTION } }); }
+  editDesc() { const s = this.state; const sv = SERVICES.find(x => x.id === s.sel); this.setState({ drafts: { ...s.drafts, [s.sel]: s.descs[s.sel] ?? sv.desc } }); }
+  editDraft(text) { this.setState({ drafts: { ...this.state.drafts, [this.state.sel]: text } }); }
+  saveDesc() { const s = this.state; const { [s.sel]: text, ...rest } = s.drafts; if (text.length > DESC_MAX) return; this.setState({ descs: { ...s.descs, [s.sel]: text.trim() }, drafts: rest }); }
+  discardDesc() { const s = this.state; const { [s.sel]: _, ...rest } = s.drafts; this.setState({ drafts: rest }); }
+  synOf(id) { const sv = SERVICES.find(x => x.id === id); return this.state.syns[id] ?? sv.syn; }
+  addSyn() { this.setState({ synAdding: true, synDraft: '', synError: '' }); }
+  cancelSyn() { this.setState({ synAdding: false, synDraft: '', synError: '' }); }
+  saveSyn() {
+    const s = this.state; const w = (s.synDraft || '').trim().slice(0, 30); const list = this.synOf(s.sel);
+    if (!w || list.length >= SYN_MAX) return this.cancelSyn();
+    const key = (x) => x.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const owner = SERVICES.find(sv => this.synOf(sv.id).some(x => key(x) === key(w)));
+    if (owner) return this.setState({ synError: `“${w}” já é apelido de ${owner.name}.` });
+    this.setState({ syns: { ...s.syns, [s.sel]: [...list, w] }, synAdding: false, synDraft: '', synError: '' });
+  }
+  removeSyn(w) { const s = this.state; this.setState({ syns: { ...s.syns, [s.sel]: this.synOf(s.sel).filter(x => x !== w) } }); }
   resolveOpen(id, how) { this.setState({ resolved: { ...this.state.resolved, [id]: how } }); }
   renderVals() {
     const s = this.state; const accent = this.props.accent ?? '#E8A84A';
-    if (!s) return { accent, owner: OWNER, groups: [], cur: SERVICES[0], probes: PROBES, probe: 'preco', probeR: {}, open: OPEN, resolved: [], openCount: OPEN.length, activeCount: 0, completeCount: 0, approvedCount: 0 };
+    if (!s) return { accent, owner: OWNER, groups: [], groupChips: [], cur: SERVICES[0], probes: PROBES, probe: 'preco', probeR: {}, open: OPEN, resolved: [], openCount: OPEN.length, activeCount: 0, completeCount: 0, approvedCount: 0 };
     const items = SERVICES.map(sv => {
       const active = s.actives[sv.id] ?? sv.active;
+      const group = s.grp[sv.id] ?? groupOf(sv.group);
       const desc = s.descs[sv.id] ?? sv.desc;
-      const syn = [...sv.syn, ...(s.syns[sv.id] || [])];
+      const syn = s.syns[sv.id] ?? sv.syn;
       const faq = sv.faq.map(q => ({ ...q, ok: q.ok || !!s.approved[q.id], accent, approve: () => this.approve(q.id) }));
       const pending = faq.filter(q => !q.ok).length;
       const complete = !!desc && pending === 0 && syn.length >= 3;
       const selected = sv.id === s.sel;
-      return { ...sv, active, desc, syn, faq, pending, approved: faq.length - pending, faqCount: faq.length, priceLabel: fmt(sv),
+      return { ...sv, group, active, desc, syn, faq, pending, approved: faq.length - pending, faqCount: faq.length, priceLabel: fmt(sv),
         selected, pick: () => this.pick(sv.id), borderL: selected ? accent : 'transparent', bg: selected ? 'rgba(232,168,74,0.10)' : 'transparent',
         switchBg: active ? accent : 'rgba(243,237,228,0.14)', knobLeft: active ? '19px' : '3px',
         priceNote: sv.priceFrom ? 'valor final na avaliação — a IA diz "a partir de"' : 'a IA nunca cita outro valor',
         covColor: !active ? '#5C544B' : complete ? '#3EDE94' : '#E8A84A', covLabel: !active ? 'desligado' : complete ? 'ficha completa' : 'falta algo' };
     });
-    const groups = ['Cabelo', 'Barba', 'Combos', 'Extras'].map(g => ({ name: g, items: items.filter(i => i.group === g) }));
+    const groups = GROUPS.map(g => ({ name: g, items: items.filter(i => i.group === g) })).filter(g => g.items.length);
     const cur = items.find(i => i.id === s.sel) || items[0];
+    const groupChips = GROUPS.map(g => { const on = g === cur.group; return { label: g, aria: on ? 'true' : 'false', pick: () => this.setGroup(cur.id, g), border: on ? 'rgba(232,168,74,0.40)' : 'rgba(243,237,228,0.14)', bg: on ? 'rgba(232,168,74,0.08)' : 'transparent', color: on ? '#F3EDE4' : '#CFC6BA' }; });
+    const draft = s.drafts[cur.id];
+    const editing = draft !== undefined;
+    const draftLen = editing ? draft.length : 0, draftOver = draftLen > DESC_MAX;
     const p = PROBES.find(x => x.id === s.probe) || PROBES[0];
     let reply, note, handoff = false, intent = p.intent, conf = p.conf;
     if (!cur.active) { reply = `Esse a gente não está fazendo no momento. Posso te ajudar com ${cur.group === 'Combos' ? 'Corte ou Barba' : 'outro serviço'}?`; note = 'serviço desligado → a IA não oferece nem cita preço'; }
     else if (p.id === 'preco') { reply = `${cur.name} é ${cur.priceLabel}${cur.priceFrom ? ' — o valor final o ' + cur.barbers.split(',')[0] + ' fecha na avaliação' : ''} e leva uns ${cur.dur} min. Quer ver horário?`; note = 'preço e duração vieram do catálogo, não do modelo'; }
     else if (p.id === 'tempo') { reply = `Uns ${cur.dur} minutos. Tenho horário hoje às 16:30 e 17:30 com ${cur.barbers.split(',')[0]} — algum serve?`; note = 'horários vêm da agenda real; o texto só escolhe entre os oferecidos'; }
-    else if (p.id === 'oque') { if (cur.desc) { reply = cur.desc + ' Quer que eu veja um horário?'; note = 'usa "Como a IA explica" palavra por palavra no essencial'; } else { reply = `Boa pergunta — essa eu vou confirmar com o ${OWNER} e já te falo.`; note = 'sem explicação cadastrada → vai pra você, não inventa'; handoff = true; } }
+    else if (p.id === 'oque') { if (cur.desc) { reply = cur.desc + ' Quer que eu veja um horário?'; note = 'usa "Como a IA explica" palavra por palavra no essencial'; } else { reply = `Essa parte você confirma com o ${OWNER} na hora, na barbearia. Quer que eu veja um horário?`; note = 'sem explicação cadastrada → não inventa nem descreve; remete ao barbeiro, sem ir pra você'; } }
     else if (p.id === 'desconto') { reply = `O valor é ${cur.priceLabel} mesmo — mas se quiser, ${cur.id === 'corte' || cur.id === 'barba' ? 'Corte + Barba junto sai R$ 70 em vez de R$ 80' : 'posso ver o melhor horário pra você hoje'}.`; note = 'regra: nunca oferece desconto; pode sugerir o combo existente'; }
     else { reply = `Você quer a Barba completa (navalha e toalha quente, R$ 35) ou só o acabamento (R$ 15)?`; note = 'confiança 0,58 < 0,60 → pede pra esclarecer antes de agir'; }
     const verdict = handoff ? 'Vai pra você — fora do que está cadastrado' : conf >= 0.85 ? 'Automático — a IA responde' : conf >= 0.6 ? 'Responde pedindo confirmação' : 'Pergunta de volta antes de agir';
@@ -434,7 +524,17 @@ class Component extends DCLogic {
     const resolved = OPEN.filter(o => s.resolved[o.id]).map(o => ({ ...o, how: s.resolved[o.id] === 'no' ? 'a IA diz que não oferecemos e sugere o mais próximo' : 'virou item do catálogo (rascunho)' }));
     return {
       accent, owner: OWNER, groups, cur, sel: s.sel, probes, probe: s.probe,
-      toggleActive: () => this.toggleActive(), fillDesc: () => this.fillDesc(), addSyn: () => this.addSyn(),
+      groupChips,
+      toggleActive: () => this.toggleActive(), addSyn: () => this.addSyn(),
+      synChips: cur.syn.map(w => ({ text: w, remove: () => this.removeSyn(w) })), synEmpty: cur.syn.length === 0,
+      synCanAdd: !s.synAdding && cur.syn.length < SYN_MAX, synAdding: !!s.synAdding, synDraft: s.synDraft || '',
+      synError: s.synError || '', hasSynError: !!s.synError,
+      setSynDraft: (e) => this.setState({ synDraft: e.target.value, synError: '' }), saveSyn: () => this.saveSyn(), cancelSyn: () => this.cancelSyn(),
+      descSaved: !editing && !!cur.desc, descEmpty: !editing && !cur.desc, descEditing: editing, descSuggest: editing && !cur.desc,
+      draft: draft ?? '', draftLen, draftOver, draftExcess: draftLen - DESC_MAX,
+      draftInvalid: draftOver ? 'true' : 'false', draftBorder: draftOver ? '#E06B5A' : 'rgba(243,237,228,0.14)', draftCountColor: draftOver ? '#E06B5A' : '#A89F93',
+      suggestDesc: () => this.suggestDesc(), editDesc: () => this.editDesc(), editDraft: (e) => this.editDraft(e.target.value),
+      saveDesc: () => this.saveDesc(), discardDesc: () => this.discardDesc(),
       probeR: { intent, conf, confLabel: conf.toFixed(2).replace('.', ','), verdict, reply, note, handoff },
       open, resolved, openCount: open.length,
       activeCount: items.filter(i => i.active).length, completeCount: items.filter(i => i.active && i.covColor === '#3EDE94').length,

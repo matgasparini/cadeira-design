@@ -3,14 +3,12 @@
 <head>
 <meta charset="utf-8">
 <title>Conversas</title>
-<script src="./vendor/react.js"></script>
-<script src="./vendor/react-dom.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap">
 <style>
 body{margin:0;background:#15110E}
 a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
@@ -20,19 +18,25 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
 .tab.alert[aria-selected="true"]{background:rgba(224,107,90,0.16);color:#E06B5A}
 .btn{min-height:40px;padding:0 14px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:transparent;color:#F3EDE4;font:inherit;font-weight:500;cursor:pointer}
 .btn:hover{border-color:rgba(243,237,228,0.3)}
+@keyframes dc-pulse{0%,100%{opacity:.45}50%{opacity:1}}
+.skel{height:40px;border-radius:10px;background:rgba(243,237,228,0.14);animation:dc-pulse 1.6s ease-in-out infinite}
+.link{background:none;border:0;padding:0;color:#E8A84A;font:inherit;font-size:11px;font-weight:500;cursor:pointer;text-decoration:underline}
 .btn.primary{border:none;background:#E8A84A;color:#15110E;font-weight:600}
 .btn.ghost{border:none;color:#CFC6BA}
 /* mobile */
-@container (max-width: 720px) {
-  nav[aria-label="Principal"] { order: 2; position: sticky; bottom: 0; z-index: 5; width: 100% !important; flex: 1 1 100% !important; flex-direction: row !important; align-items: stretch !important; gap: 0 !important; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)) !important; border-right: none !important; border-top: 1px solid rgba(243,237,228,0.10); background: #120F0C !important; }
-  nav[aria-label="Principal"] > div:first-child { display: none !important; }
-  nav[aria-label="Principal"] > div:nth-child(2) { flex-direction: row !important; flex: 1 1 auto; width: 100%; gap: 0 !important; justify-content: space-around; }
-  nav[aria-label="Principal"] > div:nth-child(2) a { position: relative; flex: 1 1 0; min-width: 0; flex-direction: column !important; justify-content: center; gap: 4px !important; min-height: 52px !important; padding: 4px 2px !important; font-size: 11px; line-height: 1.1; text-align: center; white-space: nowrap; }
-  nav[aria-label="Principal"] > div:nth-child(2) a svg { width: 20px; height: 20px; flex: 0 0 auto; }
-  nav[aria-label="Principal"] > div:nth-child(2) a > span { position: absolute; top: 2px; left: 50%; margin: 0 0 0 4px !important; min-width: 18px !important; height: 18px !important; font-size: 11px !important; }
-  nav[aria-label="Principal"] small { display: none !important; }
+@media (max-width: 720px) {
+  nav[aria-label="Principal"] { width: 100% !important; flex: 1 1 100% !important; flex-direction: row !important; flex-wrap: wrap !important; align-items: center !important; gap: 10px !important; padding: 12px 12px 8px !important; border-right: none !important; border-bottom: 1px solid rgba(243,237,228,0.08); position: sticky; top: 0; z-index: 5; }
+  nav[aria-label="Principal"] > div:first-child { padding: 0 !important; flex: 1 1 100%; }
+  nav[aria-label="Principal"] > div:first-child svg { width: 28px; height: 28px; }
+  nav[aria-label="Principal"] > div:first-child span { font-size: 20px !important; }
+  nav[aria-label="Principal"] > div:first-child { flex-direction: row !important; align-items: center !important; justify-content: space-between; gap: 10px !important; }
+  nav[aria-label="Principal"] > div:first-child > div[aria-label="Estabelecimento"] { padding: 4px 10px !important; max-width: 55%; }
+  nav[aria-label="Principal"] > div:first-child > div[aria-label="Estabelecimento"] small { display: none; }
+  nav[aria-label="Principal"] > div:nth-child(2) { flex-direction: row !important; flex-wrap: nowrap !important; overflow-x: auto; gap: 2px !important; width: 100%; margin: 0 -12px; padding: 0 12px 4px; box-sizing: content-box; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  nav[aria-label="Principal"] > div:nth-child(2)::-webkit-scrollbar { display: none; }
+  nav[aria-label="Principal"] > div:nth-child(2) a { white-space: nowrap; flex: 0 0 auto; min-height: 36px !important; padding: 0 10px !important; gap: 8px !important; font-size: 13px; }
+  nav[aria-label="Principal"] > div:nth-child(2) a svg { width: 16px; height: 16px; }
   nav[aria-label="Principal"] > a[aria-label="Conexão WhatsApp"] { display: none !important; }
-  main { order: 1; }
   main { padding: 18px 14px 40px !important; gap: 18px !important; }
   main h1 { font-size: 26px !important; }
   main h2 { font-size: 20px !important; }
@@ -45,17 +49,23 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
 }
 </style>
 </helmet>
-<div style="container-type: inline-size; min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
 
   <nav aria-label="Principal" style="width: 232px; flex: 0 0 232px; box-sizing: border-box; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; border-right: 1px solid rgba(243,237,228,0.08); background: #120F0C;">
+    <div style="display: flex; flex-direction: column; gap: 12px;">
     <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
-      <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg>
-      <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+        <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"/><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"/><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"/><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"/><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"/><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"/><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"/></svg>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+      </div>
+      <div aria-label="Estabelecimento" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 10px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.10); background: rgba(243,237,228,0.03);">
+        <small style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #A89F93;">Estabelecimento</small>
+        <strong style="font-size: 13px; font-weight: 500; color: #F3EDE4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Barbearia do Leo</strong>
+      </div>
     </div>
     <div style="display: flex; flex-direction: column; gap: 4px;">
       <a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8"></path><path d="M14 7h7v7"></path></svg>
-        Receita<small style="font-size: inherit; font-weight: inherit;"> recuperada</small>
+        Receita recuperada
       </a>
       <a href="Agenda.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18"></path><path d="M8 3v4"></path><path d="M16 3v4"></path></svg>
@@ -171,7 +181,10 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
             <sc-if value="{{ m.isMe }}" hint-placeholder-val="{{ false }}">
               <div style="align-self: flex-end; max-width: 72%; display: flex; flex-direction: column; gap: 6px; align-items: flex-end;">
                 <div style="padding: 10px 14px; border-radius: 14px 14px 4px 14px; background: #F3EDE4; color: #15110E;">{{ m.text }}</div>
-                <span style="font-size: 11px; color: #A89F93; padding-right: 4px;">Você · {{ m.time }}</span>
+                <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: #A89F93; padding-right: 4px;">
+                  <span>Você · <span style="color: {{ m.statusColor }};">{{ m.status }}</span> · {{ m.time }}</span>
+                  <sc-if value="{{ m.failed }}" hint-placeholder-val="{{ false }}"><button type="button" class="link" onClick="{{ m.retry }}">Tentar de novo</button></sc-if>
+                </span>
               </div>
             </sc-if>
             <sc-if value="{{ m.isSystem }}" hint-placeholder-val="{{ false }}">
@@ -189,27 +202,74 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4"></path><path d="M12 17h.01"></path><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path></svg>
                   IA parou e chamou você
                 </span>
-                <span style="font-size: 12px; color: #CFC6BA;">{{ handoff.since }} · cliente ainda não viu nada</span>
+                <span style="font-size: 12px; color: #CFC6BA;">{{ handoff.since }} · {{ handoff.sub }}</span>
               </div>
               <div style="font-size: 13px; color: #CFC6BA; display: flex; flex-direction: column; gap: 4px;">
+                <span><strong style="color: #F3EDE4; font-weight: 500;">Motivo:</strong> {{ handoff.rule }}</span>
                 <span><strong style="color: #F3EDE4; font-weight: 500;">Intenção:</strong> {{ handoff.intent }}</span>
-                <span><strong style="color: #F3EDE4; font-weight: 500;">Regra:</strong> {{ handoff.rule }}</span>
                 <span><strong style="color: #F3EDE4; font-weight: 500;">Contexto:</strong> {{ handoff.context }}</span>
+                <span style="color: #E8A84A;"><strong style="color: #F3EDE4; font-weight: 500;">O que fazer:</strong> {{ handoff.next }}</span>
               </div>
-              <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px;">
-                <sc-for list="{{ handoff.options }}" as="o" hint-placeholder-count="3">
-                  <button type="button" class="{{ o.cls }}" onClick="{{ o.choose }}">{{ o.label }}</button>
-                </sc-for>
-                <button type="button" class="btn ghost">Vou responder eu</button>
-              </div>
+              <sc-if value="{{ handoff.hasDraft }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 4px;">
+                  <span style="font-size: 12px; color: #A89F93;">A IA ia responder:</span>
+                  <p style="margin: 0; font-size: 13px; font-style: italic; color: #CFC6BA;">“{{ handoff.draft }}”</p>
+                </div>
+              </sc-if>
+              <sc-if value="{{ handoff.showTerm }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 4px;">
+                  <span style="font-size: 13px; font-weight: 500; color: #F3EDE4;">“{{ handoff.term }}” é um jeito de chamar algum serviço?</span>
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                    <sc-for list="{{ handoff.services }}" as="s" hint-placeholder-count="4">
+                      <button type="button" class="btn" style="{{ s.style }}" onClick="{{ s.choose }}">{{ s.label }}</button>
+                    </sc-for>
+                    <button type="button" class="btn" onClick="{{ handoff.notOffered }}">Não fazemos</button>
+                  </div>
+                  <span style="font-size: 12px; color: #A89F93;">Tocar num serviço guarda o apelido, envia a resposta acima e devolve a conversa para a IA. Da próxima vez ela responde sozinha.</span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ handoff.showFaq }}" hint-placeholder-val="{{ false }}">
+                <label style="display: flex; align-items: center; gap: 10px; font-size: 13px; color: #CFC6BA; cursor: pointer;">
+                  <input type="checkbox" checked="{{ handoff.faq }}" onChange="{{ handoff.toggleFaq }}" style="width: 18px; height: 18px; margin: 0; accent-color: #E8A84A;">
+                  <span>Guardar também como pergunta frequente de <strong style="color: #F3EDE4; font-weight: 500;">{{ handoff.guess }}</strong> no Catálogo</span>
+                </label>
+              </sc-if>
+              <sc-if value="{{ handoff.showEdit }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                  <button type="button" class="btn primary" onClick="{{ handoff.approve }}">Enviar e devolver para a IA</button>
+                  <button type="button" class="btn" onClick="{{ handoff.editDraft }}">Editar e responder</button>
+                </div>
+              </sc-if>
+              <sc-if value="{{ handoff.loading }}" hint-placeholder-val="{{ false }}">
+                <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 4px;">
+                  <span style="font-size: 12px; color: #A89F93;">A IA está preparando sugestões de resposta…</span>
+                  <div style="display: flex; flex-wrap: wrap; gap: 8px;" aria-hidden="true"><div class="skel" style="width: 190px;"></div><div class="skel" style="width: 150px;"></div><div class="skel" style="width: 120px;"></div></div>
+                </div>
+              </sc-if>
+              <sc-if value="{{ handoff.showOptions }}" hint-placeholder-val="{{ true }}">
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px;">
+                  <sc-for list="{{ handoff.options }}" as="o" hint-placeholder-count="3">
+                    <button type="button" class="{{ o.cls }}" onClick="{{ o.choose }}">{{ o.label }}</button>
+                  </sc-for>
+                  <button type="button" class="btn ghost" onClick="{{ handoff.assume }}">Vou responder eu</button>
+                </div>
+              </sc-if>
+              <sc-if value="{{ handoff.assumed }}" hint-placeholder-val="{{ false }}">
+                <span style="font-size: 12px; color: #A89F93;">Você assumiu. A IA fica em silêncio até você tocar em <strong style="color: #CFC6BA; font-weight: 500;">Devolver para a IA</strong>.</span>
+              </sc-if>
             </div>
           </sc-if>
         </div>
 
-        <div style="display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-top: 1px solid rgba(243,237,228,0.08); background: #171310;">
-          <input type="text" placeholder="Responder como Léo…" aria-label="Mensagem" style="flex: 1; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: #1B1612; color: #F3EDE4; font: inherit; outline: none;">
-          <button type="button" class="btn primary" style="min-height: 44px;">Enviar</button>
-        </div>
+        <sc-if value="{{ curPending }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 14px 20px; border-top: 1px solid rgba(243,237,228,0.08); background: #171310;">
+            <input type="text" placeholder="Responder como Léo…" aria-label="Mensagem" value="{{ draft }}" onChange="{{ setDraft }}" style="flex: 1; min-width: 0; min-height: 44px; padding: 0 14px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: #1B1612; color: #F3EDE4; font: inherit; outline: none;">
+            <button type="button" class="btn primary" style="min-height: 44px;" onClick="{{ send }}">Enviar</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ curResolved }}" hint-placeholder-val="{{ false }}">
+          <div style="padding: 14px 20px; border-top: 1px solid rgba(243,237,228,0.08); background: #171310; font-size: 13px; color: #A89F93;">A IA está cuidando desta conversa. Ela te chama se precisar.</div>
+        </sc-if>
       </section>
 
     </div>
@@ -217,6 +277,11 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E8A84A","options":["#E8A84A","#D07A45","#C9A961","#8DA3B8"]},"$preview":{"width":1280,"height":1040}}'>
+// Serviços ativos do Catálogo (mesma ordem do painel): chips do "é um jeito de chamar algum serviço?".
+var CATALOG = ['Corte', 'Barba', 'Corte + Barba', 'Sobrancelha', 'Pigmentação'];
+function catalogList() {
+  return CATALOG.slice(0, -1).join(', ') + ' e ' + CATALOG[CATALOG.length - 1];
+}
 var CONVS = [
   { id: 'eb', initials: 'EB', name: 'Eduardo Bastos', time: '09:52', day: 'Hoje', pending: true,
     preview: '"tá caro, o cara da esquina faz por 50"', tag: 'Pedido de desconto · fora da regra',
@@ -230,6 +295,7 @@ var CONVS = [
     ],
     handoff: { since: 'há 4 min', intent: 'pedido de desconto · confiança 0,88', rule: 'você definiu "nunca dar desconto sem me perguntar"',
       context: 'cliente de R$ 880 no ano, sumido há 47 dias, 2 faltas. Vale segurar.',
+      next: 'responda você. Se quiser que a IA negocie sozinha, defina um desconto máximo em Regras.',
       options: [ { label: 'Manter R$ 80 e explicar', primary: true }, { label: 'Oferecer R$ 70 (volta)' }, { label: 'Oferecer barba grátis' } ] },
     gain: 80 },
   { id: 'ms', initials: 'MS', name: 'Marina Souza', time: '09:31', day: 'Hoje', pending: true,
@@ -240,8 +306,22 @@ var CONVS = [
     ],
     handoff: { since: 'há 25 min', intent: 'pergunta sobre serviço · confiança 0,41 (abaixo do mínimo 0,70)', rule: '"Corte infantil" não está no catálogo',
       context: 'cliente nova vinda do Instagram. Primeira impressão.',
-      options: [ { label: 'Sim, R$ 60 — oferecer horário', primary: true }, { label: 'Não fazemos' }, { label: 'Adicionar serviço ao catálogo' } ] },
-    gain: 60 },
+      next: 'a IA achou que “corte infantil” é Corte, mas não tinha certeza. Confirme abaixo.',
+      draft: 'Fazemos sim! O Corte sai por R$ 45 e leva uns 30 minutos. Quer marcar um horário pro seu filho?',
+      term: 'corte infantil', guess: 'Corte', silent: 'o cliente ainda não recebeu nada · aviso automático em 2 min', options: [] },
+    gain: 45 },
+  { id: 'lm', initials: 'LM', name: 'Lucas Moreira', time: '09:12', day: 'Hoje', pending: true,
+    preview: '"Quanto ta o degrade?"', tag: 'Resposta não verificada · passado para você',
+    meta: 'Cliente há 2 meses · 2 cortes · 0 faltas',
+    msgs: [
+      { from: 'client', text: 'Quanto ta o degrade?', time: '09:12' }
+    ],
+    handoff: { since: 'há 6 min', intent: 'pergunta de preço · confiança 0,92', rule: 'a resposta da IA não passou na verificação',
+      context: 'cliente de casa, sempre faz Corte com o Rafael.',
+      next: 'a IA achou que “degrade” é Corte, mas não tinha certeza. Confirme abaixo.',
+      draft: 'O Corte sai por R$ 45, leva uns 30 minutos e inclui acabamento e lavagem. Quer marcar um horário?',
+      term: 'degrade', guess: 'Corte', silent: 'o cliente ainda não recebeu nada · aviso automático em 4 min', options: [] },
+    gain: 45 },
   { id: 'fl', initials: 'FL', name: 'Felipe Lima', time: '08:47', day: 'Hoje', pending: true,
     preview: '"o corte de ontem ficou torto, quero refazer"', tag: 'Reclamação · passado para você',
     meta: 'Cliente há 3 meses · 4 cortes · 0 faltas · atendido ontem pelo Caio',
@@ -251,7 +331,32 @@ var CONVS = [
     ],
     handoff: { since: 'há 1h09', intent: 'reclamação de serviço · confiança 0,94', rule: 'reclamações sempre vão para você',
       context: 'cliente fiel, 0 faltas. Atendido pelo Caio ontem às 15h.',
+      next: 'responda você. Reclamação nunca é automática.',
       options: [ { label: 'Refazer grátis — oferecer horário', primary: true }, { label: 'Pedir foto' } ] },
+    gain: 0 },
+  { id: 'cp', initials: 'CP', name: 'Carlos Pereira', time: '08:12', day: 'Hoje', pending: true,
+    preview: '"quero falar com uma pessoa"', tag: 'Pediu atendente · passado para você',
+    meta: 'Cliente há 6 meses · 5 cortes · 1 falta',
+    msgs: [
+      { from: 'client', text: 'quero falar com uma pessoa', time: '08:12' },
+      { from: 'ai', text: 'Vou passar sua mensagem para o pessoal da barbearia, já já alguém te responde.', decision: 'pediu atendente → humano', conf: '0,97', time: '08:12' }
+    ],
+    handoff: { since: 'há 1h44', intent: 'quer falar com uma pessoa · confiança 0,97', rule: 'o cliente pediu uma pessoa',
+      context: 'cliente há 6 meses, 1 falta. Sem agendamento aberto.',
+      next: 'responda você. A IA volta quando você devolver a conversa.',
+      loading: true, options: [] },
+    gain: 0 },
+  { id: 'tb', initials: 'TB', name: 'Thiago Bastos', time: '07:58', day: 'Hoje', pending: true,
+    preview: '"consigo atrasar uns 25 min?"', tag: 'Atraso acima da tolerância · passado para você',
+    meta: 'Cliente há 1 ano · 9 cortes · 1 falta · marcado hoje 09:00 com o Léo',
+    msgs: [
+      { from: 'client', text: 'bom dia, consigo atrasar uns 25 min?', time: '07:58' },
+      { from: 'ai', text: 'Vou passar sua mensagem para o pessoal da barbearia, já já alguém te responde.', decision: 'atraso 25 min > tolerância 10 min → humano', conf: '0,91', time: '07:58' }
+    ],
+    handoff: { since: 'há 1h58', intent: 'aviso de atraso de 25 min · confiança 0,91', rule: 'acima da tolerância de 10 min (Regras)',
+      context: 'horário das 09:00 com o Léo; o próximo cliente é às 09:30.',
+      next: 'responda você. Para a IA liberar sozinha, aumente a tolerância em Regras.',
+      options: [ { label: 'Pode vir, te encaixo', primary: true }, { label: 'Remarcar pra 10h' } ] },
     gain: 0 },
   { id: 'rn', initials: 'RN', name: 'Rafael Nunes', time: '09:40', day: 'Hoje', pending: false,
     preview: 'Reativado · agendou ter 17:00 com Léo', tag: '+ R$ 80', gain: 80,
@@ -297,28 +402,47 @@ class Component extends DCLogic {
     var self = this;
     var accent = this.props.accent || '#E8A84A';
     var st = this.state || {};
-    var resolved = st.resolved || {};
+    // replies[id] = [{ text, status: 'sent' | 'failed', time }]; assumed[id] = dono clicou "Vou responder eu";
+    // released[id] = dono clicou "Devolver para a IA". Responder NÃO devolve: a conversa fica com o dono.
+    var replies = st.replies || { cp: [{ text: 'Oi Carlos, é o Léo. Me conta o que você precisa?', status: 'failed', time: '08:20' }] };
+    var assumed = st.assumed || {};
+    var released = st.released || {};
     var filter = st.filter || 'pending';
     var selected = st.selected || 'eb';
+    var draft = st.draft || '';
+    var faq = st.faq || {};
+
+    function setReply(id, idx, status) {
+      var next = Object.assign({}, replies);
+      next[id] = (next[id] || []).map(function (r, i) { return i === idx ? Object.assign({}, r, { status: status }) : r; });
+      self.setState({ replies: next });
+    }
 
     var convs = CONVS.map(function (c) {
-      var isResolvedByMe = !!resolved[c.id];
-      var pending = c.pending && !isResolvedByMe;
+      var mine = replies[c.id] || [];
+      var isReleased = !!released[c.id];
+      var pending = c.pending && !isReleased;
       var msgs = c.msgs.slice();
       var tag = c.tag, preview = c.preview;
-      if (isResolvedByMe) {
-        msgs.push({ from: 'me', text: resolved[c.id], time: 'agora' });
+      mine.forEach(function (r, i) {
+        msgs.push({ from: 'me', text: r.text, time: r.time, status: r.status, idx: i });
+      });
+      if (mine.length) { tag = 'Com você'; preview = 'Você: ' + mine[mine.length - 1].text; }
+      if (isReleased) {
         msgs.push({ from: 'system', text: 'IA retomou a conversa', time: 'agora' });
         tag = c.gain ? '+ R$ ' + c.gain : 'Resolvido por você';
-        preview = 'Você: ' + resolved[c.id];
       }
       var sel = c.id === selected;
       return {
         id: c.id, initials: c.initials, name: c.name, time: c.time, day: c.day, meta: c.meta,
         pending: pending, gain: c.gain, handoff: c.handoff, tag: tag, preview: preview,
+        replied: mine.length > 0, assumed: !!assumed[c.id],
         msgs: msgs.map(function (m) {
+          var failed = m.status === 'failed';
           return { text: m.text, time: m.time, decision: m.decision || '', conf: m.conf || '',
-            isClient: m.from === 'client', isAi: m.from === 'ai', isMe: m.from === 'me', isSystem: m.from === 'system' };
+            isClient: m.from === 'client', isAi: m.from === 'ai', isMe: m.from === 'me', isSystem: m.from === 'system',
+            status: failed ? 'Falhou' : 'Enviada', statusColor: failed ? '#E06B5A' : '#A89F93', failed: failed,
+            retry: function () { setReply(c.id, m.idx, 'sent'); } };
         }),
         rowBg: sel ? 'rgba(232,168,74,0.08)' : 'transparent',
         rowBorder: sel ? accent : 'transparent',
@@ -334,24 +458,73 @@ class Component extends DCLogic {
     var pending = convs.filter(function (c) { return c.pending; });
     var visible = filter === 'pending' ? pending : filter === 'resolved' ? convs.filter(function (c) { return !c.pending; }) : convs;
     var cur = convs.filter(function (c) { return c.id === selected; })[0] || convs[0];
-    var extra = convs.filter(function (c) { return resolved[c.id]; }).reduce(function (s, c) { return s + (c.gain || 0); }, 0);
+    var extra = convs.filter(function (c) { return released[c.id]; }).reduce(function (s, c) { return s + (c.gain || 0); }, 0);
 
-    function resolveWith(text) {
-      var next = Object.assign({}, resolved); next[cur.id] = text;
+    // Enviar (ou tocar numa sugestão) grava a resposta e mantém a conversa com o dono.
+    function send(text) {
+      text = (text || '').trim();
+      if (!text) return;
+      var next = Object.assign({}, replies);
+      next[cur.id] = (next[cur.id] || []).concat([{ text: text, status: 'sent', time: 'agora' }]);
+      var nextAssumed = Object.assign({}, assumed); nextAssumed[cur.id] = true;
+      self.setState({ replies: next, assumed: nextAssumed, draft: '' });
+    }
+    function assume() {
+      var nextAssumed = Object.assign({}, assumed); nextAssumed[cur.id] = true;
+      self.setState({ assumed: nextAssumed });
+    }
+    // Chip de serviço / "Não fazemos": grava o apelido (ou não), envia e devolve para a IA.
+    function resolveTerm(text) {
+      var next = Object.assign({}, replies);
+      next[cur.id] = (next[cur.id] || []).concat([{ text: text, status: 'sent', time: 'agora' }]);
+      var nextReleased = Object.assign({}, released); nextReleased[cur.id] = true;
       var still = pending.filter(function (c) { return c.id !== cur.id; });
-      self.setState({ resolved: next, selected: still.length ? still[0].id : cur.id, filter: still.length ? filter : 'all' });
+      self.setState({ replies: next, released: nextReleased, draft: '', selected: still.length ? still[0].id : cur.id, filter: still.length ? filter : 'all' });
+    }
+    function release() {
+      var next = Object.assign({}, released); next[cur.id] = true;
+      var still = pending.filter(function (c) { return c.id !== cur.id; });
+      self.setState({ released: next, selected: still.length ? still[0].id : cur.id, filter: still.length ? filter : 'all' });
     }
 
-    var handoff = cur.handoff ? {
-      since: cur.handoff.since, intent: cur.handoff.intent, rule: cur.handoff.rule, context: cur.handoff.context,
-      options: cur.handoff.options.map(function (o) {
-        return { label: o.label, cls: o.primary ? 'btn primary' : 'btn', choose: function () { resolveWith(o.label); } };
-      })
-    } : { since: '', intent: '', rule: '', context: '', options: [] };
+    var h = cur.handoff;
+    var optionsReady = !!h && !h.loading && !cur.assumed && !cur.replied;
+    var handoff = h ? {
+      since: h.since, intent: h.intent, rule: h.rule, context: h.context, next: h.next,
+      // Com rascunho, o cliente não recebe o aviso padrão: ele só sai se o dono não agir no prazo.
+      sub: h.silent && optionsReady ? h.silent : 'a IA avisou o cliente que você responde em breve',
+      loading: !!h.loading && !cur.assumed && !cur.replied,
+      showOptions: optionsReady && !h.draft,
+      assumed: cur.assumed || cur.replied,
+      assume: assume,
+      options: h.options.map(function (o) {
+        return { label: o.label, cls: o.primary ? 'btn primary' : 'btn', choose: function () { send(o.label); } };
+      }),
+      hasDraft: !!h.draft, draft: h.draft || '',
+      showTerm: !!h.term && optionsReady, term: h.term || '',
+      showEdit: !!h.draft && optionsReady,
+      // O palpite da IA vem primeiro, marcado; os demais serviços em seguida.
+      services: CATALOG.slice().sort(function (a, b) { return (b === h.guess) - (a === h.guess); }).map(function (name) {
+        var isGuess = name === h.guess;
+        return { label: isGuess ? name + ' · palpite da IA' : name, style: isGuess ? 'border-color: #E8A84A; color: #E8A84A;' : '', choose: function () { resolveTerm(h.draft); } };
+      }),
+      notOffered: function () { resolveTerm('A gente não faz ' + h.term + ', mas faz ' + catalogList() + '. Quer marcar algum?'); },
+      // Enviar como está: o rascunho vai como resposta do dono e a conversa volta para a IA.
+      approve: function () { resolveTerm(h.draft); },
+      editDraft: function () { self.setState({ draft: h.draft }); },
+      showFaq: !!h.draft && !!h.guess && optionsReady, guess: h.guess || '',
+      faq: !!faq[cur.id],
+      toggleFaq: function () { var n = Object.assign({}, faq); n[cur.id] = !n[cur.id]; self.setState({ faq: n }); }
+    } : { since: '', sub: '', intent: '', rule: '', context: '', next: '', loading: false, showOptions: false, assumed: false, assume: assume, options: [],
+      hasDraft: false, draft: '', showTerm: false, term: '', showEdit: false, services: [], notOffered: assume, approve: assume, editDraft: assume,
+      showFaq: false, guess: '', faq: false, toggleFaq: assume };
 
     return {
       accent: accent,
       visible: visible, cur: cur, handoff: handoff,
+      draft: draft,
+      setDraft: function (e) { self.setState({ draft: e.target.value }); },
+      send: function () { send(draft); },
       pendingCount: pending.length,
       hasPending: pending.length > 0,
       resolvedCount: 44 - pending.length,
@@ -366,7 +539,7 @@ class Component extends DCLogic {
       showPending: function () { self.setState({ filter: 'pending' }); },
       showAll: function () { self.setState({ filter: 'all' }); },
       showResolved: function () { self.setState({ filter: 'resolved' }); },
-      returnToAi: function () { resolveWith('Devolvido para a IA'); }
+      returnToAi: release
     };
   }
 }

@@ -3,8 +3,6 @@
 <head>
 <meta charset="utf-8">
 <title>Cadeira — Agenda</title>
-<script src="./vendor/react.js"></script>
-<script src="./vendor/react-dom.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -25,6 +23,7 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
   nav[aria-label="Principal"] small { display: none !important; }
   nav[aria-label="Principal"] > a[aria-label="Conexão WhatsApp"] { display: none !important; }
   main { order: 1; }
+  main > div[data-mobile-only] { display: flex !important; }
   main { padding: 18px 14px 40px !important; gap: 18px !important; }
   main h1 { font-size: 26px !important; }
   main h2 { font-size: 20px !important; }
@@ -35,14 +34,75 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
   main table { font-size: 12px !important; }
   main td, main th { padding-left: 6px !important; padding-right: 6px !important; }
 }
+button,input,select,textarea{font:inherit}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid #E8A84A;outline-offset:2px}
+code{font-family:inherit;color:#A89F93;background:rgba(243,237,228,0.06);padding:0 4px;border-radius:3px}
+.eyebrow{font-size:12px;font-weight:500;color:#A89F93;text-transform:uppercase;letter-spacing:.04em}
+.hint{font-size:13px;line-height:1.45;color:#A89F93}
+.fld{display:flex;flex-direction:column;gap:6px}
+.fld>label,.fld>.lbl{font-size:13px;font-weight:500;color:#CFC6BA}
+.inp{box-sizing:border-box;width:100%;min-height:44px;padding:0 12px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:#1B1612;color:#F3EDE4;font-size:16px;color-scheme:dark}
+.inp[disabled]{opacity:.6}
+.btn1{min-height:48px;padding:0 20px;border-radius:10px;border:none;color:#15110E;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn1[disabled]{opacity:.6;cursor:default}
+.btn2{min-height:44px;padding:0 16px;border-radius:10px;border:1px solid rgba(243,237,228,0.14);background:transparent;color:#CFC6BA;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn2.fit{flex:0 0 auto;padding:0 12px;font-size:13px;color:#F3EDE4;background:#1B1612}
+.btn2.icon{flex:0 0 auto;width:44px;padding:0}
+.btn1:active,.btn2:active,.res:active,.wday:active{opacity:.85}
+.link{align-self:flex-start;min-height:44px;padding:0;border:none;background:transparent;color:#CFC6BA;font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.ok{margin:0;padding:8px 12px;border-radius:10px;background:rgba(62,222,148,0.10);color:#3EDE94;font-size:13px}
+.err{margin:0;padding:8px 12px;border-radius:10px;background:rgba(224,107,90,0.10);color:#E06B5A;font-size:13px}
+.states{display:flex;flex-wrap:wrap;gap:16px}
+.states>div{flex:1 1 210px;min-width:0;display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:14px;background:#1B1612;border:1px solid rgba(243,237,228,0.08)}
+@keyframes sk{0%,100%{opacity:1}50%{opacity:.45}}
+.sk{display:block;border-radius:6px;background:rgba(243,237,228,0.14);animation:sk 1.6s ease-in-out infinite}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px}
+.wday{min-height:168px;box-sizing:border-box;padding:14px;border-radius:14px;border:1px solid rgba(243,237,228,0.08);background:#1B1612;color:#F3EDE4;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:12px;transition:border-color .15s ease-out}
+.wday[disabled]{cursor:default;background:transparent !important}
+.wday:not([disabled]):hover{border-color:rgba(243,237,228,0.14)}
+.wd-head{display:flex;flex-direction:column;gap:2px}
+.wd-name{font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:.04em}
+.wd-date{font-size:13px;color:#CFC6BA;font-variant-numeric:tabular-nums}
+.wd-main{display:flex;flex-direction:column}
+.wd-count{font-size:22px;font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.wd-cap{font-size:12px;color:#A89F93}
+.wd-meta{display:flex;flex-direction:column;gap:2px;font-size:12px}
+.wd-money{color:#CFC6BA;font-variant-numeric:tabular-nums}
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:20}
+.sheet{position:fixed;top:0;right:0;bottom:0;width:440px;max-width:100%;box-sizing:border-box;z-index:21;background:#15110E;border-left:1px solid rgba(243,237,228,0.08);box-shadow:0 24px 60px rgba(0,0,0,.5);display:flex;flex-direction:column}
+.sheet-h{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:20px 22px 12px}
+.sheet-b{flex:1;min-height:0;overflow-y:auto;padding:4px 22px 20px;display:flex;flex-direction:column;gap:18px}
+.sheet-f{display:flex;flex-direction:column;gap:8px;padding:14px 22px 20px;border-top:1px solid rgba(243,237,228,0.08);background:#15110E}
+.pill{display:flex;align-items:center;gap:12px;padding:10px 10px 10px 14px;border-radius:10px;border:1px solid rgba(232,168,74,0.40);background:#1B1612}
+.results{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;border-radius:10px;border:1px solid rgba(243,237,228,0.08);background:#1B1612;overflow:hidden}
+.results li+li{border-top:1px solid rgba(243,237,228,0.08)}
+.res{width:100%;min-height:52px;padding:6px 14px;border:none;background:transparent;text-align:left;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.res:hover{background:rgba(243,237,228,0.04)}
+.empty-res{display:flex;flex-direction:column;gap:2px;padding:12px 14px;border-radius:10px;border:1px dashed rgba(243,237,228,0.14)}
+  .week { grid-template-columns: 1fr !important; gap: 6px !important; }
+  .wday { min-height: 56px !important; flex-direction: row !important; align-items: center !important; gap: 12px !important; padding: 10px 14px !important; }
+  .wd-head { flex: 0 0 64px; }
+  .wd-main { flex: 0 0 auto; flex-direction: row !important; align-items: baseline; gap: 6px; }
+  .wd-meta { flex: 1; min-width: 0; align-items: flex-end; text-align: right; }
+  .sheet { top: auto !important; left: 0 !important; width: auto !important; max-height: 92vh; border-left: none !important; border-top: 1px solid rgba(243,237,228,0.08); border-radius: 16px 16px 0 0; }
+  .sheet-h { padding: 16px 16px 8px !important; }
+  .sheet-b { padding: 4px 16px 16px !important; }
+  .sheet-f { padding: 12px 16px 16px !important; }
+  .sheet-f .btn1 { width: 100%; }
 </style>
 </helmet>
 <div style="container-type: inline-size; min-height: 100vh; display: flex; flex-wrap: wrap; background: #15110E; color: #F3EDE4; font-family: 'DM Sans', 'Helvetica Neue', Arial, sans-serif; font-size: 14px; line-height: 1.45;">
 
   <nav aria-label="Principal" style="width: 232px; flex: 0 0 232px; box-sizing: border-box; padding: 28px 20px; display: flex; flex-direction: column; gap: 28px; border-right: 1px solid rgba(243,237,228,0.08); background: #120F0C;">
-    <div style="display: flex; align-items: center; gap: 10px; padding: 0 8px;">
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 0 8px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
       <svg width="34" height="34" viewBox="0 0 64 64" fill="none" aria-hidden="true"><rect x="19" y="9" width="26" height="23" rx="7" fill="#E8A84A"></rect><rect x="11" y="33" width="42" height="11" rx="5" fill="#E8A84A"></rect><rect x="8" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="50" y="30" width="6" height="14" rx="3" fill="#E8A84A"></rect><rect x="29" y="44" width="6" height="9" rx="1.5" fill="#E8A84A"></rect><rect x="16" y="53" width="32" height="5" rx="2.5" fill="#E8A84A"></rect><path d="M52 3 L53.6 7.4 L58 9 L53.6 10.6 L52 15 L50.4 10.6 L46 9 L50.4 7.4 Z" fill="#F3EDE4"></path></svg>
       <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 24px; letter-spacing: -0.01em; color: #F3EDE4; white-space: nowrap;"><em style="font-style: italic; color: #E8A84A; margin-right: 0.18em;">O</em>Cadeira</span>
+      </div>
+      <div aria-label="Estabelecimento" style="display: flex; flex-direction: column; gap: 2px; padding: 10px 10px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.10); background: rgba(243,237,228,0.03);">
+        <small style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #A89F93;">Estabelecimento</small>
+        <strong style="font-size: 13px; font-weight: 500; color: #F3EDE4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Barbearia do Leo</strong>
+      </div>
     </div>
     <div style="display: flex; flex-direction: column; gap: 4px;">
       <a href="Main.dc.html" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 10px; color: #CFC6BA;">
@@ -81,173 +141,593 @@ a{color:#F3EDE4;text-decoration:none}a:hover{color:#E8A84A}
   </nav>
 
   <main style="flex: 999 1 560px; min-width: 0; box-sizing: border-box; padding: 32px 40px 48px; display: flex; flex-direction: column; gap: 24px;">
+    <div aria-label="Estabelecimento" data-mobile-only="" style="display: none; align-items: baseline; gap: 8px; margin-bottom: -14px; font-size: 12px; color: #A89F93;"><small style="font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;">Estabelecimento</small><strong style="font-weight: 500; color: #F3EDE4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Barbearia do Leo</strong></div>
 
     <header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px;">
       <div style="display: flex; flex-direction: column; gap: 6px;">
         <span style="font-size: 13px; color: #A89F93; text-transform: uppercase; letter-spacing: 0.08em;">Agenda</span>
         <div style="display: flex; align-items: center; gap: 12px;">
-          <button type="button" aria-label="Dia anterior" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+          <button type="button" aria-label="{{ prevAria }}" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; cursor: pointer; display: flex; align-items: center; justify-content: center;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg>
           </button>
-          <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">Terça, 28 de outubro</h1>
-          <button type="button" aria-label="Próximo dia" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+          <h1 style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 34px; letter-spacing: -0.01em;">{{ title }}</h1>
+          <button type="button" aria-label="{{ nextAria }}" style="width: 44px; height: 44px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; cursor: pointer; display: flex; align-items: center; justify-content: center;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
           </button>
         </div>
       </div>
       <div style="display: flex; gap: 8px; align-items: center;">
-        <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: rgba(243,237,228,0.10); color: #F3EDE4; font: inherit; font-weight: 500; cursor: pointer;">Dia</button>
-        <button type="button" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: transparent; color: #CFC6BA; font: inherit; font-weight: 500; cursor: pointer;">Semana</button>
-        <button type="button" style="min-height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: {{accent}}; color: #15110E; font: inherit; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;">
+        <button type="button" aria-pressed="{{ dayPressed }}" onClick="{{ showDay }}" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: {{ dayBg }}; color: {{ dayColor }}; font: inherit; font-weight: 500; cursor: pointer;">Dia</button>
+        <button type="button" aria-pressed="{{ weekPressed }}" onClick="{{ showWeek }}" style="min-height: 44px; padding: 0 16px; border-radius: 10px; border: 1px solid rgba(243,237,228,0.14); background: {{ weekBg }}; color: {{ weekColor }}; font: inherit; font-weight: 500; cursor: pointer;">Semana</button>
+        <button type="button" onClick="{{ openFromHeader }}" style="min-height: 44px; padding: 0 18px; border-radius: 10px; border: none; background: {{accent}}; color: #15110E; font: inherit; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 8px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
           Encaixar cliente
         </button>
       </div>
     </header>
 
-    <section aria-label="Resumo do dia" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch;">
+    <section aria-label="{{ summaryAria }}" style="display: flex; flex-wrap: wrap; gap: 12px; align-items: stretch;">
       <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
-        <span style="font-size: 12px; color: #A89F93;">Previsto hoje</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: {{accent}};">R$ 1.395</span>
-        <span style="font-size: 12px; color: #CFC6BA;">17 atendimentos · R$ 240 recuperados pela IA</span>
+        <span style="font-size: 12px; color: #A89F93;">{{ sum.moneyLabel }}</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: {{accent}};">{{ sum.money }}</span>
+        <span style="font-size: 12px; color: #CFC6BA;">{{ sum.moneyCaption }}</span>
       </div>
       <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
         <span style="font-size: 12px; color: #A89F93;">Buracos</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1;">2</span>
-        <span style="font-size: 12px; color: #CFC6BA;">IA já ofertou para 9 clientes da fila de espera</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1;">{{ sum.gaps }}</span>
+        <span style="font-size: 12px; color: #CFC6BA;">{{ sum.gapsCaption }}</span>
       </div>
       <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 4px; padding: 14px 18px; border-radius: 12px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08);">
         <span style="font-size: 12px; color: #A89F93;">Risco de falta</span>
-        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: #E06B5A;">3</span>
-        <span style="font-size: 12px; color: #CFC6BA;">Confirmação pedida ontem às 19h · 1 ainda sem resposta</span>
+        <span style="font-family: 'Instrument Serif', Georgia, serif; font-size: 28px; line-height: 1; color: #E06B5A;">{{ sum.risk }}</span>
+        <span style="font-size: 12px; color: #CFC6BA;">{{ sum.riskCaption }}</span>
       </div>
     </section>
 
+    <sc-if value="{{ notice }}">
+      <p class="ok" role="status">{{ notice }}</p>
+    </sc-if>
+
+    <sc-if value="{{ isWeek }}">
+      <section aria-label="Grade da semana" class="week">
+        <sc-for list="{{ week }}" as="d">
+          <button type="button" class="wday" aria-pressed="{{ d.pressed }}" aria-label="{{ d.aria }}" disabled="{{ d.closed }}" onClick="{{ d.pick }}" style="border-color: {{ d.border }}; background: {{ d.bg }};">
+            <span class="wd-head"><span class="wd-name" style="color: {{ d.nameColor }};">{{ d.name }}</span><span class="wd-date">{{ d.date }}</span></span>
+            <sc-if value="{{ d.open }}">
+              <span class="wd-main"><span class="wd-count">{{ d.count }}</span><span class="wd-cap">atendimentos</span></span>
+              <span class="wd-meta">
+                <span class="wd-money">{{ d.money }}</span>
+                <span style="color: {{ d.gapsColor }};">{{ d.gapsLabel }}</span>
+                <sc-if value="{{ d.hasRisk }}"><span style="color: #E06B5A;">{{ d.riskLabel }}</span></sc-if>
+              </span>
+            </sc-if>
+            <sc-if value="{{ d.closed }}">
+              <span class="wd-main"><span class="wd-cap">Fechado</span></span>
+            </sc-if>
+          </button>
+        </sc-for>
+      </section>
+    </sc-if>
+
+    <sc-if value="{{ isDay }}">
     <section aria-label="Grade do dia" style="display: flex; flex-direction: column; border-radius: 16px; background: #1B1612; border: 1px solid rgba(243,237,228,0.08); overflow-x: auto;">
       <div style="min-width: 680px; display: grid; grid-template-columns: 64px repeat(2, minmax(0, 1fr)); border-bottom: 1px solid rgba(243,237,228,0.08);">
         <div></div>
-        <div style="display: flex; align-items: center; gap: 10px; padding: 16px 16px; border-left: 1px solid rgba(243,237,228,0.06);">
-          <span style="width: 32px; height: 32px; border-radius: 16px; background: #3A2E24; color: {{accent}}; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px;">L</span>
-          <div style="display: flex; flex-direction: column;"><span style="font-weight: 600;">Léo</span><span style="font-size: 12px; color: #A89F93;">9 atendimentos · R$ 760</span></div>
-        </div>
-        <div style="display: flex; align-items: center; gap: 10px; padding: 16px 16px; border-left: 1px solid rgba(243,237,228,0.06);">
-          <span style="width: 32px; height: 32px; border-radius: 16px; background: #2B2F36; color: #8DA3B8; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px;">C</span>
-          <div style="display: flex; flex-direction: column;"><span style="font-weight: 600;">Caio</span><span style="font-size: 12px; color: #A89F93;">8 atendimentos · R$ 635</span></div>
-        </div>
+        <sc-for list="{{ barbers }}" as="b">
+          <div style="display: flex; align-items: center; gap: 10px; padding: 16px 16px; border-left: 1px solid rgba(243,237,228,0.06);">
+            <span style="width: 32px; height: 32px; border-radius: 16px; background: {{ b.avatarBg }}; color: {{ b.avatarColor }}; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 13px;">{{ b.initial }}</span>
+            <div style="display: flex; flex-direction: column;"><span style="font-weight: 600;">{{ b.name }}</span><span style="font-size: 12px; color: #A89F93;">{{ b.caption }}</span></div>
+          </div>
+        </sc-for>
       </div>
 
       <div style="min-width: 680px; display: grid; grid-template-columns: 64px repeat(2, minmax(0, 1fr));">
         <div style="display: flex; flex-direction: column; font-size: 12px; color: #A89F93; font-variant-numeric: tabular-nums;">
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">09:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">10:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">11:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">12:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">13:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">14:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">15:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">16:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">17:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">18:00</div>
-          <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">19:00</div>
+          <sc-for list="{{ hours }}" as="h">
+            <div style="height: 72px; padding: 8px 12px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06);">{{ h }}</div>
+          </sc-for>
         </div>
 
-        <div style="display: flex; flex-direction: column; border-left: 1px solid rgba(243,237,228,0.06);">
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #2A2219; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Pedro Albuquerque</span><span style="font-size: 12px; color: #A89F93;">Corte + barba · R$ 95 · confirmado</span></div>
+        <sc-for list="{{ barbers }}" as="b">
+          <div style="display: flex; flex-direction: column; border-left: 1px solid rgba(243,237,228,0.06);">
+            <sc-for list="{{ b.rows }}" as="r">
+              <div style="height: 72px; padding: 4px; box-sizing: border-box; border-top: 1px solid rgba(243,237,228,0.06); display: flex; flex-direction: column; gap: 4px;">
+
+                <sc-if value="{{ r.isAppt }}">
+                  <div style="flex: 1; min-height: 0; padding: 8px 12px; box-sizing: border-box; border-radius: 8px; background: #2A2219; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">{{ r.name }}</span><span style="font-size: 12px; color: {{ r.lineColor }};">{{ r.line }}</span></div>
+                </sc-if>
+
+                <sc-if value="{{ r.isRisk }}">
+                  <div style="flex: 1; min-height: 0; padding: 5px 12px; box-sizing: border-box; border-radius: 8px; background: #2A2219; border-left: 3px solid #E06B5A; display: flex; flex-direction: column; justify-content: center; line-height: 1.3;">
+                    <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="font-weight: 500;">{{ r.name }}</span><span style="font-size: 12px; color: #E06B5A; font-weight: 500; white-space: nowrap;">Risco alto</span></div>
+                    <span style="font-size: 12px; color: #CFC6BA; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ r.reason }}</span>
+                    <span style="font-size: 12px; color: #A89F93; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ r.line }}</span>
+                  </div>
+                </sc-if>
+
+                <sc-if value="{{ r.isPair }}">
+                  <sc-for list="{{ r.pair }}" as="p">
+                    <div style="flex: 1; padding: 0 12px; border-radius: 8px; background: #2A2219; display: flex; align-items: center; justify-content: space-between; gap: 8px;"><span style="font-weight: 500; font-size: 13px;">{{ p.name }}</span><span style="font-size: 12px; color: #A89F93;">{{ p.line }}</span></div>
+                  </sc-for>
+                </sc-if>
+
+                <sc-if value="{{ r.isBlock }}">
+                  <div style="flex: 1; padding: 8px 12px; box-sizing: border-box; border-radius: 8px; border: 1px dashed rgba(243,237,228,0.14); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #A89F93;">{{ r.label }}</div>
+                </sc-if>
+
+                <sc-if value="{{ r.isGap }}">
+                  <div aria-label="{{ r.gap.aria }}" style="flex: 1; min-height: 0; padding: 0 6px 0 12px; box-sizing: border-box; border-radius: 8px; background: {{ r.gap.bg }}; border: 1px {{ r.gap.borderStyle }} {{ r.gap.border }}; display: flex; align-items: center; gap: 8px;">
+                    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                      <span style="font-weight: 500; color: {{ r.gap.titleColor }}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ r.gap.title }}</span>
+                      <span style="font-size: 12px; color: {{ r.gap.detailColor }}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ r.gap.detail }}</span>
+                    </div>
+                    <sc-if value="{{ r.gap.canFit }}">
+                      <button type="button" class="btn2 fit" aria-label="{{ r.gap.fitAria }}" onClick="{{ r.gap.fit }}">Encaixar</button>
+                    </sc-if>
+                  </div>
+                </sc-if>
+
+              </div>
+            </sc-for>
           </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #2A2219; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Thiago Mendes</span><span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · confirmado</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06); display: flex; flex-direction: column; gap: 4px;">
-            <div style="flex: 1; box-sizing: border-box; padding: 0 12px; border-radius: 8px; background: #2A2219; display: flex; align-items: center; justify-content: space-between; gap: 8px;"><span style="font-weight: 500; font-size: 13px;">João Vítor</span><span style="font-size: 12px; color: #A89F93;">Barba · R$ 45</span></div>
-            <div style="flex: 1; box-sizing: border-box; padding: 0 12px; border-radius: 8px; background: #2A2219; display: flex; align-items: center; justify-content: space-between; gap: 8px;"><span style="font-weight: 500; font-size: 13px;">Henrique Sá</span><span style="font-size: 12px; color: #A89F93;">Pezinho · R$ 30</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; border: 1px dashed rgba(243,237,228,0.14); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #A89F93;">Almoço</div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #2A2219; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Rodrigo Teixeira</span><span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · confirmado</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: rgba(232,168,74,0.08); border: 1px dashed {{accent}}; display: flex; flex-direction: column; justify-content: center; gap: 2px;">
-              <span style="font-weight: 500; color: {{accent}};">Buraco · IA ofertando</span>
-              <span style="font-size: 12px; color: #CFC6BA;">Enviado para 5 clientes da fila às 09:40 · 1 respondeu "talvez"</span>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+
+    <section aria-label="Estados da tela" style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px; padding-top: 24px; border-top: 1px dashed rgba(243,237,228,0.14);">
+      <span class="eyebrow">Estados da tela · referência para o código</span>
+
+      <span class="hint">Horário vazio. Um card por buraco; o texto vem da oferta da IA (<code>gaps[].offer</code>). "Encaixar" aparece em todos, menos no preenchido.</span>
+      <div class="states">
+        <sc-for list="{{ gapExamples }}" as="x">
+          <div>
+            <span class="eyebrow">{{ x.label }}</span>
+            <div style="height: 64px; padding: 0 6px 0 12px; box-sizing: border-box; border-radius: 8px; background: {{ x.gap.bg }}; border: 1px {{ x.gap.borderStyle }} {{ x.gap.border }}; display: flex; align-items: center; gap: 8px;">
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px;">
+                <span style="font-weight: 500; color: {{ x.gap.titleColor }}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ x.gap.title }}</span>
+                <span style="font-size: 12px; color: {{ x.gap.detailColor }}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ x.gap.detail }}</span>
+              </div>
+              <sc-if value="{{ x.gap.canFit }}">
+                <button type="button" class="btn2 fit" tabindex="-1">Encaixar</button>
+              </sc-if>
             </div>
+            <span class="hint"><code>{{ x.code }}</code></span>
           </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #2A2219; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Marcos Paulo</span><span style="font-size: 12px; color: #A89F93;">Corte + barba · R$ 95 · confirmado</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #2A2219; border-left: 3px solid #E06B5A; display: flex; flex-direction: column; justify-content: center; gap: 2px;">
-              <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="font-weight: 500;">Eduardo Bastos</span><span style="font-size: 12px; color: #E06B5A; font-weight: 500;">Risco alto</span></div>
-              <span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · 2 faltas anteriores · sem resposta</span>
-            </div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #2A2219; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Rafael Nunes</span><span style="font-size: 12px; color: {{accent}};">Corte · R$ 80 · reativado pela IA</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #2A2219; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Gabriel Moura</span><span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · confirmado</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #2A2219; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Lucas Ferreira</span><span style="font-size: 12px; color: #A89F93;">Corte + barba · R$ 95 · aguardando confirmação</span></div>
+        </sc-for>
+      </div>
+
+      <span class="hint">Risco de falta. Badge só com <code>noShowRisk.level = high</code>; o motivo vai numa linha sob o nome. Médio e baixo não mostram nada, e o resumo conta só os altos.</span>
+      <div class="states">
+        <div>
+          <span class="eyebrow">Risco alto</span>
+          <div style="height: 64px; padding: 5px 12px; box-sizing: border-box; border-radius: 8px; background: #2A2219; border-left: 3px solid #E06B5A; display: flex; flex-direction: column; justify-content: center; line-height: 1.3;">
+            <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="font-weight: 500;">Eduardo Bastos</span><span style="font-size: 12px; color: #E06B5A; font-weight: 500;">Risco alto</span></div>
+            <span style="font-size: 12px; color: #CFC6BA;">faltou 2 vezes nos últimos 3 meses</span>
+            <span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · sem resposta</span>
           </div>
         </div>
+        <div>
+          <span class="eyebrow">Risco médio ou baixo</span>
+          <div style="height: 64px; padding: 8px 12px; box-sizing: border-box; border-radius: 8px; background: #2A2219; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Wesley Dantas</span><span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · confirmou às 21:14</span></div>
+        </div>
+      </div>
 
-        <div style="display: flex; flex-direction: column; border-left: 1px solid rgba(243,237,228,0.06);">
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; border: 1px dashed rgba(243,237,228,0.14); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #A89F93;">Entra às 10h</div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #22262C; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Caíque Ramos</span><span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · confirmado</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #22262C; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Otávio Brandão</span><span style="font-size: 12px; color: #A89F93;">Corte degradê · R$ 90 · confirmado</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #22262C; border-left: 3px solid #E06B5A; display: flex; flex-direction: column; justify-content: center; gap: 2px;">
-              <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="font-weight: 500;">Wesley Dantas</span><span style="font-size: 12px; color: #E06B5A; font-weight: 500;">Risco alto</span></div>
-              <span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · confirmou às 21:14</span>
-            </div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; border: 1px dashed rgba(243,237,228,0.14); display: flex; align-items: center; justify-content: center; font-size: 12px; color: #A89F93;">Almoço</div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #22262C; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Bruno Carvalho</span><span style="font-size: 12px; color: {{accent}};">Corte · R$ 80 · buraco preenchido pela IA</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #22262C; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Igor Fontes</span><span style="font-size: 12px; color: #A89F93;">Barba · R$ 45 · confirmado</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: rgba(232,168,74,0.08); border: 1px dashed {{accent}}; display: flex; flex-direction: column; justify-content: center; gap: 2px;">
-              <span style="font-weight: 500; color: {{accent}};">Buraco · IA ofertando</span>
-              <span style="font-size: 12px; color: #CFC6BA;">Enviado para 4 clientes às 11:20 · aguardando</span>
-            </div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #22262C; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Danilo Reis</span><span style="font-size: 12px; color: #A89F93;">Corte + barba · R$ 95 · confirmado</span></div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #22262C; border-left: 3px solid #E06B5A; display: flex; flex-direction: column; justify-content: center; gap: 2px;">
-              <div style="display: flex; justify-content: space-between; gap: 8px;"><span style="font-weight: 500;">Samuel Costa</span><span style="font-size: 12px; color: #E06B5A; font-weight: 500;">Risco alto</span></div>
-              <span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · primeiro agendamento · confirmou</span>
-            </div>
-          </div>
-          <div style="height: 72px; box-sizing: border-box; padding: 4px; border-top: 1px solid rgba(243,237,228,0.06);">
-            <div style="height: 100%; box-sizing: border-box; padding: 8px 12px; border-radius: 8px; background: #22262C; display: flex; flex-direction: column; justify-content: center; gap: 2px;"><span style="font-weight: 500;">Renan Oliveira</span><span style="font-size: 12px; color: #A89F93;">Corte · R$ 80 · confirmado</span></div>
-          </div>
+      <span class="hint">Carregar a agenda.</span>
+      <div class="states">
+        <div aria-busy="true">
+          <span class="eyebrow">Carregando</span>
+          <span class="sk" style="width: 40%; height: 18px;"></span>
+          <span class="sk" style="width: 100%; height: 64px; border-radius: 8px;"></span>
+          <span class="sk" style="width: 100%; height: 64px; border-radius: 8px;"></span>
+        </div>
+        <div>
+          <span class="eyebrow">Erro ao carregar</span>
+          <p class="err" role="alert">Não foi possível carregar a agenda. Tente de novo em instantes.</p>
+          <button type="button" class="btn2" style="align-self: flex-start;">Tentar de novo</button>
+        </div>
+        <div>
+          <span class="eyebrow">Dia sem horários</span>
+          <span style="color: #F3EDE4;">Nenhum horário neste dia.</span>
+          <span class="hint">Quando alguém marcar pelo WhatsApp ou você encaixar, aparece aqui.</span>
         </div>
       </div>
     </section>
 
   </main>
+
+  <sc-if value="{{ sheetOpen }}">
+    <div class="scrim" aria-hidden="true" onClick="{{ closeSheet }}"></div>
+    <section role="dialog" aria-modal="true" aria-labelledby="enc-title" class="sheet">
+      <div class="sheet-h">
+        <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+          <h2 id="enc-title" style="margin: 0; font-family: 'Instrument Serif', Georgia, serif; font-weight: 400; font-size: 24px; line-height: 1.1;">Encaixar cliente</h2>
+          <span class="hint">{{ sh.subtitle }}</span>
+        </div>
+        <button type="button" class="btn2 icon" aria-label="Fechar" onClick="{{ closeSheet }}">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg>
+        </button>
+      </div>
+
+      <div class="sheet-b">
+        <div class="fld">
+          <span class="lbl" id="enc-cli">Cliente</span>
+
+          <sc-if value="{{ sh.hasCustomer }}">
+            <div class="pill">
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column;">
+                <span style="font-weight: 500; color: #F3EDE4;">{{ sh.customer.name }}</span>
+                <span style="font-size: 13px; color: #A89F93; font-variant-numeric: tabular-nums;">{{ sh.customer.phone }}</span>
+              </div>
+              <button type="button" class="btn2" onClick="{{ clearCustomer }}" disabled="{{ sh.saving }}">Trocar</button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ sh.isSearch }}">
+            <input class="inp" type="search" aria-labelledby="enc-cli" placeholder="Nome ou 4 últimos dígitos do telefone" value="{{ sh.query }}" onChange="{{ setQuery }}" autocomplete="off">
+            <sc-if value="{{ sh.idle }}">
+              <span class="hint">Busque um cliente que já veio ou cadastre um novo.</span>
+            </sc-if>
+            <sc-if value="{{ sh.hasResults }}">
+              <ul class="results" aria-label="Clientes encontrados">
+                <sc-for list="{{ sh.results }}" as="c">
+                  <li><button type="button" class="res" onClick="{{ c.pick }}"><span style="font-weight: 500; color: #F3EDE4;">{{ c.name }}</span><span style="font-size: 13px; color: #A89F93; font-variant-numeric: tabular-nums;">{{ c.phone }}</span></button></li>
+                </sc-for>
+              </ul>
+            </sc-if>
+            <sc-if value="{{ sh.noResults }}">
+              <div class="empty-res">
+                <span style="color: #F3EDE4;">Nenhum cliente com “{{ sh.query }}”.</span>
+                <span class="hint">Confira a grafia ou cadastre agora — leva 10 segundos.</span>
+              </div>
+            </sc-if>
+            <button type="button" class="btn2" style="align-self: flex-start;" onClick="{{ startNew }}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+              Novo cliente
+            </button>
+          </sc-if>
+
+          <sc-if value="{{ sh.isNew }}">
+            <div class="fld">
+              <label for="enc-name">Nome</label>
+              <input id="enc-name" class="inp" type="text" autocomplete="off" value="{{ sh.newName }}" onChange="{{ setNewName }}" disabled="{{ sh.saving }}">
+            </div>
+            <div class="fld">
+              <label for="enc-phone">Telefone (WhatsApp)</label>
+              <input id="enc-phone" class="inp" type="tel" inputmode="tel" placeholder="11 9XXXX-XXXX" value="{{ sh.newPhone }}" onChange="{{ setNewPhone }}" disabled="{{ sh.saving }}">
+            </div>
+            <button type="button" class="link" onClick="{{ backToSearch }}">Buscar cliente cadastrado</button>
+          </sc-if>
+        </div>
+
+        <div class="fld">
+          <label for="enc-svc">Serviço</label>
+          <select id="enc-svc" class="inp" value="{{ sh.serviceId }}" onChange="{{ setService }}" disabled="{{ sh.saving }}">
+            <option value="">Escolha o serviço</option>
+            <sc-for list="{{ services }}" as="s">
+              <option value="{{ s.id }}">{{ s.label }}</option>
+            </sc-for>
+          </select>
+        </div>
+
+        <div style="display: flex; gap: 12px;">
+          <div class="fld" style="flex: 1 1 0; min-width: 0;">
+            <label for="enc-barber">Barbeiro</label>
+            <select id="enc-barber" class="inp" value="{{ sh.barberId }}" onChange="{{ setBarber }}" disabled="{{ sh.saving }}">
+              <option value="">Escolha</option>
+              <sc-for list="{{ barberOptions }}" as="o">
+                <option value="{{ o.id }}">{{ o.name }}</option>
+              </sc-for>
+            </select>
+          </div>
+          <div class="fld" style="flex: 1 1 0; min-width: 0;">
+            <label for="enc-time">Horário · {{ sh.dayLabel }}</label>
+            <input id="enc-time" class="inp" type="time" step="900" value="{{ sh.time }}" onChange="{{ setTime }}" disabled="{{ sh.saving }}" aria-invalid="{{ sh.timeInvalid }}" aria-describedby="enc-conflict" style="border-color: {{ sh.timeBorder }};">
+          </div>
+        </div>
+
+        <sc-if value="{{ sh.conflict }}">
+          <p id="enc-conflict" class="err" role="alert">Esse horário acabou de ser tomado. Escolha outro horário.</p>
+        </sc-if>
+      </div>
+
+      <div class="sheet-f">
+        <button type="button" class="btn1" style="background: {{ accent }};" onClick="{{ confirm }}" disabled="{{ sh.blocked }}" aria-busy="{{ sh.savingAria }}">{{ sh.confirmLabel }}</button>
+        <span class="hint" style="text-align: center;">Sem mensagem ao cliente — o horário entra confirmado.</span>
+      </div>
+    </section>
+  </sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#E8A84A","options":["#E8A84A","#D07A45","#C9A961","#8DA3B8"]},"$preview":{"width":1280,"height":1180}}'>
+const INK = '#F3EDE4', SOFT = '#CFC6BA', MUTED = '#A89F93', DANGER = '#E06B5A', COPPER = '#D07A45', GOLD = '#C9A961';
+const LINE_STRONG = 'rgba(243,237,228,0.14)', SEL_BORDER = 'rgba(232,168,74,0.40)', SEL_BG = 'rgba(232,168,74,0.08)';
+const HOURS = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
+const TODAY = 'ter';
+
+// Catálogo usado pelo select (mesmos preços que os cards desta tela).
+const SERVICES = [
+  { id: 'corte', name: 'Corte', price: 80, dur: 45 },
+  { id: 'degrade', name: 'Corte degradê', price: 90, dur: 45 },
+  { id: 'corte-barba', name: 'Corte + barba', price: 95, dur: 60 },
+  { id: 'barba', name: 'Barba', price: 45, dur: 30 },
+  { id: 'pezinho', name: 'Pezinho', price: 30, dur: 15 },
+];
+
+// Clientes fictícios. Telefone sempre mascarado (só os 4 últimos dígitos).
+const CUSTOMERS = [
+  { id: 'c1', name: 'Rafael Moreira', phone: '+55 11 9****-0471' },
+  { id: 'c2', name: 'Raul Mendonça', phone: '+55 11 9****-2208' },
+  { id: 'c3', name: 'Ramon Teles', phone: '+55 11 9****-5513' },
+  { id: 'c4', name: 'Diego Araújo', phone: '+55 11 9****-7710' },
+  { id: 'c5', name: 'Tiago Rocha', phone: '+55 11 9****-6604' },
+  { id: 'c6', name: 'Gustavo Lima', phone: '+55 11 9****-1187' },
+  { id: 'c7', name: 'Murilo Prates', phone: '+55 11 9****-3392' },
+];
+
+const BARBERS = [
+  { id: 'leo', name: 'Léo', initial: 'L', avatarBg: '#3A2E24', avatarColor: null, count: 9, money: 760 },
+  { id: 'caio', name: 'Caio', initial: 'C', avatarBg: '#2B2F36', avatarColor: '#8DA3B8', count: 8, money: 635 },
+];
+
+// Uma linha por hora (09–19). gap = buraco; o estado vem de state.gaps.
+const ROWS = {
+  leo: [
+    { kind: 'appt', name: 'Pedro Albuquerque', line: 'Corte + barba · R$ 95 · confirmado' },
+    { kind: 'appt', name: 'Thiago Mendes', line: 'Corte · R$ 80 · confirmado' },
+    { kind: 'pair', pair: [{ name: 'João Vítor', line: 'Barba · R$ 45' }, { name: 'Henrique Sá', line: 'Pezinho · R$ 30' }] },
+    { kind: 'block', label: 'Almoço' },
+    { kind: 'appt', name: 'Rodrigo Teixeira', line: 'Corte · R$ 80 · confirmado' },
+    { kind: 'gap', gapId: 'g1' },
+    { kind: 'appt', name: 'Marcos Paulo', line: 'Corte + barba · R$ 95 · confirmado' },
+    { kind: 'appt', name: 'Eduardo Bastos', line: 'Corte · R$ 80 · sem resposta', risk: { level: 'high', reason: 'faltou 2 vezes nos últimos 3 meses' } },
+    { kind: 'appt', name: 'Rafael Nunes', line: 'Corte · R$ 80 · reativado pela IA', lineColor: 'accent', risk: { level: 'low', reason: '' } },
+    { kind: 'appt', name: 'Gabriel Moura', line: 'Corte · R$ 80 · confirmado' },
+    { kind: 'appt', name: 'Lucas Ferreira', line: 'Corte + barba · R$ 95 · aguardando confirmação' },
+  ],
+  caio: [
+    { kind: 'block', label: 'Entra às 10h' },
+    { kind: 'appt', name: 'Caíque Ramos', line: 'Corte · R$ 80 · confirmado' },
+    { kind: 'appt', name: 'Otávio Brandão', line: 'Corte degradê · R$ 90 · confirmado' },
+    { kind: 'appt', name: 'Wesley Dantas', line: 'Corte · R$ 80 · confirmou às 21:14', risk: { level: 'medium', reason: 'marcou há 3 semanas' } },
+    { kind: 'block', label: 'Almoço' },
+    { kind: 'appt', name: 'Bruno Carvalho', line: 'Corte · R$ 80 · buraco preenchido pela IA' },
+    { kind: 'appt', name: 'Igor Fontes', line: 'Barba · R$ 45 · confirmado' },
+    { kind: 'gap', gapId: 'g2' },
+    { kind: 'appt', name: 'Danilo Reis', line: 'Corte + barba · R$ 95 · confirmado' },
+    { kind: 'appt', name: 'Samuel Costa', line: 'Corte · R$ 80 · confirmado', risk: { level: 'high', reason: 'primeira vez · marcou há 3 semanas' } },
+    { kind: 'appt', name: 'Renan Oliveira', line: 'Corte · R$ 80 · confirmado' },
+  ],
+};
+
+// Formato de GET /owner/agenda → gaps[] (dados fictícios).
+const GAPS = [
+  { id: 'g1', barberId: 'leo', startsAt: '14:00', endsAt: '15:00', offer: { customerName: 'Diego Araújo', position: 2, total: 3, sentAt: '13:48', waitingMin: 12, status: 'waiting' } },
+  { id: 'g2', barberId: 'caio', startsAt: '16:00', endsAt: '17:00', offer: { customerName: 'Vinícius Rocha', position: 2, total: 3, sentAt: '15:10', waitingMin: 30, status: 'no_reply' } },
+];
+// No protótipo, quem fica com o buraco do Caio enquanto o dono tenta encaixar (mostra o 409).
+const RACE = { gapId: 'g2', filledBy: 'Felipe Castro' };
+
+const WEEK = [
+  { id: 'seg', name: 'Seg', date: '27/10', title: 'Segunda, 27 de outubro', closed: true },
+  { id: 'ter', name: 'Ter', date: '28/10', title: 'Terça, 28 de outubro', count: 17, money: 1395, gaps: 2, risk: 2 },
+  { id: 'qua', name: 'Qua', date: '29/10', title: 'Quarta, 29 de outubro', count: 15, money: 1240, gaps: 3, risk: 1 },
+  { id: 'qui', name: 'Qui', date: '30/10', title: 'Quinta, 30 de outubro', count: 18, money: 1505, gaps: 1, risk: 0 },
+  { id: 'sex', name: 'Sex', date: '31/10', title: 'Sexta, 31 de outubro', count: 21, money: 1790, gaps: 0, risk: 1 },
+  { id: 'sab', name: 'Sáb', date: '1/11', title: 'Sábado, 1 de novembro', count: 24, money: 2060, gaps: 0, risk: 0 },
+  { id: 'dom', name: 'Dom', date: '2/11', title: 'Domingo, 2 de novembro', closed: true },
+];
+
+const brl = (n) => 'R$ ' + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+const first = (name) => String(name || '').split(' ')[0];
+const norm = (s) => String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+const plural = (n, one, many) => n + ' ' + (n === 1 ? one : many);
+
+// Texto e cor do card do buraco por estado da oferta (C4).
+function gapView(g, accent) {
+  const o = g.offer;
+  const st = o ? o.status : 'free';
+  const base = { canFit: st !== 'filled', bg: 'transparent', borderStyle: 'dashed', border: LINE_STRONG, titleColor: SOFT, detailColor: MUTED };
+  if (st === 'free') return { ...base, title: 'Livre', detail: 'sem oferta da IA' };
+  if (st === 'waiting') return { ...base, bg: 'rgba(232,168,74,0.08)', border: accent, titleColor: accent, detailColor: SOFT, title: 'Oferecido a ' + first(o.customerName), detail: o.position + '/' + o.total + ' · aguardando há ' + o.waitingMin + ' min' };
+  if (st === 'no_reply') return { ...base, bg: 'rgba(232,168,74,0.08)', border: accent, titleColor: accent, detailColor: SOFT, title: first(o.customerName) + ' não respondeu', detail: o.position + '/' + o.total + ' · chamando o próximo' };
+  if (st === 'filled') return { ...base, bg: '#2A2219', borderStyle: 'solid', border: 'rgba(243,237,228,0.08)', titleColor: INK, detailColor: o.lateReply ? MUTED : GOLD, title: 'Preenchido por ' + first(o.filledBy), detail: o.lateReply ? 'respondeu após o prazo' : 'a IA preencheu o horário' };
+  return { ...base, titleColor: COPPER, title: o.total + ' sem resposta', detail: 'continua livre' };
+}
+
+const GAP_EXAMPLES = [
+  { label: 'Sem oferta', code: 'offer: null', g: { offer: null } },
+  { label: 'Aguardando resposta', code: "status: 'waiting'", g: { offer: { customerName: 'Diego Araújo', position: 2, total: 3, waitingMin: 12, status: 'waiting' } } },
+  { label: 'Sem resposta', code: "status: 'no_reply'", g: { offer: { customerName: 'Diego Araújo', position: 2, total: 3, status: 'no_reply' } } },
+  { label: 'Preenchido', code: "status: 'filled'", g: { offer: { customerName: 'Lucas Prado', position: 3, total: 3, status: 'filled', filledBy: 'Lucas Prado' } } },
+  { label: 'Preenchido fora do prazo', code: "status: 'filled', lateReply: true", g: { offer: { customerName: 'Lucas Prado', position: 1, total: 3, status: 'filled', filledBy: 'Lucas Prado', lateReply: true } } },
+  { label: 'Fila esgotada', code: "status: 'exhausted'", g: { offer: { customerName: 'Diego Araújo', position: 3, total: 3, status: 'exhausted' } } },
+];
+
+function initial() {
+  return { ready: true, view: 'day', day: TODAY, gaps: GAPS.map(g => ({ ...g, offer: g.offer ? { ...g.offer } : null })), walkIns: [], sheet: null, notice: '' };
+}
+
+function emptySheet(patch) {
+  return { fromGap: false, barberId: '', time: '', query: '', mode: 'search', customerId: '', newName: '', newPhone: '', serviceId: '', saving: false, conflict: false, ...patch };
+}
+
+// Estados fixos para o board de 390px (iframes com #hash).
+function fromHash(hash) {
+  const s = initial();
+  const h = String(hash || '').replace('#', '');
+  if (h === 'semana') s.view = 'week';
+  if (h === 'encaixar-busca') s.sheet = emptySheet({ fromGap: true, barberId: 'leo', time: '14:00', query: 'Ra' });
+  if (h === 'encaixar-vazio') s.sheet = emptySheet({ fromGap: true, barberId: 'leo', time: '14:00', query: 'Josué' });
+  if (h === 'encaixar-novo') s.sheet = emptySheet({ fromGap: true, barberId: 'leo', time: '14:00', mode: 'new', newName: 'Josué Pacheco', serviceId: 'corte' });
+  if (h === 'encaixar-salvando') s.sheet = emptySheet({ fromGap: true, barberId: 'leo', time: '14:00', customerId: 'c1', serviceId: 'corte', saving: true });
+  if (h === 'encaixar-ocupado') {
+    s.sheet = emptySheet({ fromGap: true, barberId: 'caio', time: '16:00', customerId: 'c4', serviceId: 'corte-barba', conflict: true });
+    s.gaps = s.gaps.map(g => (g.id === RACE.gapId ? { ...g, offer: { ...g.offer, position: 3, status: 'filled', filledBy: RACE.filledBy } } : g));
+  }
+  if (h === 'encaixado') {
+    s.walkIns = [{ barberId: 'leo', time: '14:00', name: 'Rafael Moreira', serviceId: 'corte' }];
+    s.notice = 'Encaixe confirmado: Rafael Moreira, hoje às 14:00 com Léo.';
+  }
+  return s;
+}
+
 class Component extends DCLogic {
+  componentDidMount() {
+    const h = window.location.hash;
+    this.setState(fromHash(h));
+    if (h === '#buracos' || h === '#encaixado') setTimeout(() => { const el = document.querySelector('[aria-label="Grade do dia"]'); if (el) el.scrollIntoView(); }, 300);
+  }
   renderVals() {
-    return { accent: this.props.accent ?? '#E8A84A' };
+    const s = this.state && this.state.ready ? this.state : initial();
+    const accent = this.props.accent || '#E8A84A';
+    const set = (patch) => this.setState(patch);
+    const sheetSet = (patch) => set({ sheet: { ...this.state.sheet, ...patch } });
+    const val = (k) => (e) => sheetSet({ [k]: e.target.value, conflict: false });
+
+    const isDay = s.view === 'day';
+    const dayInfo = WEEK.find(d => d.id === s.day) || WEEK[1];
+    const isToday = s.day === TODAY;
+    const svc = (id) => SERVICES.find(x => x.id === id);
+
+    // Buracos e encaixes do dia.
+    const openGap = (barberId, time) => set({ notice: '', sheet: emptySheet({ barberId, time, fromGap: true }) });
+    const walkInAt = (barberId, time) => s.walkIns.find(w => w.barberId === barberId && w.time === time);
+    const openGaps = s.gaps.filter(g => !walkInAt(g.barberId, g.startsAt) && (!g.offer || g.offer.status !== 'filled'));
+    const walkInMoney = s.walkIns.reduce((a, w) => a + svc(w.serviceId).price, 0);
+
+    const barbers = BARBERS.map(b => {
+      const mine = s.walkIns.filter(w => w.barberId === b.id);
+      return {
+        name: b.name, initial: b.initial, avatarBg: b.avatarBg, avatarColor: b.avatarColor || accent,
+        caption: (b.count + mine.length) + ' atendimentos · ' + brl(b.money + mine.reduce((a, w) => a + svc(w.serviceId).price, 0)),
+        rows: ROWS[b.id].map((r, i) => {
+          const time = HOURS[i];
+          const flags = { isAppt: false, isRisk: false, isPair: false, isBlock: false, isGap: false };
+          if (r.kind === 'gap') {
+            const w = walkInAt(b.id, time);
+            if (w) { const sv = svc(w.serviceId); return { ...flags, isAppt: true, name: w.name, line: sv.name + ' · ' + brl(sv.price) + ' · encaixe · confirmado', lineColor: MUTED }; }
+            const g = s.gaps.find(x => x.id === r.gapId);
+            const v = gapView(g, accent);
+            return { ...flags, isGap: true, gap: { ...v, aria: 'Horário vago ' + time + ' com ' + b.name + ': ' + v.title + ', ' + v.detail, fitAria: 'Encaixar cliente às ' + time + ' com ' + b.name, fit: () => openGap(b.id, time) } };
+          }
+          if (r.kind === 'pair') return { ...flags, isPair: true, pair: r.pair };
+          if (r.kind === 'block') return { ...flags, isBlock: true, label: r.label };
+          const high = r.risk && r.risk.level === 'high';
+          return { ...flags, isAppt: !high, isRisk: high, name: r.name, line: r.line, reason: high ? r.risk.reason : '', lineColor: r.lineColor === 'accent' ? accent : MUTED };
+        }),
+      };
+    });
+
+    // Resumo (dia ou semana). Risco conta só os "high".
+    const offered = openGaps.reduce((a, g) => a + (g.offer ? g.offer.position : 0), 0);
+    const week = WEEK.map(d => {
+      const extra = d.id === TODAY ? s.walkIns.length : 0;
+      const gaps = d.id === TODAY ? openGaps.length : d.gaps;
+      const sel = d.id === s.day;
+      return {
+        name: d.name, date: d.date, open: !d.closed, closed: !!d.closed,
+        count: d.closed ? 0 : d.count + extra, money: d.closed ? '' : brl(d.money + (d.id === TODAY ? walkInMoney : 0)),
+        gapsLabel: gaps ? plural(gaps, 'buraco', 'buracos') : 'sem buracos', gapsColor: gaps ? accent : MUTED,
+        hasRisk: !!d.risk, riskLabel: d.risk ? d.risk + ' risco alto' : '',
+        pressed: sel ? 'true' : 'false', border: sel ? SEL_BORDER : 'rgba(243,237,228,0.08)', bg: sel ? SEL_BG : '#1B1612', nameColor: sel ? accent : MUTED,
+        aria: d.title + (d.closed ? ', fechado' : ', ' + (d.count + extra) + ' atendimentos'),
+        pick: () => set({ view: 'day', day: d.id }),
+      };
+    });
+    const wk = WEEK.filter(d => !d.closed);
+    const sum = isDay
+      ? {
+          moneyLabel: isToday ? 'Previsto hoje' : 'Previsto no dia',
+          money: brl(dayInfo.money + (isToday ? walkInMoney : 0)),
+          moneyCaption: (dayInfo.count + (isToday ? s.walkIns.length : 0)) + ' atendimentos · R$ 240 recuperados pela IA',
+          gaps: isToday ? openGaps.length : dayInfo.gaps,
+          gapsCaption: isToday ? (offered ? 'IA já ofertou para ' + plural(offered, 'cliente', 'clientes') + ' da fila' : 'nenhuma oferta em andamento') : 'IA oferta para a fila de espera',
+          risk: dayInfo.risk || 0,
+          riskCaption: 'só risco alto · confirmação pedida ontem às 19h',
+        }
+      : {
+          moneyLabel: 'Previsto na semana',
+          money: brl(wk.reduce((a, d) => a + d.money, 0) + walkInMoney),
+          moneyCaption: (wk.reduce((a, d) => a + d.count, 0) + s.walkIns.length) + ' atendimentos em 5 dias abertos',
+          gaps: wk.reduce((a, d) => a + (d.id === TODAY ? openGaps.length : d.gaps), 0),
+          gapsCaption: 'a IA oferta cada um para a fila de espera',
+          risk: wk.reduce((a, d) => a + d.risk, 0),
+          riskCaption: 'só risco alto · na semana',
+        };
+
+    // Sheet "Encaixar cliente" (C6).
+    const sh0 = s.sheet;
+    let sh = null;
+    if (sh0) {
+      const customer = CUSTOMERS.find(c => c.id === sh0.customerId);
+      const q = norm(sh0.query);
+      const results = !customer && q ? CUSTOMERS.filter(c => norm(c.name).split(' ').some(w => w.startsWith(q)) || norm(c.name).startsWith(q) || c.phone.endsWith(q)).slice(0, 5) : [];
+      const phoneDigits = sh0.newPhone.replace(/\D/g, '').length;
+      const hasCustomer = !!customer;
+      const customerOk = hasCustomer || (sh0.mode === 'new' && sh0.newName.trim().length > 1 && phoneDigits >= 10);
+      const ready = customerOk && sh0.serviceId && sh0.barberId && sh0.time;
+      sh = {
+        ...sh0,
+        subtitle: sh0.fromGap ? 'Barbeiro e horário vêm do buraco. Dá para trocar.' : 'Escolha cliente, serviço, barbeiro e horário.',
+        customer: customer || {}, hasCustomer,
+        isSearch: !hasCustomer && sh0.mode === 'search', isNew: !hasCustomer && sh0.mode === 'new',
+        idle: !q, hasResults: results.length > 0, noResults: !!q && results.length === 0,
+        results: results.map(c => ({ name: c.name, phone: c.phone, pick: () => sheetSet({ customerId: c.id }) })),
+        dayLabel: dayInfo.name.toLowerCase() + ' ' + dayInfo.date,
+        timeInvalid: sh0.conflict ? 'true' : 'false', timeBorder: sh0.conflict ? DANGER : LINE_STRONG,
+        blocked: !ready || sh0.saving, savingAria: sh0.saving ? 'true' : 'false',
+        confirmLabel: sh0.saving ? 'Salvando…' : 'Confirmar encaixe',
+      };
+    }
+    const confirm = () => {
+      const cur = this.state.sheet;
+      if (!cur || cur.saving) return;
+      sheetSet({ saving: true, conflict: false });
+      setTimeout(() => {
+        const st = this.state;
+        const c = st.sheet;
+        if (!c) return;
+        const gap = st.gaps.find(g => g.barberId === c.barberId && g.startsAt === c.time);
+        const taken = !gap || walkInAt(c.barberId, c.time) || (gap.offer && gap.offer.status === 'filled') || gap.id === RACE.gapId;
+        if (taken) {
+          const gaps = st.gaps.map(g => (g.id === RACE.gapId && gap && gap.id === RACE.gapId ? { ...g, offer: { ...g.offer, position: 3, status: 'filled', filledBy: RACE.filledBy } } : g));
+          this.setState({ gaps, sheet: { ...c, saving: false, conflict: true } });
+          return;
+        }
+        const customer = CUSTOMERS.find(x => x.id === c.customerId);
+        const name = customer ? customer.name : c.newName.trim();
+        const b = BARBERS.find(x => x.id === c.barberId);
+        this.setState({ sheet: null, walkIns: [...st.walkIns, { barberId: c.barberId, time: c.time, name, serviceId: c.serviceId }], notice: 'Encaixe confirmado: ' + name + ', hoje às ' + c.time + ' com ' + b.name + '.' });
+      }, 1200);
+    };
+
+    return {
+      accent,
+      title: isDay ? dayInfo.title : 'Semana de 27 de outubro',
+      prevAria: isDay ? 'Dia anterior' : 'Semana anterior', nextAria: isDay ? 'Próximo dia' : 'Próxima semana',
+      isDay, isWeek: !isDay,
+      dayPressed: isDay ? 'true' : 'false', weekPressed: isDay ? 'false' : 'true',
+      dayBg: isDay ? 'rgba(243,237,228,0.10)' : 'transparent', dayColor: isDay ? INK : SOFT,
+      weekBg: isDay ? 'transparent' : 'rgba(243,237,228,0.10)', weekColor: isDay ? SOFT : INK,
+      showDay: () => set({ view: 'day' }), showWeek: () => set({ view: 'week', notice: '' }),
+      summaryAria: isDay ? 'Resumo do dia' : 'Resumo da semana', sum,
+      notice: s.notice,
+      week, hours: HOURS, barbers,
+      gapExamples: GAP_EXAMPLES.map(x => ({ label: x.label, code: x.code, gap: gapView(x.g, accent) })),
+      services: SERVICES.map(x => ({ id: x.id, label: x.name + ' · ' + brl(x.price) + ' · ' + x.dur + ' min' })),
+      barberOptions: BARBERS.map(b => ({ id: b.id, name: b.name })),
+      sheetOpen: !!sh, sh: sh || {},
+      openFromHeader: () => set({ notice: '', sheet: emptySheet({}) }),
+      closeSheet: () => { if (!(this.state.sheet && this.state.sheet.saving)) set({ sheet: null }); },
+      setQuery: (e) => sheetSet({ query: e.target.value }),
+      clearCustomer: () => sheetSet({ customerId: '', query: '', mode: 'search' }),
+      startNew: () => sheetSet({ mode: 'new', newName: this.state.sheet.query.trim() && !/\d/.test(this.state.sheet.query) ? this.state.sheet.query.trim() : '' }),
+      backToSearch: () => sheetSet({ mode: 'search' }),
+      setNewName: val('newName'), setNewPhone: val('newPhone'),
+      setService: val('serviceId'), setBarber: val('barberId'), setTime: val('time'),
+      confirm,
+    };
   }
 }
 </script>
